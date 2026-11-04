@@ -1,0 +1,67 @@
+# Which licence covers which file, in the REUSE format (reuse.software).
+# `reuse lint` checks that every file is covered; CI runs it. LICENSE says
+# the same in prose; the licence texts are in LICENSES/. When several
+# annotations match a file, the last one wins, so the general ones come
+# first.
+version = 1
+
+# Firmware and all other software: the Rust firmware and host code, the
+# fabric's HDL and its testbenches, the tools and scripts, the update page,
+# the build and CI files, and what they generate into the tree.
+[[annotations]]
+path = "**"
+SPDX-FileCopyrightText = "2026 mxshift"
+SPDX-License-Identifier = "Apache-2.0"
+
+# The hardware: schematics, boards, panel, symbol and footprint library,
+# netlists, BOMs, routing, PDFs, and the data the boards are drawn from.
+[[annotations]]
+path = [
+    "hw/**",
+    "docs/netlist/**",
+    "tools/boardmap.yaml",
+    "tools/jlc_parts.yaml",
+]
+SPDX-FileCopyrightText = "2026 mxshift"
+SPDX-License-Identifier = "CERN-OHL-P-2.0"
+
+# Documentation.
+[[annotations]]
+path = "**/*.md"
+SPDX-FileCopyrightText = "2026 mxshift"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+# Footprints derived from KiCad's stock library, which is CC-BY-SA-4.0
+# (KiCad's licence exception lets a design use them under any licence; the
+# footprint files themselves stay CC-BY-SA-4.0). See LICENSE.
+[[annotations]]
+path = [
+    "hw/lib/fastprom.pretty/USB_C_Receptacle_HRO_TYPE-C-31-M-12_BoardEdge.kicad_mod",
+    "hw/lib/fastprom.pretty/Panel_Fiducial_1mm_Mask2mm.kicad_mod",
+    "hw/lib/fastprom.pretty/Texas_X2SON-4_1x1mm_P0.65mm_NoEP.kicad_mod",
+    "hw/lib/fastprom.pretty/QFN-32-1EP_4x4mm_P0.4mm_EP2.65x2.65mm.kicad_mod",
+    "hw/lib/fastprom.pretty/Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm.kicad_mod",
+    "hw/lib/fastprom.pretty/SOT-23-5.kicad_mod",
+    "hw/lib/fastprom.pretty/SOT-23-6.kicad_mod",
+    "hw/lib/fastprom.pretty/Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm.kicad_mod",
+    "hw/lib/fastprom.pretty/Hirose_DF40C-30DP-0.4V_2x15-1MP_P0.4mm.kicad_mod",
+    "hw/lib/fastprom.pretty/Hirose_DF40HC(3.0)-30DS-0.4V_2x15_P0.4mm.kicad_mod",
+    "hw/lib/fastprom.pretty/SW_DIP_SPSTx02_Slide_KingTek_DSHP02TS_W7.62mm_P1.27mm.kicad_mod",
+    "hw/lib/fastprom.pretty/R_0402_1005Metric.kicad_mod",
+    "hw/lib/fastprom.pretty/C_0402_1005Metric.kicad_mod",
+    "hw/lib/fastprom.pretty/C_0603_1608Metric.kicad_mod",
+    "hw/lib/fastprom.pretty/L_0603_1608Metric.kicad_mod",
+    "hw/lib/fastprom.pretty/D_SOD-323.kicad_mod",
+    "hw/lib/fastprom.pretty/R_Array_Convex_4x0402.kicad_mod",
+    "hw/lib/fastprom.pretty/TestPoint_Pad_D1.0mm.kicad_mod",
+]
+SPDX-FileCopyrightText = ["KiCad Libraries contributors", "2026 mxshift"]
+SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+# The SOICbite programming footprint (J3), Simon Merrett's, BSD-2-Clause:
+# github.com/SimonMerrett/SOICbite, renamed, pads and holes unchanged (its
+# pin 1 cup replaced by the project's pin 1 triangle).
+[[annotations]]
+path = "hw/lib/fastprom.pretty/SOICbite_2x04_P1.27mm_BoardEdge.kicad_mod"
+SPDX-FileCopyrightText = "2019 Simon Merrett"
+SPDX-License-Identifier = "BSD-2-Clause"

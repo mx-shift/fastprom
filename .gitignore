@@ -1,0 +1,26 @@
+build/
+*.vvp
+*.vcd
+*.log
+__pycache__/
+gen/*.v
+gen/*.hex
+gen/*.pcf
+hw/erc-*.rpt
+fw/target/
+fw/.cargo-home/
+hw/drc*.rpt
+gen/*.ve
+gen/*.vh
+.claude/worktrees/
+web/tests/node_modules/
+# the stack's KiCad files, built from the sources by make (see Makefile)
+hw/*.kicad_sch
+hw/*.kicad_pro
+hw/*.kicad_prl
+hw/*.kicad_pcb
+hw/*.kicad_dru
+hw/*.net
+hw/*-bom.csv
+hw/fp-info-cache
+hw/*-backups/

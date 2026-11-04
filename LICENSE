@@ -1,0 +1,35 @@
+FastPROM is copyright 2026 mxshift, and is licensed in three parts.
+
+Firmware and software - Apache License 2.0 (LICENSES/Apache-2.0.txt)
+    The firmware (fw/), the fabric's HDL and testbenches (hdl/, sim/), the
+    tools and scripts (tools/, scripts/), the update page (web/), and the
+    build and CI files, including what they generate into the tree.
+
+Hardware - CERN Open Hardware Licence Version 2 - Permissive
+    (LICENSES/CERN-OHL-P-2.0.txt)
+    The schematics, boards and panel, their symbol and footprint library,
+    netlists, BOMs, routing and PDFs (hw/, docs/netlist/), and the data the
+    boards are drawn from (tools/boardmap.yaml, tools/jlc_parts.yaml).
+
+Documentation - Creative Commons Attribution 4.0 International
+    (LICENSES/CC-BY-4.0.txt)
+    README.md, DESIGN_NOTES.md, docs/ and every other Markdown file.
+
+Eighteen footprints in hw/lib/fastprom.pretty are derived from KiCad's stock
+footprint library and stay under its licence, Creative Commons
+Attribution-ShareAlike 4.0 (LICENSES/CC-BY-SA-4.0.txt), copyright the KiCad
+Libraries contributors, with modifications copyright 2026 mxshift:
+USB_C_Receptacle_HRO_TYPE-C-31-M-12_BoardEdge, Panel_Fiducial_1mm_Mask2mm,
+Texas_X2SON-4_1x1mm_P0.65mm_NoEP, QFN-32-1EP_4x4mm_P0.4mm_EP2.65x2.65mm,
+Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm, SOT-23-5, SOT-23-6,
+Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm,
+Hirose_DF40C-30DP-0.4V_2x15-1MP_P0.4mm,
+Hirose_DF40HC(3.0)-30DS-0.4V_2x15_P0.4mm,
+SW_DIP_SPSTx02_Slide_KingTek_DSHP02TS_W7.62mm_P1.27mm, R_0402_1005Metric,
+C_0402_1005Metric, C_0603_1608Metric, L_0603_1608Metric, D_SOD-323,
+R_Array_Convex_4x0402 and TestPoint_Pad_D1.0mm. KiCad's libraries carry an exception:
+designs that use them, and the files generated from those designs, may be
+licensed as their authors choose, so the boards remain CERN-OHL-P-2.0.
+
+REUSE.toml records the same, file by file, in the REUSE format
+(reuse.software); `reuse lint` checks it.
