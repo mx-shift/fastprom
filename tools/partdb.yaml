@@ -1,0 +1,227 @@
+# Target part database.
+#
+# Pinouts transcribed from manufacturer databooks (TI 1975 and 1981, Signetics
+# 1977, Philips 1987 IC10, National 1987, AMD 1980-1989, MMI 1980-1986, Harris
+# 1978-1988, Fujitsu 1979-1989). The 512x8 frame was cross-checked against six
+# independent databooks and is byte-identical in all of them; Harris states
+# outright that HM-7648/49 is "pin compatible with the 74S472/73" and Fujitsu
+# calls MB7124 "JEDEC approved pin out".
+#
+# Only five organisations ever shipped in a 20-pin bipolar DIP. Parts widely
+# assumed to be 20-pin that are NOT: 82S137 (1024x4) and 82S185 / 63S841 /
+# MB7128 (2048x4) are 18-pin; 74S474 / 74S475 / 82S141 are 24-pin; 63S141 is
+# 256x4 16-pin.
+#
+# socket_pins maps DIP pin number -> signal. Signal names:
+#   An      address bit n
+#   Dn      data bit n (D0 is the LSB; vendors variously call it O1 or Q0)
+#   nCE[n]  chip enable, active low
+#   CE[n]   chip enable, active high
+#   VCC GND
+
+meta:
+  format_version: 1
+
+parts:
+
+  # ---------------------------------------------------------------------
+  512x8:
+    description: >
+      The primary target. An effectively JEDEC-standard pinout shared by
+      eight manufacturers, and the most common 20-pin bipolar PROM in the
+      field.
+    depth: 512
+    width: 8
+    address_bits: 9
+    ce_count: 1
+    ce_active_low: [true]
+    socket_pins:
+      1: A0
+      2: A1
+      3: A2
+      4: A3
+      5: A4
+      6: D0
+      7: D1
+      8: D2
+      9: D3
+      10: GND
+      11: D4
+      12: D5
+      13: D6
+      14: D7
+      15: nCE0
+      16: A5
+      17: A6
+      18: A7
+      19: A8
+      20: VCC
+    tristate_parts:
+      - 82S147     # Signetics/Philips, 60 ns
+      - 82S147A    # 45 ns
+      - 6349-1     # MMI NiCr, 70 ns
+      - 6349-2     # 55 ns
+      - 63S481     # MMI TiW, 45 ns
+      - 63S481A    # 30 ns - fastest characterised
+      - 74S472     # TI, = TBP28S42
+      - DM74S472   # National
+      - DM74S472B  # 35 ns
+      - Am27S29    # AMD
+      - Am27S29SA  # 30 ns
+      - HM-7649    # Harris
+      - HM-7649A-5 # 45 ns
+      - MB7124     # Fujitsu
+      - MB7124Y    # 30 ns
+      - 29621      # Raytheon
+      - uPB424     # NEC
+    open_collector_parts:
+      - 82S146
+      - 6348-1
+      - 63S480
+      - 74S473
+      - DM74S473
+      - Am27S28
+      - HM-7648
+      - MB7123
+      - 29620
+      - uPB405
+    timing_ns:
+      # tAA / tEA / tER, datasheet maxima, commercial grade.
+      fastest:  { t_aa: 30, t_ea: 20, t_er: 20 }   # Am27S29SA, 63S481A, MB7124Y
+      common:   { t_aa: 45, t_ea: 30, t_er: 30 }   # 82S147A, 63S481, MB7124E
+      slowest:  { t_aa: 75, t_ea: 40, t_er: 35 }   # TI TBP28S42 1981
+    icc_ma: { typ: 120, max: 170 }
+
+  # ---------------------------------------------------------------------
+  256x8:
+    description: >
+      The 512x8 frame with A8 deleted, the high address block shifted up one
+      pin, and pin 16 repurposed as a second active-low enable. Same data
+      pins, same power pins - so the same board covers it.
+    depth: 256
+    width: 8
+    address_bits: 8
+    ce_count: 2
+    ce_active_low: [true, true]
+    socket_pins:
+      1: A0
+      2: A1
+      3: A2
+      4: A3
+      5: A4
+      6: D0
+      7: D1
+      8: D2
+      9: D3
+      10: GND
+      11: D4
+      12: D5
+      13: D6
+      14: D7
+      15: nCE0
+      16: nCE1
+      17: A5
+      18: A6
+      19: A7
+      20: VCC
+    tristate_parts: [82S135, 82LS135, 6309-1, 63S281, 63S281A, 74S471, DM74S471, MB7118]
+    open_collector_parts: [6308-1, 63S280, 74S470, DM74S470, MB7117]
+    timing_ns:
+      fastest: { t_aa: 28, t_ea: 25, t_er: 25 }    # MMI 63S281A
+      common:  { t_aa: 45, t_ea: 25, t_er: 25 }    # 82S135, 63S281, MB7118E
+      slowest: { t_aa: 70, t_ea: 35, t_er: 30 }    # 74S471, 6309-1
+    icc_ma: { typ: 100, max: 155 }
+
+  # ---------------------------------------------------------------------
+  4096x4:
+    description: >
+      A different pin frame: addresses run down from pin 1 and the data pins
+      run backwards, so pins 6-9 are addresses rather than data. Needs a
+      board variant - see docs/04-board-mapping.md. Note also that Fujitsu
+      MB7133/MB7134 claim equivalence to this but have an incompatible
+      pinout of their own.
+    depth: 4096
+    width: 4
+    address_bits: 12
+    ce_count: 2
+    ce_active_low: [true, true]
+    socket_pins:
+      1: A8
+      2: A7
+      3: A6
+      4: A5
+      5: A4
+      6: A3
+      7: A2
+      8: A1
+      9: A0
+      10: GND
+      11: D3
+      12: D2
+      13: D1
+      14: D0
+      15: nCE0
+      16: nCE1
+      17: A11
+      18: A10
+      19: A9
+      20: VCC
+    tristate_parts: [82S195, 82S195A, 63S1641, 63S1641A, Am27S41, Am27S41A, DM87S195, HM-76165]
+    open_collector_parts: [63S1640, Am27S40, MB7133]
+    timing_ns:
+      fastest: { t_aa: 35, t_ea: 25, t_er: 25 }    # 63S1641A, Am27S41A
+      common:  { t_aa: 50, t_ea: 25, t_er: 25 }
+      slowest: { t_aa: 60, t_ea: 40, t_er: 40 }    # HM-76165
+    icc_ma: { typ: 130, max: 175 }
+
+  # ---------------------------------------------------------------------
+  2048x4:
+    description: >
+      Harris only, with three active-low enables and yet another pin frame.
+      No verified industry equivalent - the "82S186/187" mapping circulating
+      in hobbyist lists is not in any Signetics or Harris databook. Needs a
+      board variant.
+    depth: 2048
+    width: 4
+    address_bits: 11
+    ce_count: 3
+    ce_active_low: [true, true, true]
+    socket_pins:
+      1: A7
+      2: A6
+      3: A5
+      4: A4
+      5: A3
+      6: A2
+      7: A1
+      8: A0
+      9: nCE0
+      10: GND
+      11: nCE2
+      12: nCE1
+      13: D3
+      14: D2
+      15: D1
+      16: D0
+      17: A10
+      18: A9
+      19: A8
+      20: VCC
+    tristate_parts: [HM-7687, MCM7687]
+    open_collector_parts: [HM-7686, MCM7686]
+    timing_ns:
+      common: { t_aa: 60, t_ea: 40, t_er: 40 }
+    icc_ma: { typ: 120, max: 170 }
+
+# Electrical envelope a replacement must meet to be a true drop-in for any
+# vendor's part in these sockets.
+drive_envelope:
+  iol_ma: 16          # sink, MMI and National
+  vol_max_v: 0.45
+  ioh_ma: 6.5         # source, TI and National are strictest
+  voh_min_v: 2.4
+  notes: >
+    TI changed its own IOL for the 512x8 tri-state part from 16 mA (1975) to
+    12 mA (1981); both are genuine TI documents. Philips specifies 82S147 IOL
+    at 9.6 mA, which is most likely a tighter-VOL test point rather than
+    weaker silicon, since Fujitsu publishes both points.
