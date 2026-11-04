@@ -1,0 +1,240 @@
+# LCSC part numbers for JLCPCB assembly of the two-board stack.
+#
+# Keyed by the netlist value and footprint, so a value or footprint change in
+# the schematic that is not reflected here fails `make jlc` loudly rather
+# than ordering the wrong part. Captured 2026-11-01; stock moves, so check
+# each line on jlcpcb.com/parts before ordering.
+#
+# lcsc: ""   means JLC cannot place it from LCSC stock - see `note`.
+# dnp: true  means it is deliberately not fitted.
+# loose: true means JLC does not fit it; it ships alongside the assembled
+#             boards and is fitted by hand.
+
+parts:
+  - value: AG32VF303KCU6
+    footprint: fastprom:QFN-32-1EP_4x4mm_P0.4mm_EP2.65x2.65mm
+    mpn: AG32VF303KCU6
+    lcsc: C41397171
+  - value: SN74LVT245B
+    footprint: fastprom:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm
+    mpn: SN74LVT245BRGYR
+    lcsc: C2864103
+    note: LCSC stock is thin (~225 on 2026-11-01); three per lower board.
+  - value: AP2112K-3.3
+    footprint: fastprom:SOT-23-5
+    mpn: AP2112K-3.3TRG1
+    lcsc: C51118
+  - value: TLV74233
+    footprint: fastprom:Texas_X2SON-4_1x1mm_P0.65mm_NoEP
+    mpn: TLV74233PDQNR
+    lcsc: C469916
+  - value: 12MHz
+    footprint: fastprom:Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm
+    mpn: OT201612MJBA4SL
+    lcsc: C669076
+    note: >
+      YXC 12 MHz CMOS oscillator, 2.0 x 1.6 mm, 1.8-3.3 V; pinout 1 OE,
+      2 GND, 3 OUT, 4 VDD, checked against YXC's YSO110TR datasheet, with
+      the land pattern (docs/07-bom.md). The PLL multiplies it to a
+      1200 MHz VCO, divided to 60 MHz for USB and 200 MHz for the BRAM.
+  - value: 10uF
+    footprint: fastprom:C_0603_1608Metric
+    mpn: CL10A106KP8NNNC
+    lcsc: C19702
+  - value: 4k7
+    footprint: fastprom:R_0402_1005Metric
+    mpn: 0402WGF4701TCE
+    lcsc: C25900
+  - value: USBLC6-2SC6
+    footprint: fastprom:SOT-23-6
+    mpn: USBLC6-2SC6
+    lcsc: C7519
+  - value: USB_C_USB2.0
+    footprint: fastprom:USB_C_Receptacle_HRO_TYPE-C-31-M-12_BoardEdge
+    mpn: TYPE-C-31-M-12
+    lcsc: C165948
+  - value: DF40C-30DP-0.4V
+    footprint: fastprom:Hirose_DF40C-30DP-0.4V_2x15-1MP_P0.4mm
+    mpn: DF40C-30DP-0.4V(51)
+    lcsc: C429942
+  - value: DF40HC(3.0)-30DS-0.4V
+    footprint: fastprom:Hirose_DF40HC(3.0)-30DS-0.4V_2x15_P0.4mm
+    mpn: DF40HC(3.0)-30DS-0.4V(51)
+    lcsc: C531034
+    note: >
+      3.0 mm stack with the DF40C-30DP header. Do NOT substitute
+      DF40C-30DS-0.4V(51), C424642: that is the 1.5 mm stack, too low for
+      the parts on the two facing sides to clear the DIP pin fillets on the
+      lower board's top (DESIGN_NOTES.md, "Hirose DF40, 3.0 mm stack").
+  - value: Schottky
+    footprint: fastprom:D_SOD-323
+    mpn: B5819WS
+    lcsc: C22624
+  - value: 220R
+    footprint: fastprom:L_0603_1608Metric
+    mpn: MPZ1608S221ATA00
+    lcsc: C76815
+  - value: 4.7uF
+    footprint: fastprom:C_0603_1608Metric
+    mpn: CL10A475KO8NNNC
+    lcsc: C19666
+  - value: 1uF
+    footprint: fastprom:C_0402_1005Metric
+    mpn: CL05A105KA5NQNC
+    lcsc: C52923
+  - value: 100nF
+    footprint: fastprom:C_0402_1005Metric
+    mpn: CL05B104KO5NNNC
+    lcsc: C1525
+  # Uniroyal 4D02: convex, 2.0 x 1.0 mm, 0.5 mm pitch; element k is pins
+  # k and 9-k (datasheet JLC-01-015, sections 3.1-3.2)
+  - value: 4x33R
+    footprint: fastprom:R_Array_Convex_4x0402
+    mpn: 4D02WGJ0330TCE
+    lcsc: C25501
+  # Optional, for slower-grade builds only: 47 R terminators damp ground
+  # bounce through socket pin 10 harder, but add about 0.5 ns to every data
+  # path (47 R x 50 pF x ln 2 = 1.63 ns, against 1.14 ns), most of a 20 ns
+  # tEA grade's margin. Same footprint; set RN1/RN2's value to 4x47R.
+  - value: 4x47R
+    footprint: fastprom:R_Array_Convex_4x0402
+    mpn: 4D02WGJ0470TCE
+    lcsc: C55183
+  # VBUS hot-plug damper on the upper board (R27, with C20)
+  - value: 1R
+    footprint: fastprom:R_0402_1005Metric
+    mpn: 0402WGF100KTCE
+    lcsc: C25086
+  - value: 5k1
+    footprint: fastprom:R_0402_1005Metric
+    mpn: 0402WGF5101TCE
+    lcsc: C25905
+  - value: 10k
+    footprint: fastprom:R_0402_1005Metric
+    mpn: 0402WGF1002TCE
+    lcsc: C25744
+  - value: 100k
+    footprint: fastprom:R_0402_1005Metric
+    mpn: 0402WGF1003TCE
+    lcsc: C25741
+  - value: Image_Select
+    footprint: fastprom:SW_DIP_SPSTx02_Slide_KingTek_DSHP02TS_W7.62mm_P1.27mm
+    mpn: DSHP02TS-S
+    lcsc: C319052
+    note: >
+      XKB's DSHP02TS-S, the same 2-way 1.27 mm slide DIP as the KingTek part
+      the footprint is drawn from; check its land pattern against XKB's
+      drawing before ordering.
+  - value: SOICbite
+    footprint: fastprom:SOICbite_2x04_P1.27mm_BoardEdge
+    dnp: true
+    note: Bare edge pads for a SOIC-8 clip or pogo fixture.
+  - value: TestPoint
+    footprint: fastprom:TestPoint_Pad_D1.0mm
+    dnp: true
+    note: Bare test pad, for probing a supply at bring-up.
+  - value: DIP20_PLUG
+    footprint: fastprom:DIP-20_W7.62mm_PreciDip350_2xSIP
+    mpn: Preci-Dip 350-10-110-00-001101 (x2)
+    loose: true
+    note: >
+      Round machined pins, shipped loose with the assembled boards and
+      soldered by hand. Trim the tails to 1.0 mm above the lower board
+      (1.5 mm at most) before stacking: the stack gap is 3.0 mm, and over
+      the pin rows the upper board's underside has 0603s (C2, part of
+      FB1) at pins 19-20, an 0402 (R18) at pin 2 and the USB receptacle's
+      shell legs at pins 9-12 (DESIGN_NOTES.md, "Pin-tail trim").
+
+# CPL corrections, keyed by LCSC part number. JLC places each part from the
+# EasyEDA footprint linked to its LCSC number, not from ours, and that
+# footprint has its own zero orientation and origin. tools/jlc_fab.py writes
+#   top:     Rotation = KiCad angle + rotation
+#   bottom:  Rotation = 180 - KiCad angle + rotation
+# (JLC's bottom angles are as seen looking at the part, i.e. from underneath,
+# with X left as seen from the top: the convention kicad-jlcpcb-tools and
+# JLC-Plugin-for-KiCad both write), and moves the centroid by `offset`, mm,
+# from our footprint's origin to the EasyEDA footprint's, in our footprint's
+# own coordinates (KiCad footprint editor: x right, y down, at 0 degrees).
+#
+# Each entry was derived on 2026-11-05 from the EasyEDA footprint (fetched
+# with easyeda2kicad's API client) against the placed pads of both boards and
+# the panel; build/cpl-check/ holds the check, which places JLC's pads at the
+# written CPL position and requires every pad to land on ours. "pin 1 on 1"
+# means every EasyEDA pad number lands on the same number of ours. A part
+# with no entry stops `make jlc`: derive its entry first.
+cpl:
+  C41397171:   # AG32 QFN-32 4x4, EasyEDA QFN-32_..._TL: pin 1 top left, as KiCad's
+    rotation: 0
+    note: pin 1 on 1, all 33 pads; EasyEDA pads 0.13 mm longer outward
+  C2864103:    # SN74LVT245BRGYR, EasyEDA VQFN-20_..._BL: pin 1 bottom left, long side horizontal
+    rotation: 270
+    note: pin 1 on 1, all 21 pads within 0.008 mm
+  C469916:     # TLV74233 X2SON-4, EasyEDA X2SON-4_..._TL-EP
+    rotation: 0
+    note: >
+      pins 1-4 on 1-4. EasyEDA's footprint has the exposed pad (5); ours
+      leaves it off by design, so in JLC's preview pad 5 sits on bare board.
+  C51118:      # AP2112K SOT-23-5, EasyEDA SOT-25-5_..._BL: pins 1-3 along the bottom
+    rotation: 270
+    note: pin 1 on 1, all 5 pads (EasyEDA toes 0.16 mm further out)
+  C7519:       # USBLC6-2SC6 SOT-23-6, EasyEDA SOT-23-6_..._BL
+    rotation: 270
+    note: pin 1 on 1, all 6 pads within 0.012 mm
+  C669076:     # YXC 2016 oscillator, EasyEDA OSC-SMD_4P-L2.0-W1.6-BL
+    rotation: 0
+    note: pin 1 on 1, all 4 pads; EasyEDA lands 0.15 mm further out
+  C319052:     # XKB DSHP02TS-S, EasyEDA SW-SMD_DSHP02TS-S: pin rows horizontal
+    rotation: 90
+    note: pin 1 on 1, all 4 pads exactly
+  C165948:     # HRO TYPE-C-31-M-12, EasyEDA USB-C_SMD-TYPE-C-31-M-12_1
+    rotation: 0
+    offset: [0, -1.3909]
+    note: >
+      Our land pattern is HRO's own (drawing rev A, 2020-12-08); KiCad's
+      stock one, which it replaced, had the signal row 0.375 mm further
+      back, 1.45 mm pads and the shell slots 0.03 mm off. The centroid
+      follows the mechanics: this offset puts EasyEDA's locating-peg holes
+      on ours, and its shell slots then land within 0.03 mm, as HRO draws
+      them. Derived from the 2026-11-05 check, which aligned the signal pads
+      (offset -1.5709) and found EasyEDA's holes and slots 0.18 and 0.15 mm
+      nearer the signal row: shifted 0.18 mm. EasyEDA's signal pads then
+      sit 0.195 mm behind ours, centre to centre; their front ends agree
+      with HRO's to about 0.04 mm if they are 1.45 mm long. Re-run the check
+      on this footprint before ordering.
+  C429942:     # DF40C-30DP plug, EasyEDA CONN-SMD_30P-P0.40_5001-BM0430-15-00
+    rotation: 0
+    note: >
+      EasyEDA numbers the rows the other way round from KiCad (a mirror
+      image), so no rotation puts every number on its own. 0 and 180 both
+      put every pad on one of ours; 0 puts JLC's pin 1 on our pad 2, the same
+      pad the receptacle's correction puts its pin 1 on, so the two halves'
+      pin-1 marks face each other. The contacts are identical either way.
+  C531034:     # DF40HC(3.0)-30DS receptacle, EasyEDA CONN-SMD_30P-P0.40_DF40HC-3.0-30DS-0.4V-51
+    rotation: 180
+    note: >
+      Mirror-image numbering, as the plug. 180 puts JLC's pin 1 on our pad
+      2, facing the plug's (see C429942); 0 would also land every pad.
+  C25501:      # 4D02 33R array, EasyEDA RES-ARRAY-SMD_0402-8P-L2.0-W1.0-BL
+    rotation: 90
+    note: &array >
+      EasyEDA numbers the pads clockwise, KiCad counter-clockwise (mirror
+      image). 90 and 270 both land every pad, each element on one of ours;
+      90 is the community databases' value and puts JLC's pin 1 on our pad
+      4. The four elements are identical, so neither is wrong.
+  C55183:      # 4D02 47R array, same footprint
+    rotation: 90
+    note: *array
+  C22624:      # B5819WS SOD-323: EasyEDA pad 1 is K, as KiCad's
+    rotation: 0
+    note: cathode on cathode; EasyEDA lands 0.12 mm further out
+  # passives: EasyEDA pad 1 left, as KiCad's
+  C19702:  {rotation: 0, note: 0603}
+  C19666:  {rotation: 0, note: 0603}
+  C76815:  {rotation: 0, note: 0603 ferrite}
+  C52923:  {rotation: 0, note: 0402}
+  C1525:   {rotation: 0, note: 0402}
+  C25900:  {rotation: 0, note: 0402}
+  C25086:  {rotation: 0, note: 0402}
+  C25905:  {rotation: 0, note: 0402}
+  C25744:  {rotation: 0, note: 0402}
+  C25741:  {rotation: 0, note: 0402}
