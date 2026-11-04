@@ -1,0 +1,1590 @@
+{
+ "boards": {
+  "fastprom-r3-qfn32-usb": {
+   "control": {
+    "data_oe": "PIN_28"
+   },
+   "socket_to_mcu": {
+    "1": "PIN_1",
+    "2": "PIN_2",
+    "3": "PIN_3",
+    "4": "PIN_5",
+    "5": "PIN_7",
+    "6": "PIN_13",
+    "7": "PIN_14",
+    "8": "PIN_18",
+    "9": "PIN_19",
+    "11": "PIN_26",
+    "12": "PIN_27",
+    "13": "PIN_29",
+    "14": "PIN_31",
+    "15": "PIN_11",
+    "16": "PIN_12",
+    "17": "PIN_8",
+    "18": "PIN_9",
+    "19": "PIN_10"
+   }
+  },
+  "fastprom-r5-upper-qfn32": {
+   "control": {
+    "bank_select": "uart_dip",
+    "data_oe": "PIN_14",
+    "hse_in": "PIN_2"
+   },
+   "socket_to_mcu": {
+    "1": "PIN_8",
+    "2": "PIN_3",
+    "3": "PIN_1",
+    "4": "PIN_5",
+    "5": "PIN_7",
+    "6": "PIN_19",
+    "7": "PIN_18",
+    "8": "PIN_15",
+    "9": "PIN_31",
+    "11": "PIN_29",
+    "12": "PIN_26",
+    "13": "PIN_27",
+    "14": "PIN_28",
+    "15": "PIN_9",
+    "16": "PIN_10",
+    "17": "PIN_11",
+    "18": "PIN_12",
+    "19": "PIN_13"
+   }
+  }
+ },
+ "flow": "tools/ag32/run_matrix.sh (AgRV_pio native flow, device AGRV2KQ32)",
+ "generated": "2026-11-04",
+ "runs": {
+  "256x8-bram": {
+   "aa": {
+    "d_pin[0]": 18.333,
+    "d_pin[1]": 18.052,
+    "d_pin[2]": 18.44,
+    "d_pin[3]": 17.459,
+    "d_pin[4]": 17.108,
+    "d_pin[5]": 17.826,
+    "d_pin[6]": 17.108,
+    "d_pin[7]": 17.477
+   },
+   "aa_worst": 18.44,
+   "bank_bits": 0,
+   "board": "fastprom-r5-upper-qfn32",
+   "bram_capture": 1.753,
+   "ea": 7.13,
+   "fmax_mhz": 197.785,
+   "kind": "random",
+   "mode": "bram",
+   "pad_xy": {
+    "a_pin[0]": [
+     20,
+     13
+    ],
+    "a_pin[1]": [
+     22,
+     3
+    ],
+    "a_pin[2]": [
+     22,
+     2
+    ],
+    "a_pin[3]": [
+     22,
+     3
+    ],
+    "a_pin[4]": [
+     20,
+     13
+    ],
+    "a_pin[5]": [
+     19,
+     13
+    ],
+    "a_pin[6]": [
+     19,
+     13
+    ],
+    "a_pin[7]": [
+     19,
+     13
+    ],
+    "buf_noe": [
+     18,
+     13
+    ],
+    "ce_pin[0]": [
+     20,
+     13
+    ],
+    "ce_pin[1]": [
+     19,
+     13
+    ],
+    "d_pin[0]": [
+     0,
+     4
+    ],
+    "d_pin[1]": [
+     0,
+     4
+    ],
+    "d_pin[2]": [
+     17,
+     13
+    ],
+    "d_pin[3]": [
+     19,
+     0
+    ],
+    "d_pin[4]": [
+     17,
+     0
+    ],
+    "d_pin[5]": [
+     1,
+     0
+    ],
+    "d_pin[6]": [
+     17,
+     0
+    ],
+    "d_pin[7]": [
+     17,
+     0
+    ]
+   },
+   "part": "256x8",
+   "period": 5.0,
+   "pins": {
+    "a_pin[0]": "PIN_8",
+    "a_pin[1]": "PIN_3",
+    "a_pin[2]": "PIN_1",
+    "a_pin[3]": "PIN_5",
+    "a_pin[4]": "PIN_7",
+    "a_pin[5]": "PIN_11",
+    "a_pin[6]": "PIN_12",
+    "a_pin[7]": "PIN_13",
+    "buf_noe": "PIN_14",
+    "ce_pin[0]": "PIN_9",
+    "ce_pin[1]": "PIN_10",
+    "d_pin[0]": "PIN_19",
+    "d_pin[1]": "PIN_18",
+    "d_pin[2]": "PIN_15",
+    "d_pin[3]": "PIN_31",
+    "d_pin[4]": "PIN_29",
+    "d_pin[5]": "PIN_26",
+    "d_pin[6]": "PIN_27",
+    "d_pin[7]": "PIN_28"
+   },
+   "rd_clock_mhz": 200.0,
+   "rd_fmax_mhz": 342.261,
+   "sys_clock_mhz": 100.0,
+   "utilisation": {
+    "brams": [
+     1,
+     4
+    ],
+    "luts": [
+     25,
+     2112
+    ],
+    "registers": [
+     38,
+     2112
+    ]
+   },
+   "worst_clocked_slack": 3.247
+  },
+  "256x8-bram-sys100": {
+   "aa": {
+    "d_pin[0]": 22.951,
+    "d_pin[1]": 23.273,
+    "d_pin[2]": 23.38,
+    "d_pin[3]": 22.399,
+    "d_pin[4]": 22.048,
+    "d_pin[5]": 22.766,
+    "d_pin[6]": 22.417,
+    "d_pin[7]": 22.048
+   },
+   "aa_worst": 23.38,
+   "bank_bits": 0,
+   "board": "fastprom-r5-upper-qfn32",
+   "bram_capture": 1.546,
+   "ea": 7.13,
+   "fmax_mhz": 233.1,
+   "kind": "random",
+   "mode": "bram",
+   "pad_xy": {
+    "a_pin[0]": [
+     20,
+     13
+    ],
+    "a_pin[1]": [
+     22,
+     3
+    ],
+    "a_pin[2]": [
+     22,
+     2
+    ],
+    "a_pin[3]": [
+     22,
+     3
+    ],
+    "a_pin[4]": [
+     20,
+     13
+    ],
+    "a_pin[5]": [
+     19,
+     13
+    ],
+    "a_pin[6]": [
+     19,
+     13
+    ],
+    "a_pin[7]": [
+     19,
+     13
+    ],
+    "buf_noe": [
+     18,
+     13
+    ],
+    "ce_pin[0]": [
+     20,
+     13
+    ],
+    "ce_pin[1]": [
+     19,
+     13
+    ],
+    "d_pin[0]": [
+     0,
+     4
+    ],
+    "d_pin[1]": [
+     0,
+     4
+    ],
+    "d_pin[2]": [
+     17,
+     13
+    ],
+    "d_pin[3]": [
+     19,
+     0
+    ],
+    "d_pin[4]": [
+     17,
+     0
+    ],
+    "d_pin[5]": [
+     1,
+     0
+    ],
+    "d_pin[6]": [
+     17,
+     0
+    ],
+    "d_pin[7]": [
+     17,
+     0
+    ]
+   },
+   "part": "256x8",
+   "period": 10.0,
+   "pins": {
+    "a_pin[0]": "PIN_8",
+    "a_pin[1]": "PIN_3",
+    "a_pin[2]": "PIN_1",
+    "a_pin[3]": "PIN_5",
+    "a_pin[4]": "PIN_7",
+    "a_pin[5]": "PIN_11",
+    "a_pin[6]": "PIN_12",
+    "a_pin[7]": "PIN_13",
+    "buf_noe": "PIN_14",
+    "ce_pin[0]": "PIN_9",
+    "ce_pin[1]": "PIN_10",
+    "d_pin[0]": "PIN_19",
+    "d_pin[1]": "PIN_18",
+    "d_pin[2]": "PIN_15",
+    "d_pin[3]": "PIN_31",
+    "d_pin[4]": "PIN_29",
+    "d_pin[5]": "PIN_26",
+    "d_pin[6]": "PIN_27",
+    "d_pin[7]": "PIN_28"
+   },
+   "rd_clock_mhz": null,
+   "rd_fmax_mhz": null,
+   "sys_clock_mhz": 100.0,
+   "utilisation": {
+    "brams": [
+     1,
+     4
+    ],
+    "luts": [
+     25,
+     2112
+    ],
+    "registers": [
+     38,
+     2112
+    ]
+   },
+   "worst_clocked_slack": 5.71
+  },
+  "256x8-bram-sys150": {
+   "aa": {
+    "d_pin[0]": 19.94,
+    "d_pin[1]": 20.004,
+    "d_pin[2]": 20.047,
+    "d_pin[3]": 19.066,
+    "d_pin[4]": 18.715,
+    "d_pin[5]": 19.433,
+    "d_pin[6]": 18.715,
+    "d_pin[7]": 19.084
+   },
+   "aa_worst": 20.047,
+   "bank_bits": 0,
+   "board": "fastprom-r5-upper-qfn32",
+   "bram_capture": 1.546,
+   "ea": 7.466,
+   "fmax_mhz": 241.022,
+   "kind": "random",
+   "mode": "bram",
+   "pad_xy": {
+    "a_pin[0]": [
+     20,
+     13
+    ],
+    "a_pin[1]": [
+     22,
+     3
+    ],
+    "a_pin[2]": [
+     22,
+     2
+    ],
+    "a_pin[3]": [
+     22,
+     3
+    ],
+    "a_pin[4]": [
+     20,
+     13
+    ],
+    "a_pin[5]": [
+     19,
+     13
+    ],
+    "a_pin[6]": [
+     19,
+     13
+    ],
+    "a_pin[7]": [
+     19,
+     13
+    ],
+    "buf_noe": [
+     18,
+     13
+    ],
+    "ce_pin[0]": [
+     20,
+     13
+    ],
+    "ce_pin[1]": [
+     19,
+     13
+    ],
+    "d_pin[0]": [
+     0,
+     4
+    ],
+    "d_pin[1]": [
+     0,
+     4
+    ],
+    "d_pin[2]": [
+     17,
+     13
+    ],
+    "d_pin[3]": [
+     19,
+     0
+    ],
+    "d_pin[4]": [
+     17,
+     0
+    ],
+    "d_pin[5]": [
+     1,
+     0
+    ],
+    "d_pin[6]": [
+     17,
+     0
+    ],
+    "d_pin[7]": [
+     17,
+     0
+    ]
+   },
+   "part": "256x8",
+   "period": 6.667,
+   "pins": {
+    "a_pin[0]": "PIN_8",
+    "a_pin[1]": "PIN_3",
+    "a_pin[2]": "PIN_1",
+    "a_pin[3]": "PIN_5",
+    "a_pin[4]": "PIN_7",
+    "a_pin[5]": "PIN_11",
+    "a_pin[6]": "PIN_12",
+    "a_pin[7]": "PIN_13",
+    "buf_noe": "PIN_14",
+    "ce_pin[0]": "PIN_9",
+    "ce_pin[1]": "PIN_10",
+    "d_pin[0]": "PIN_19",
+    "d_pin[1]": "PIN_18",
+    "d_pin[2]": "PIN_15",
+    "d_pin[3]": "PIN_31",
+    "d_pin[4]": "PIN_29",
+    "d_pin[5]": "PIN_26",
+    "d_pin[6]": "PIN_27",
+    "d_pin[7]": "PIN_28"
+   },
+   "rd_clock_mhz": null,
+   "rd_fmax_mhz": null,
+   "sys_clock_mhz": 150.0,
+   "utilisation": {
+    "brams": [
+     1,
+     4
+    ],
+    "luts": [
+     25,
+     2112
+    ],
+    "registers": [
+     38,
+     2112
+    ]
+   },
+   "worst_clocked_slack": 2.518
+  },
+  "256x8-logic": {
+   "aa": {
+    "d_pin[0]": 14.716,
+    "d_pin[1]": 14.619,
+    "d_pin[2]": 13.694,
+    "d_pin[3]": 13.467,
+    "d_pin[4]": 12.626,
+    "d_pin[5]": 14.584,
+    "d_pin[6]": 13.59,
+    "d_pin[7]": 13.768
+   },
+   "aa_worst": 14.716,
+   "bank_bits": 0,
+   "board": "fastprom-r5-upper-qfn32",
+   "bram_capture": null,
+   "ea": 7.352,
+   "fmax_mhz": 233.1,
+   "kind": "random",
+   "mode": "logic",
+   "pad_xy": {
+    "a_pin[0]": [
+     20,
+     13
+    ],
+    "a_pin[1]": [
+     22,
+     3
+    ],
+    "a_pin[2]": [
+     22,
+     2
+    ],
+    "a_pin[3]": [
+     22,
+     3
+    ],
+    "a_pin[4]": [
+     20,
+     13
+    ],
+    "a_pin[5]": [
+     19,
+     13
+    ],
+    "a_pin[6]": [
+     19,
+     13
+    ],
+    "a_pin[7]": [
+     19,
+     13
+    ],
+    "buf_noe": [
+     18,
+     13
+    ],
+    "ce_pin[0]": [
+     20,
+     13
+    ],
+    "ce_pin[1]": [
+     19,
+     13
+    ],
+    "d_pin[0]": [
+     0,
+     4
+    ],
+    "d_pin[1]": [
+     0,
+     4
+    ],
+    "d_pin[2]": [
+     17,
+     13
+    ],
+    "d_pin[3]": [
+     19,
+     0
+    ],
+    "d_pin[4]": [
+     17,
+     0
+    ],
+    "d_pin[5]": [
+     1,
+     0
+    ],
+    "d_pin[6]": [
+     17,
+     0
+    ],
+    "d_pin[7]": [
+     17,
+     0
+    ]
+   },
+   "part": "256x8",
+   "period": null,
+   "pins": {
+    "a_pin[0]": "PIN_8",
+    "a_pin[1]": "PIN_3",
+    "a_pin[2]": "PIN_1",
+    "a_pin[3]": "PIN_5",
+    "a_pin[4]": "PIN_7",
+    "a_pin[5]": "PIN_11",
+    "a_pin[6]": "PIN_12",
+    "a_pin[7]": "PIN_13",
+    "buf_noe": "PIN_14",
+    "ce_pin[0]": "PIN_9",
+    "ce_pin[1]": "PIN_10",
+    "d_pin[0]": "PIN_19",
+    "d_pin[1]": "PIN_18",
+    "d_pin[2]": "PIN_15",
+    "d_pin[3]": "PIN_31",
+    "d_pin[4]": "PIN_29",
+    "d_pin[5]": "PIN_26",
+    "d_pin[6]": "PIN_27",
+    "d_pin[7]": "PIN_28"
+   },
+   "rd_clock_mhz": null,
+   "rd_fmax_mhz": null,
+   "sys_clock_mhz": 100.0,
+   "utilisation": {
+    "brams": [
+     0,
+     4
+    ],
+    "luts": [
+     305,
+     2112
+    ],
+    "registers": [
+     21,
+     2112
+    ]
+   },
+   "worst_clocked_slack": 5.71
+  },
+  "512x8-bram": {
+   "aa": {
+    "d_pin[0]": 18.286,
+    "d_pin[1]": 17.964,
+    "d_pin[2]": 18.393,
+    "d_pin[3]": 17.412,
+    "d_pin[4]": 17.061,
+    "d_pin[5]": 17.779,
+    "d_pin[6]": 17.061,
+    "d_pin[7]": 17.43
+   },
+   "aa_worst": 18.393,
+   "bank_bits": 0,
+   "board": "fastprom-r5-upper-qfn32",
+   "bram_capture": 1.706,
+   "ea": 7.13,
+   "fmax_mhz": 197.589,
+   "kind": "random",
+   "mode": "bram",
+   "pad_xy": {
+    "a_pin[0]": [
+     20,
+     13
+    ],
+    "a_pin[1]": [
+     22,
+     3
+    ],
+    "a_pin[2]": [
+     22,
+     2
+    ],
+    "a_pin[3]": [
+     22,
+     3
+    ],
+    "a_pin[4]": [
+     20,
+     13
+    ],
+    "a_pin[5]": [
+     19,
+     13
+    ],
+    "a_pin[6]": [
+     19,
+     13
+    ],
+    "a_pin[7]": [
+     19,
+     13
+    ],
+    "a_pin[8]": [
+     19,
+     13
+    ],
+    "buf_noe": [
+     18,
+     13
+    ],
+    "ce_pin": [
+     20,
+     13
+    ],
+    "d_pin[0]": [
+     0,
+     4
+    ],
+    "d_pin[1]": [
+     0,
+     4
+    ],
+    "d_pin[2]": [
+     17,
+     13
+    ],
+    "d_pin[3]": [
+     19,
+     0
+    ],
+    "d_pin[4]": [
+     17,
+     0
+    ],
+    "d_pin[5]": [
+     1,
+     0
+    ],
+    "d_pin[6]": [
+     17,
+     0
+    ],
+    "d_pin[7]": [
+     17,
+     0
+    ]
+   },
+   "part": "512x8",
+   "period": 5.0,
+   "pins": {
+    "a_pin[0]": "PIN_8",
+    "a_pin[1]": "PIN_3",
+    "a_pin[2]": "PIN_1",
+    "a_pin[3]": "PIN_5",
+    "a_pin[4]": "PIN_7",
+    "a_pin[5]": "PIN_10",
+    "a_pin[6]": "PIN_11",
+    "a_pin[7]": "PIN_12",
+    "a_pin[8]": "PIN_13",
+    "buf_noe": "PIN_14",
+    "ce_pin": "PIN_9",
+    "d_pin[0]": "PIN_19",
+    "d_pin[1]": "PIN_18",
+    "d_pin[2]": "PIN_15",
+    "d_pin[3]": "PIN_31",
+    "d_pin[4]": "PIN_29",
+    "d_pin[5]": "PIN_26",
+    "d_pin[6]": "PIN_27",
+    "d_pin[7]": "PIN_28"
+   },
+   "rd_clock_mhz": 200.0,
+   "rd_fmax_mhz": 342.261,
+   "sys_clock_mhz": 100.0,
+   "utilisation": {
+    "brams": [
+     1,
+     4
+    ],
+    "luts": [
+     27,
+     2112
+    ],
+    "registers": [
+     41,
+     2112
+    ]
+   },
+   "worst_clocked_slack": 3.294
+  },
+  "512x8-bram-sys100": {
+   "aa": {
+    "d_pin[0]": 23.407,
+    "d_pin[1]": 23.407,
+    "d_pin[2]": 23.547,
+    "d_pin[3]": 22.452,
+    "d_pin[4]": 22.101,
+    "d_pin[5]": 22.819,
+    "d_pin[6]": 22.101,
+    "d_pin[7]": 22.447
+   },
+   "aa_worst": 23.547,
+   "bank_bits": 0,
+   "board": "fastprom-r5-upper-qfn32",
+   "bram_capture": 1.616,
+   "ea": 7.13,
+   "fmax_mhz": 197.824,
+   "kind": "random",
+   "mode": "bram",
+   "pad_xy": {
+    "a_pin[0]": [
+     20,
+     13
+    ],
+    "a_pin[1]": [
+     22,
+     3
+    ],
+    "a_pin[2]": [
+     22,
+     2
+    ],
+    "a_pin[3]": [
+     22,
+     3
+    ],
+    "a_pin[4]": [
+     20,
+     13
+    ],
+    "a_pin[5]": [
+     19,
+     13
+    ],
+    "a_pin[6]": [
+     19,
+     13
+    ],
+    "a_pin[7]": [
+     19,
+     13
+    ],
+    "a_pin[8]": [
+     19,
+     13
+    ],
+    "buf_noe": [
+     18,
+     13
+    ],
+    "ce_pin": [
+     20,
+     13
+    ],
+    "d_pin[0]": [
+     0,
+     4
+    ],
+    "d_pin[1]": [
+     0,
+     4
+    ],
+    "d_pin[2]": [
+     17,
+     13
+    ],
+    "d_pin[3]": [
+     19,
+     0
+    ],
+    "d_pin[4]": [
+     17,
+     0
+    ],
+    "d_pin[5]": [
+     1,
+     0
+    ],
+    "d_pin[6]": [
+     17,
+     0
+    ],
+    "d_pin[7]": [
+     17,
+     0
+    ]
+   },
+   "part": "512x8",
+   "period": 10.0,
+   "pins": {
+    "a_pin[0]": "PIN_8",
+    "a_pin[1]": "PIN_3",
+    "a_pin[2]": "PIN_1",
+    "a_pin[3]": "PIN_5",
+    "a_pin[4]": "PIN_7",
+    "a_pin[5]": "PIN_10",
+    "a_pin[6]": "PIN_11",
+    "a_pin[7]": "PIN_12",
+    "a_pin[8]": "PIN_13",
+    "buf_noe": "PIN_14",
+    "ce_pin": "PIN_9",
+    "d_pin[0]": "PIN_19",
+    "d_pin[1]": "PIN_18",
+    "d_pin[2]": "PIN_15",
+    "d_pin[3]": "PIN_31",
+    "d_pin[4]": "PIN_29",
+    "d_pin[5]": "PIN_26",
+    "d_pin[6]": "PIN_27",
+    "d_pin[7]": "PIN_28"
+   },
+   "rd_clock_mhz": null,
+   "rd_fmax_mhz": null,
+   "sys_clock_mhz": 100.0,
+   "utilisation": {
+    "brams": [
+     1,
+     4
+    ],
+    "luts": [
+     27,
+     2112
+    ],
+    "registers": [
+     41,
+     2112
+    ]
+   },
+   "worst_clocked_slack": 4.945
+  },
+  "512x8-bram-sys150": {
+   "aa": {
+    "d_pin[0]": 20.004,
+    "d_pin[1]": 19.94,
+    "d_pin[2]": 20.047,
+    "d_pin[3]": 19.066,
+    "d_pin[4]": 18.715,
+    "d_pin[5]": 19.433,
+    "d_pin[6]": 18.715,
+    "d_pin[7]": 19.084
+   },
+   "aa_worst": 20.047,
+   "bank_bits": 0,
+   "board": "fastprom-r5-upper-qfn32",
+   "bram_capture": 1.546,
+   "ea": 7.803,
+   "fmax_mhz": 227.118,
+   "kind": "random",
+   "mode": "bram",
+   "pad_xy": {
+    "a_pin[0]": [
+     20,
+     13
+    ],
+    "a_pin[1]": [
+     22,
+     3
+    ],
+    "a_pin[2]": [
+     22,
+     2
+    ],
+    "a_pin[3]": [
+     22,
+     3
+    ],
+    "a_pin[4]": [
+     20,
+     13
+    ],
+    "a_pin[5]": [
+     19,
+     13
+    ],
+    "a_pin[6]": [
+     19,
+     13
+    ],
+    "a_pin[7]": [
+     19,
+     13
+    ],
+    "a_pin[8]": [
+     19,
+     13
+    ],
+    "buf_noe": [
+     18,
+     13
+    ],
+    "ce_pin": [
+     20,
+     13
+    ],
+    "d_pin[0]": [
+     0,
+     4
+    ],
+    "d_pin[1]": [
+     0,
+     4
+    ],
+    "d_pin[2]": [
+     17,
+     13
+    ],
+    "d_pin[3]": [
+     19,
+     0
+    ],
+    "d_pin[4]": [
+     17,
+     0
+    ],
+    "d_pin[5]": [
+     1,
+     0
+    ],
+    "d_pin[6]": [
+     17,
+     0
+    ],
+    "d_pin[7]": [
+     17,
+     0
+    ]
+   },
+   "part": "512x8",
+   "period": 6.667,
+   "pins": {
+    "a_pin[0]": "PIN_8",
+    "a_pin[1]": "PIN_3",
+    "a_pin[2]": "PIN_1",
+    "a_pin[3]": "PIN_5",
+    "a_pin[4]": "PIN_7",
+    "a_pin[5]": "PIN_10",
+    "a_pin[6]": "PIN_11",
+    "a_pin[7]": "PIN_12",
+    "a_pin[8]": "PIN_13",
+    "buf_noe": "PIN_14",
+    "ce_pin": "PIN_9",
+    "d_pin[0]": "PIN_19",
+    "d_pin[1]": "PIN_18",
+    "d_pin[2]": "PIN_15",
+    "d_pin[3]": "PIN_31",
+    "d_pin[4]": "PIN_29",
+    "d_pin[5]": "PIN_26",
+    "d_pin[6]": "PIN_27",
+    "d_pin[7]": "PIN_28"
+   },
+   "rd_clock_mhz": null,
+   "rd_fmax_mhz": null,
+   "sys_clock_mhz": 150.0,
+   "utilisation": {
+    "brams": [
+     1,
+     4
+    ],
+    "luts": [
+     27,
+     2112
+    ],
+    "registers": [
+     41,
+     2112
+    ]
+   },
+   "worst_clocked_slack": 2.264
+  },
+  "512x8-logic": {
+   "aa": {
+    "d_pin[0]": 15.877,
+    "d_pin[1]": 15.076,
+    "d_pin[2]": 14.401,
+    "d_pin[3]": 14.793,
+    "d_pin[4]": 14.751,
+    "d_pin[5]": 15.983,
+    "d_pin[6]": 14.854,
+    "d_pin[7]": 14.872
+   },
+   "aa_worst": 15.983,
+   "bank_bits": 0,
+   "board": "fastprom-r5-upper-qfn32",
+   "bram_capture": null,
+   "ea": 7.446,
+   "fmax_mhz": 179.598,
+   "kind": "random",
+   "mode": "logic",
+   "pad_xy": {
+    "a_pin[0]": [
+     20,
+     13
+    ],
+    "a_pin[1]": [
+     22,
+     3
+    ],
+    "a_pin[2]": [
+     22,
+     2
+    ],
+    "a_pin[3]": [
+     22,
+     3
+    ],
+    "a_pin[4]": [
+     20,
+     13
+    ],
+    "a_pin[5]": [
+     19,
+     13
+    ],
+    "a_pin[6]": [
+     19,
+     13
+    ],
+    "a_pin[7]": [
+     19,
+     13
+    ],
+    "a_pin[8]": [
+     19,
+     13
+    ],
+    "buf_noe": [
+     18,
+     13
+    ],
+    "ce_pin": [
+     20,
+     13
+    ],
+    "d_pin[0]": [
+     0,
+     4
+    ],
+    "d_pin[1]": [
+     0,
+     4
+    ],
+    "d_pin[2]": [
+     17,
+     13
+    ],
+    "d_pin[3]": [
+     19,
+     0
+    ],
+    "d_pin[4]": [
+     17,
+     0
+    ],
+    "d_pin[5]": [
+     1,
+     0
+    ],
+    "d_pin[6]": [
+     17,
+     0
+    ],
+    "d_pin[7]": [
+     17,
+     0
+    ]
+   },
+   "part": "512x8",
+   "period": null,
+   "pins": {
+    "a_pin[0]": "PIN_8",
+    "a_pin[1]": "PIN_3",
+    "a_pin[2]": "PIN_1",
+    "a_pin[3]": "PIN_5",
+    "a_pin[4]": "PIN_7",
+    "a_pin[5]": "PIN_10",
+    "a_pin[6]": "PIN_11",
+    "a_pin[7]": "PIN_12",
+    "a_pin[8]": "PIN_13",
+    "buf_noe": "PIN_14",
+    "ce_pin": "PIN_9",
+    "d_pin[0]": "PIN_19",
+    "d_pin[1]": "PIN_18",
+    "d_pin[2]": "PIN_15",
+    "d_pin[3]": "PIN_31",
+    "d_pin[4]": "PIN_29",
+    "d_pin[5]": "PIN_26",
+    "d_pin[6]": "PIN_27",
+    "d_pin[7]": "PIN_28"
+   },
+   "rd_clock_mhz": null,
+   "rd_fmax_mhz": null,
+   "sys_clock_mhz": 100.0,
+   "utilisation": {
+    "brams": [
+     0,
+     4
+    ],
+    "luts": [
+     576,
+     2112
+    ],
+    "registers": [
+     23,
+     2112
+    ]
+   },
+   "worst_clocked_slack": 4.432
+  },
+  "512x8-logic-pal": {
+   "aa": {
+    "d_pin[0]": 11.128,
+    "d_pin[1]": 11.125,
+    "d_pin[2]": 9.252,
+    "d_pin[3]": 10.221,
+    "d_pin[4]": 10.176,
+    "d_pin[5]": 11.604,
+    "d_pin[6]": 10.176,
+    "d_pin[7]": 10.18
+   },
+   "aa_worst": 11.604,
+   "bank_bits": 0,
+   "board": "fastprom-r5-upper-qfn32",
+   "bram_capture": null,
+   "ea": 7.411,
+   "fmax_mhz": 215.332,
+   "kind": "palette",
+   "mode": "logic",
+   "pad_xy": {
+    "a_pin[0]": [
+     20,
+     13
+    ],
+    "a_pin[1]": [
+     22,
+     3
+    ],
+    "a_pin[2]": [
+     22,
+     2
+    ],
+    "a_pin[3]": [
+     22,
+     3
+    ],
+    "a_pin[4]": [
+     20,
+     13
+    ],
+    "a_pin[5]": [
+     19,
+     13
+    ],
+    "a_pin[6]": [
+     19,
+     13
+    ],
+    "a_pin[7]": [
+     19,
+     13
+    ],
+    "a_pin[8]": [
+     19,
+     13
+    ],
+    "buf_noe": [
+     18,
+     13
+    ],
+    "ce_pin": [
+     20,
+     13
+    ],
+    "d_pin[0]": [
+     0,
+     4
+    ],
+    "d_pin[1]": [
+     0,
+     4
+    ],
+    "d_pin[2]": [
+     17,
+     13
+    ],
+    "d_pin[3]": [
+     19,
+     0
+    ],
+    "d_pin[4]": [
+     17,
+     0
+    ],
+    "d_pin[5]": [
+     1,
+     0
+    ],
+    "d_pin[6]": [
+     17,
+     0
+    ],
+    "d_pin[7]": [
+     17,
+     0
+    ]
+   },
+   "part": "512x8",
+   "period": null,
+   "pins": {
+    "a_pin[0]": "PIN_8",
+    "a_pin[1]": "PIN_3",
+    "a_pin[2]": "PIN_1",
+    "a_pin[3]": "PIN_5",
+    "a_pin[4]": "PIN_7",
+    "a_pin[5]": "PIN_10",
+    "a_pin[6]": "PIN_11",
+    "a_pin[7]": "PIN_12",
+    "a_pin[8]": "PIN_13",
+    "buf_noe": "PIN_14",
+    "ce_pin": "PIN_9",
+    "d_pin[0]": "PIN_19",
+    "d_pin[1]": "PIN_18",
+    "d_pin[2]": "PIN_15",
+    "d_pin[3]": "PIN_31",
+    "d_pin[4]": "PIN_29",
+    "d_pin[5]": "PIN_26",
+    "d_pin[6]": "PIN_27",
+    "d_pin[7]": "PIN_28"
+   },
+   "rd_clock_mhz": null,
+   "rd_fmax_mhz": null,
+   "sys_clock_mhz": 100.0,
+   "utilisation": {
+    "brams": [
+     0,
+     4
+    ],
+    "luts": [
+     29,
+     2112
+    ],
+    "registers": [
+     23,
+     2112
+    ]
+   },
+   "worst_clocked_slack": 5.356
+  },
+  "r3-512x8-bram": {
+   "aa": {
+    "d_pin[0]": 23.589,
+    "d_pin[1]": 23.232,
+    "d_pin[2]": 23.273,
+    "d_pin[3]": 22.951,
+    "d_pin[4]": 22.766,
+    "d_pin[5]": 22.048,
+    "d_pin[6]": 22.048,
+    "d_pin[7]": 22.721
+   },
+   "aa_worst": 23.589,
+   "bank_bits": 0,
+   "board": "fastprom-r3-qfn32-usb",
+   "bram_capture": 1.546,
+   "ea": 8.155,
+   "fmax_mhz": 204.541,
+   "kind": "random",
+   "mode": "bram",
+   "pad_xy": {
+    "a_pin[0]": [
+     22,
+     2
+    ],
+    "a_pin[1]": [
+     22,
+     3
+    ],
+    "a_pin[2]": [
+     22,
+     3
+    ],
+    "a_pin[3]": [
+     22,
+     3
+    ],
+    "a_pin[4]": [
+     20,
+     13
+    ],
+    "a_pin[5]": [
+     19,
+     13
+    ],
+    "a_pin[6]": [
+     20,
+     13
+    ],
+    "a_pin[7]": [
+     20,
+     13
+    ],
+    "a_pin[8]": [
+     19,
+     13
+    ],
+    "buf_noe": [
+     17,
+     0
+    ],
+    "ce_pin": [
+     19,
+     13
+    ],
+    "d_pin[0]": [
+     19,
+     13
+    ],
+    "d_pin[1]": [
+     18,
+     13
+    ],
+    "d_pin[2]": [
+     0,
+     4
+    ],
+    "d_pin[3]": [
+     0,
+     4
+    ],
+    "d_pin[4]": [
+     1,
+     0
+    ],
+    "d_pin[5]": [
+     17,
+     0
+    ],
+    "d_pin[6]": [
+     17,
+     0
+    ],
+    "d_pin[7]": [
+     19,
+     0
+    ]
+   },
+   "part": "512x8",
+   "period": 10.0,
+   "pins": {
+    "a_pin[0]": "PIN_1",
+    "a_pin[1]": "PIN_2",
+    "a_pin[2]": "PIN_3",
+    "a_pin[3]": "PIN_5",
+    "a_pin[4]": "PIN_7",
+    "a_pin[5]": "PIN_12",
+    "a_pin[6]": "PIN_8",
+    "a_pin[7]": "PIN_9",
+    "a_pin[8]": "PIN_10",
+    "buf_noe": "PIN_28",
+    "ce_pin": "PIN_11",
+    "d_pin[0]": "PIN_13",
+    "d_pin[1]": "PIN_14",
+    "d_pin[2]": "PIN_18",
+    "d_pin[3]": "PIN_19",
+    "d_pin[4]": "PIN_26",
+    "d_pin[5]": "PIN_27",
+    "d_pin[6]": "PIN_29",
+    "d_pin[7]": "PIN_31"
+   },
+   "rd_clock_mhz": null,
+   "rd_fmax_mhz": null,
+   "sys_clock_mhz": 100.0,
+   "utilisation": {
+    "brams": [
+     1,
+     4
+    ],
+    "luts": [
+     27,
+     2112
+    ],
+    "registers": [
+     41,
+     2112
+    ]
+   },
+   "worst_clocked_slack": 5.111
+  },
+  "r3-512x8-logic": {
+   "aa": {
+    "d_pin[0]": 14.762,
+    "d_pin[1]": 13.875,
+    "d_pin[2]": 15.605,
+    "d_pin[3]": 15.562,
+    "d_pin[4]": 15.662,
+    "d_pin[5]": 14.964,
+    "d_pin[6]": 13.915,
+    "d_pin[7]": 14.586
+   },
+   "aa_worst": 15.662,
+   "bank_bits": 0,
+   "board": "fastprom-r3-qfn32-usb",
+   "bram_capture": null,
+   "ea": 8.471,
+   "fmax_mhz": 203.749,
+   "kind": "random",
+   "mode": "logic",
+   "pad_xy": {
+    "a_pin[0]": [
+     22,
+     2
+    ],
+    "a_pin[1]": [
+     22,
+     3
+    ],
+    "a_pin[2]": [
+     22,
+     3
+    ],
+    "a_pin[3]": [
+     22,
+     3
+    ],
+    "a_pin[4]": [
+     20,
+     13
+    ],
+    "a_pin[5]": [
+     19,
+     13
+    ],
+    "a_pin[6]": [
+     20,
+     13
+    ],
+    "a_pin[7]": [
+     20,
+     13
+    ],
+    "a_pin[8]": [
+     19,
+     13
+    ],
+    "buf_noe": [
+     17,
+     0
+    ],
+    "ce_pin": [
+     19,
+     13
+    ],
+    "d_pin[0]": [
+     19,
+     13
+    ],
+    "d_pin[1]": [
+     18,
+     13
+    ],
+    "d_pin[2]": [
+     0,
+     4
+    ],
+    "d_pin[3]": [
+     0,
+     4
+    ],
+    "d_pin[4]": [
+     1,
+     0
+    ],
+    "d_pin[5]": [
+     17,
+     0
+    ],
+    "d_pin[6]": [
+     17,
+     0
+    ],
+    "d_pin[7]": [
+     19,
+     0
+    ]
+   },
+   "part": "512x8",
+   "period": null,
+   "pins": {
+    "a_pin[0]": "PIN_1",
+    "a_pin[1]": "PIN_2",
+    "a_pin[2]": "PIN_3",
+    "a_pin[3]": "PIN_5",
+    "a_pin[4]": "PIN_7",
+    "a_pin[5]": "PIN_12",
+    "a_pin[6]": "PIN_8",
+    "a_pin[7]": "PIN_9",
+    "a_pin[8]": "PIN_10",
+    "buf_noe": "PIN_28",
+    "ce_pin": "PIN_11",
+    "d_pin[0]": "PIN_13",
+    "d_pin[1]": "PIN_14",
+    "d_pin[2]": "PIN_18",
+    "d_pin[3]": "PIN_19",
+    "d_pin[4]": "PIN_26",
+    "d_pin[5]": "PIN_27",
+    "d_pin[6]": "PIN_29",
+    "d_pin[7]": "PIN_31"
+   },
+   "rd_clock_mhz": null,
+   "rd_fmax_mhz": null,
+   "sys_clock_mhz": 100.0,
+   "utilisation": {
+    "brams": [
+     0,
+     4
+    ],
+    "luts": [
+     576,
+     2112
+    ],
+    "registers": [
+     23,
+     2112
+    ]
+   },
+   "worst_clocked_slack": 5.092
+  }
+ },
+ "tool": "AGM Supra 2024.11.b0(2d866f99)"
+}
