@@ -1,0 +1,227 @@
+(footprint "Texas_X2SON-4_1x1mm_P0.65mm_NoEP"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "X2SON 5 pin 1x1mm package, DQN0004A (Reference Datasheet: http://www.ti.com/lit/ds/sbvs193d/sbvs193d.pdf Reference part: TPS383x) [StepUp generated footprint] Plain rectangular pads (the stock land pattern's chamfered custom pads are not reachable by Freerouting 2.5.0) and no thermal pad: in this land pattern it sits under 0.127 mm from the pins, and at the 30 mA it carries here (TLV74233 for the drive buffer) it is not needed.")
+	(tags "X2SON")
+	(property "Reference" "REF**"
+		(at 0 -1.5 0)
+		(layer "F.SilkS")
+		(uuid "0c5bf34b-b903-4982-a0d1-82fafcdcc86a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "Texas_X2SON-4_1x1mm_P0.65mm_NoEP"
+		(at 0 1.5 0)
+		(layer "F.Fab")
+		(uuid "ccbe134b-f5ea-46e1-8b68-d2f4ef4df282")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0d042136-2a79-479a-8935-b9ba36afac57")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9f2acb55-0bbb-43a8-9c94-5df754c8ce6d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start 0 -0.74)
+		(end 0.5 -0.74)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3fe8b4aa-872a-4508-ae4b-b28a8fd6bf21")
+	)
+	(fp_line
+		(start -0.5 0.74)
+		(end 0.5 0.74)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "0fb9227c-45c4-4408-8c7e-777adc9b3d8a")
+	)
+	(fp_poly
+		(pts
+			(xy -0.43 -0.755) (xy -0.18 -1.105) (xy -0.68 -1.105)
+		)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "cdd898b5-b897-42d6-ac75-c286b1b2864a")
+	)
+	(fp_line
+		(start -0.91 -0.75)
+		(end 0.91 -0.75)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "f6c64132-1bc6-42d9-805b-f373dc059b49")
+	)
+	(fp_line
+		(start -0.91 0.75)
+		(end -0.91 -0.75)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "d51c6df5-f80d-4cf8-a529-1b26a0602162")
+	)
+	(fp_line
+		(start 0.91 -0.75)
+		(end 0.91 0.75)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "6153a4b6-83aa-4591-9e39-330310b4974f")
+	)
+	(fp_line
+		(start 0.91 0.75)
+		(end -0.91 0.75)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "22180e30-61a6-495d-a075-3c4f4b328080")
+	)
+	(fp_line
+		(start -0.5 -0.25)
+		(end -0.25 -0.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "4f758e6a-5b1f-482a-a1d1-732de337bcfb")
+	)
+	(fp_line
+		(start -0.5 0.5)
+		(end -0.5 -0.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "5230699e-cf59-44ca-9ed2-6f4c63f190b0")
+	)
+	(fp_line
+		(start -0.25 -0.5)
+		(end 0.5 -0.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "df1794bb-cf1b-4896-8338-461dacb03cfd")
+	)
+	(fp_line
+		(start 0.5 -0.5)
+		(end 0.5 0.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "00d1bfe4-c831-43e2-8b78-d465d1699c37")
+	)
+	(fp_line
+		(start 0.5 0.5)
+		(end -0.5 0.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "83881357-f843-4571-ad3d-d6fe229c4448")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "26151383-a914-4c25-ac8f-d32b3b9e0eb2")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.04)
+			)
+		)
+	)
+	(embedded_fonts no)
+	(model "${KICAD10_3DMODEL_DIR}/Package_SON.3dshapes/Texas_X2SON-4_1x1mm_P0.65mm.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(pad "1" smd roundrect
+		(at -0.43 -0.325)
+		(size 0.46 0.31)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.15)
+	)
+	(pad "2" smd roundrect
+		(at -0.43 0.325)
+		(size 0.46 0.31)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.15)
+	)
+	(pad "3" smd roundrect
+		(at 0.43 0.325)
+		(size 0.46 0.31)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.15)
+	)
+	(pad "4" smd roundrect
+		(at 0.43 -0.325)
+		(size 0.46 0.31)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.15)
+	)
+)

@@ -1,0 +1,142 @@
+# How the PCB wires the DIP-20 socket to the AG32, in copper.
+#
+# The fabric owns the AG32's I/O ring and can route any signal to any user
+# pin, so this mapping is arbitrary from the fabric's point of view - the
+# part-specific interpretation happens entirely in the generated pin
+# constraints. What the board DOES have to commit to is direction, because
+# the bus interface buffers are unidirectional.
+#
+# That commitment is cheap for the two mainstream organisations: 256x8 and
+# 512x8 put their data on exactly the same pins (6-9, 11-14) and everything
+# else on 1-5 and 15-19, so one layout covers both. 4096x4 and the Harris
+# 2048x4 move data into the input group and would need a board variant.
+#
+# The boards are the two halves of one stack. The earlier single-board
+# designs (fastprom-r1-lqfp48, -r2-qfn32, -r3-qfn32-usb) are in git history.
+
+boards:
+
+  # ---------------------------------------------------------------------
+  # Two-board stack. This is the arrangement that escapes the DIP-20 area
+  # problem: the lower board takes the pins, the bus interface and the
+  # board-to-board connector, and the upper board, 3 mm above it, takes the
+  # AG32 and everything that serves it. Neither half has to fit the whole
+  # design into the socket's footprint.
+
+  fastprom-lower:
+    role: stack_lower
+    description: >
+      Lower half of the stack: 20 round machined pins, the board-to-board
+      header, and the whole bus interface - the three 5 V-tolerant buffers,
+      the series terminators on the data lines, the socket-side pulls, and
+      the buffers' own 3.3 V regulator, fed from socket pin 20 only. So the
+      connector carries only 3.3 V logic plus the socket's 5 V, and with the
+      host switched off the buffers are unpowered and high-impedance
+      whatever the upper board is doing.
+    supports: [512x8, 256x8]
+    input_group: [1, 2, 3, 4, 5, 15, 16, 17, 18, 19]
+    output_group: [6, 7, 8, 9, 11, 12, 13, 14]
+    power: { vcc: 20, gnd: 10 }
+    socket_to_mcu: {}
+    control: {}
+    reserved: {}
+
+  fastprom-upper:
+    role: stack_upper
+    description: >
+      Upper half of the stack: AG32VF303KCU6 in QFN-32, its regulator and
+      clock, a USB-C connector, a SOICbite programming connector and a
+      two-way DIP switch for image select. The bus buffers are on the
+      lower board. 11.02 x 31.76 mm, 3 mm above the lower board: the lower
+      board's width, so nothing overhangs beside the socket, 1.5 mm longer
+      at the USB end, where the receptacle's locating pegs have to clear
+      the board-to-board socket on the underside, and 4 mm longer at the
+      pin 1 end, where the SOICbite's clip bites the edge. The QFN-32's 24 fabric I/O
+      are exactly enough: 18 socket lines, the drive buffer's enable, the
+      USB clock, USB and UART, with the two image-select bits read from the
+      UART pins through the DIP switch.
+    mcu: AG32VF303KCU6
+    package: QFN-32
+    usb: true
+    supports: [512x8, 256x8]
+
+    input_group: [1, 2, 3, 4, 5, 15, 16, 17, 18, 19]
+    output_group: [6, 7, 8, 9, 11, 12, 13, 14]
+    power: { vcc: 20, gnd: 10 }
+
+    # socket DIP pin -> AG32 package pin. The fabric can take any signal on
+    # any I/O, so this is chosen for the copper (tools/gen_layout.py): the
+    # AG32 is on the upper board's underside, the same side as the
+    # board-to-board socket J6, just above J6's pin 1 end, turned 180 (so
+    # as seen from above its pins run the mirror of the datasheet's way
+    # round). Every line reaches J6 on the underside, entering its pads from
+    # outside the rows, and nothing crosses:
+    #
+    #   The bottom edge (PIN_15 .. 9, left to right) fans down and left
+    #   into the left row; the leftmost pin's line runs outermost, so PIN_9
+    #   takes the first contact (socket 15), PIN_13 the fifth (socket 19)
+    #   and PIN_15 the sixth (socket 8). PIN_15 is BOOT1, sampled at reset
+    #   and strapped low by R11, so it must carry a data line - the AG32
+    #   drives those and nothing else does until it is configured, whereas
+    #   the receive buffers drive theirs from power-up - and socket 8 is
+    #   one. The left edge's two I/O run outside those: PIN_18 (the lower,
+    #   so the inner) to socket 7, PIN_19 to socket 6, the row's last.
+    #   PIN_14 is the drive buffer's enable, the one line that leaves the
+    #   underside: the left row's contact for it (k13) lies beyond the
+    #   lines outside PIN_14, so it drops through a via beside the pin,
+    #   runs on In2 under the bundle and comes back up beside the contact.
+    #   PIN_14 is chosen for the fabric's timing: the enable's input is a
+    #   few tiles from the chip enable's (PIN_9), where PIN_18 at the die's
+    #   far edge cost 512x8 its 20 ns enable grade.
+    #   The right edge (PIN_8, 7, 5, 3, 1, lowest first) goes down the right
+    #   to the right row's first five contacts (socket 1, 5, 4, 2, 3); the
+    #   far edge (PIN_31, 29, 28, 27, 26) turns right and goes down outside
+    #   them to the other five (socket 9, 11, 14, 13, 12; along the row,
+    #   14 comes first, at k 8).
+    socket_to_mcu:
+      1:  PIN_8
+      2:  PIN_3
+      3:  PIN_1
+      4:  PIN_5
+      5:  PIN_7
+      15: PIN_9
+      16: PIN_10
+      17: PIN_11
+      18: PIN_12
+      19: PIN_13
+      6:  PIN_19
+      7:  PIN_18
+      8:  PIN_15
+      9:  PIN_31
+      11: PIN_29
+      12: PIN_26
+      13: PIN_27
+      14: PIN_28
+
+    control:
+      # The data buffer's active-low enable. The pin floats until the fabric
+      # is configured and R21 (on the lower board, to the buffer's own
+      # supply) holds it high through that window, so the buffer is
+      # disabled from power-on with no logic involved.
+      data_oe:     PIN_14
+      # Image select shares the UART0 pins: 100k pull-downs, and a DIP
+      # switch that adds 10k to 3V3. See DESIGN_NOTES.md, "Image select on
+      # the UART pins".
+      bank_select: uart_dip
+      # USB needs the PLL at 48 MHz, and the AG32's PLL multiplies the
+      # external clock (HSE) - the internal RC has no stated accuracy and no
+      # clock recovery. A 12 MHz oscillator drives OSC_IN in HSE-bypass mode,
+      # which costs one pin; OSC_OUT (PIN_3) stays an ordinary I/O. Firmware
+      # must set HSE to 12 MHz (bypass) and the PLL to 48 MHz for USB.
+      hse_in:      PIN_2
+
+    reserved:
+      PIN_24: JTMS, fabric configuration, left on its internal pull-up
+      PIN_25: JTCK, fabric configuration, left on its internal pull-down
+      PIN_22: USBDM, hard USB PHY, not fabric-routable
+      PIN_23: USBDP, hard USB PHY, not fabric-routable
+      PIN_20: UART0_TX, mask-ROM loader; image-select bit 1 (switch 2) otherwise
+      PIN_21: UART0_RX, mask-ROM loader; image-select bit 0 (switch 1) otherwise
+      PIN_4:  NRST, dedicated pin
+      PIN_30: BOOT0, dedicated pin
+      PIN_2:  OSC_IN, 12 MHz oscillator (HSE bypass) for the USB clock
