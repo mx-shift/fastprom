@@ -4,8 +4,10 @@
 # The tests also write the load traces sim/tb_fw_load.v replays on the HDL.
 #
 # Runs them wherever it can:
-#   - cargo on PATH: here;
-#   - podman on PATH: in the fastprom-rust image (`make fw-image`);
+#   - cargo on PATH, and FW_ENGINE not set: here;
+#   - otherwise, with podman (or FW_ENGINE, e.g. docker) on PATH: in the
+#     fastprom-rust image (`make fw-image`), the toolchain the firmware is
+#     built with (`make fw-test` sets FW_ENGINE, so it always does this);
 #   - neither, as inside the hdlc/sim container scripts/run_sim.sh runs in:
 #     accept the result `make fw-test` recorded in build/fw/host-tests.stamp,
 #     but only if nothing under fw/ nor the image tools changed since. Rust
@@ -19,6 +21,12 @@ cd "$(dirname "$0")/.."
 OUT=build/fw
 STAMP=$OUT/host-tests.stamp
 IMAGE=${FW_IMAGE:-fastprom-rust}
+ENGINE=${FW_ENGINE:-}
+if [ "$ENGINE" = docker ]; then
+    ENGINE_OPTS="--user $(id -u):$(id -g)"
+else
+    ENGINE_OPTS="--security-opt label=disable"
+fi
 mkdir -p "$OUT"
 
 sources_hash() {
@@ -38,10 +46,11 @@ run_tests() {
     python3 fw/tools/gen_fixtures.py "$OUT/fixtures" > /dev/null
     rm -rf "$OUT/trace"
     local rc=0
-    if command -v cargo > /dev/null; then
+    if [ -z "$ENGINE" ] && command -v cargo > /dev/null; then
         (cd fw && cargo test --quiet) > "$OUT/host-tests.log" 2>&1 || rc=$?
     else
-        podman run --rm --security-opt label=disable -v "$PWD:/w" -w /w/fw \
+        # shellcheck disable=SC2086
+        "${ENGINE:-podman}" run --rm $ENGINE_OPTS -v "$PWD:/w" -w /w/fw \
             -e CARGO_HOME=/w/fw/.cargo-home "$IMAGE" cargo test --quiet \
             > "$OUT/host-tests.log" 2>&1 || rc=$?
     fi
@@ -57,13 +66,13 @@ run_tests() {
     echo "fw host tests: PASS"
 }
 
-if command -v cargo > /dev/null || command -v podman > /dev/null; then
+if command -v cargo > /dev/null || command -v "${ENGINE:-podman}" > /dev/null; then
     run_tests
 elif [ -f "$STAMP" ] && [ "$(head -1 "$STAMP")" = "$(sources_hash)" ]; then
     tail -n +3 "$STAMP"
     echo "fw host tests: PASS (recorded by make fw-test at $(sed -n 2p "$STAMP"); fw/ unchanged since)"
 else
-    echo "fw host tests: FAIL - no cargo or podman here, and no up-to-date result from"
+    echo "fw host tests: FAIL - no cargo, podman or FW_ENGINE here, and no up-to-date result from"
     echo "  make fw-test (build/fw/host-tests.stamp missing, or fw/ changed since)."
     echo "  Run make fw-test on the host first."
     exit 1

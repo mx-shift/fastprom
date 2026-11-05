@@ -8,6 +8,9 @@ name: release-fw
 on:
   push:
     tags: ["fw-v*"]
+  # a dry run from the Actions tab: builds and checks everything at the
+  # version in the tree, publishes nothing
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,15 +18,25 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-24.04
+    env:
+      # the firmware's container runs under docker, as the runner's user:
+      # under the runner's rootless podman the container's user cannot
+      # write the checkout (see release-hw.yml)
+      FW_ENGINE: docker
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0        # earlier tags, for the release notes
 
       - name: Build
-        run: scripts/release_fw.sh "${GITHUB_REF_NAME#fw-v}"
+        run: |
+          # a tag names the version to check against the tree; a dry run
+          # takes the tree's own
+          if [ "$GITHUB_REF_TYPE" = tag ]; then v=${GITHUB_REF_NAME#fw-v}; else v=; fi
+          scripts/release_fw.sh $v
 
       - name: Publish
+        if: github.ref_type == 'tag'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
