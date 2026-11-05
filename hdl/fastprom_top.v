@@ -11,8 +11,11 @@
 //   PROM_AW / DW      organisation (512x8, 256x8, 1024x4, ...)
 //   NCE / CE_ACTIVE_LOW  number and polarity of chip-enable pins
 //   OPEN_COLLECTOR    output stage personality
-//   BANKW             extra high-order address bits from onboard jumpers,
-//                     used to select between several stored images
+//   BANKW             extra high-order address bits that select between
+//                     several images held in the fabric at once (a
+//                     multi-image LOGIC build). The stack's product build is
+//                     BRAM mode with BANKW = 0: firmware reads the
+//                     image-select switch at boot and loads only that image.
 // -----------------------------------------------------------------------------
 `default_nettype none
 
@@ -22,13 +25,13 @@ module fastprom_top #(
     parameter integer NCE            = 1,       // chip-enable pins
     parameter [3:0]   CE_ACTIVE_LOW  = 4'b1111,
     parameter integer OPEN_COLLECTOR = 0,
-    parameter integer BANKW          = 2,       // image-select jumper bits (0 = single image)
+    parameter integer BANKW          = 2,       // image-select bits (0 = single image)
     parameter integer MODE_BRAM      = 0,       // 0 = LOGIC, 1 = BRAM
     parameter integer SYNC_STAGES    = 1,       // BRAM mode only
     parameter         INIT_HEX       = "",
 
     // Derived; not intended to be overridden. A zero-width port is illegal,
-    // so a single-image build still presents one (unused) jumper pin.
+    // so a single-image build still presents one (unused) bank_sel bit.
     parameter integer BANKW_PINS     = (BANKW > 0) ? BANKW : 1
 ) (
     // ---- socket pins -------------------------------------------------------
@@ -37,7 +40,9 @@ module fastprom_top #(
     inout  wire [DW-1:0]      d_pin,
 
     // ---- board-local pins (not connected to the socket) --------------------
-    input  wire [BANKW_PINS-1:0] bank_sel, // solder/DIP jumpers, active high
+    input  wire [BANKW_PINS-1:0] bank_sel, // image select, active high; in the
+                                           // build wrapper, a register the
+                                           // core writes (tools/ag32/fastprom_ip.v)
     input  wire               fabric_clk, // free-running; BRAM mode only
     input  wire               core_ready, // MCU has loaded the image
 
@@ -78,7 +83,7 @@ module fastprom_top #(
 );
     localparam integer AW = PROM_AW + BANKW;
 
-    // Jumper bits sit above the socket address bits, so image N occupies a
+    // Bank bits sit above the socket address bits, so image N occupies a
     // contiguous block of the stored data.
     wire [AW-1:0] rom_addr;
     generate
@@ -139,9 +144,12 @@ module fastprom_top #(
         .selected (ce_selected)
     );
 
-    // Hold the bus off until the image is actually present. In BRAM mode the
-    // core clears this while it is filling the block RAM; in LOGIC mode the
-    // data is valid as soon as the fabric is configured, so it is tied high.
+    // Hold the bus off until the image is actually present. core_ready is the
+    // AHB slave's READY bit in every mode: it is clear from configuration
+    // until the core sets it, so even a LOGIC build, whose data is valid as
+    // soon as the fabric is configured, keeps its outputs off until firmware
+    // writes READY. The product firmware sets it after loading and verifying
+    // the image (BRAM mode).
     wire [DW-1:0] drive_oe = pad_oe & {DW{core_ready}};
 
     genvar b;

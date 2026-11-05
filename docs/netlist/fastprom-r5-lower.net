@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/home/mxshift/Projects/fastprom/hw/fastprom-r5-lower.kicad_sch")
-		(date "2026-11-04T19:53:59")
+		(date "2026-11-05T03:32:49")
 		(tool "Eeschema 10.0.8")
 		(sheet
 			(number "1")
@@ -56,7 +56,7 @@
 	(components
 		(comp
 			(ref "C8")
-			(value "100nF/25V")
+			(value "100nF/16V")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
@@ -102,7 +102,7 @@
 		)
 		(comp
 			(ref "C9")
-			(value "100nF/25V")
+			(value "100nF/16V")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
@@ -286,7 +286,7 @@
 		)
 		(comp
 			(ref "C17")
-			(value "100nF/25V")
+			(value "100nF/16V")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
@@ -332,7 +332,7 @@
 		)
 		(comp
 			(ref "C18")
-			(value "100nF/25V")
+			(value "100nF/16V")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field

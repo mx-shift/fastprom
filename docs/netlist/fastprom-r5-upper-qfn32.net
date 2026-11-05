@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/home/mxshift/Projects/fastprom/hw/fastprom-r5-upper-qfn32.kicad_sch")
-		(date "2026-11-04T19:54:00")
+		(date "2026-11-05T03:32:51")
 		(tool "Eeschema 10.0.8")
 		(sheet
 			(number "1")
@@ -148,7 +148,7 @@
 		)
 		(comp
 			(ref "C3")
-			(value "100nF/25V")
+			(value "100nF/16V")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
@@ -194,7 +194,7 @@
 		)
 		(comp
 			(ref "C4")
-			(value "100nF/25V")
+			(value "100nF/16V")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
@@ -240,7 +240,7 @@
 		)
 		(comp
 			(ref "C5")
-			(value "100nF/25V")
+			(value "100nF/16V")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
@@ -286,7 +286,7 @@
 		)
 		(comp
 			(ref "C11")
-			(value "100nF/25V")
+			(value "100nF/16V")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
@@ -424,7 +424,7 @@
 		)
 		(comp
 			(ref "C16")
-			(value "100nF/25V")
+			(value "100nF/16V")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
@@ -470,7 +470,7 @@
 		)
 		(comp
 			(ref "C19")
-			(value "100nF/25V")
+			(value "100nF/16V")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
@@ -773,7 +773,7 @@
 			(libsource
 				(lib "fastprom")
 				(part "USB_C_Receptacle")
-				(description "USB 2.0 Type-C receptacle for field updates")
+				(description "USB 2.0 Type-C receptacle")
 			)
 			(property
 				(name "Sheetname")
@@ -2500,19 +2500,19 @@
 		(libpart
 			(lib "fastprom")
 			(part "USB_C_Receptacle")
-			(description "USB 2.0 Type-C receptacle for field updates")
+			(description "USB 2.0 Type-C receptacle")
 			(fields
 				(field
 					(name "Reference") "U")
 				(field
 					(name "Value") "USB_C_Receptacle_USB2.0")
 				(field
-					(name "Footprint") "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12")
+					(name "Footprint") "fastprom:USB_C_Receptacle_HRO_TYPE-C-31-M-12_BoardEdge")
 				(field
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "USB 2.0 Type-C receptacle for field updates")
+					(name "Description") "USB 2.0 Type-C receptacle")
 			)
 			(pins
 				(pin
