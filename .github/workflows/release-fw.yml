@@ -1,0 +1,48 @@
+# Firmware release: push a tag fw-v<VERSION> (VERSION as in fw/Cargo.toml's
+# workspace version, e.g. fw-v0.1.0) to publish the AG32 firmware's ELF and
+# raw binary. scripts/release_fw.sh does the work and refuses a tag that
+# disagrees with the crate version, or failing host tests or lints. Boards
+# are released apart: release-hw.yml.
+name: release-fw
+
+on:
+  push:
+    tags: ["fw-v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # earlier tags, for the release notes
+
+      - name: Build
+        run: scripts/release_fw.sh "${GITHUB_REF_NAME#fw-v}"
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ver=${GITHUB_REF_NAME#fw-v}
+          prev=$(git describe --tags --abbrev=0 --match 'fw-v*' "${GITHUB_REF_NAME}^" 2>/dev/null || true)
+          {
+            echo "FastPROM AG32 firmware $ver."
+            echo
+            echo "- \`fastprom-fw-$ver.bin\`: raw image for flash at 0x80000000"
+            echo "- \`fastprom-fw-$ver.elf\`: the same with symbols, for debugging"
+            echo "- \`fastprom-fw-$ver-layout.txt\`: sections and the flash map"
+            echo
+            echo "Programming, and the combined image with the fabric bitstream"
+            echo "(make fw-batch, which needs AGM's SDK): docs/06-build-and-flash.md."
+            if [ -n "$prev" ]; then
+              echo
+              echo "Changes since $prev:"
+              git log --format='- %s' "$prev..$GITHUB_REF_NAME" -- fw tools/rust tools/mkimage.py tools/mkimagetable.py tools/fw_layout.py
+            fi
+          } > notes.md
+          gh release create "$GITHUB_REF_NAME" build/release/fw/* \
+            --title "FastPROM firmware $ver" --notes-file notes.md

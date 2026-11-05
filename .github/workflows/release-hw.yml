@@ -1,0 +1,70 @@
+# Hardware release: push a tag hw-rev-<REV> (REV as in hw/REVISION, e.g.
+# hw-rev-A) to publish the stack's schematic and board PDFs and the board
+# file package (KiCad projects, BOMs, JLCPCB order files for each board and
+# the panel), all built here from the committed sources. scripts/release_hw.sh
+# does the work and refuses a tag that disagrees with the design, a build
+# that rewrites a tracked source, or any ERC/DRC violation. Firmware is released apart: release-fw.yml.
+name: release-hw
+
+on:
+  push:
+    tags: ["hw-rev-*"]
+  # a dry run from the Actions tab: builds and checks everything at the
+  # version in the tree, publishes nothing
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    env:
+      # scripts/kicad.sh runs KiCad's container with docker, as the runner's
+      # user: under the runner's rootless podman the container's user cannot
+      # write the checkout
+      KICAD_ENGINE: docker
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0        # earlier tags, for the release notes
+
+      - name: Tools
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -yq python3-yaml
+          docker pull -q docker.io/kicad/kicad:10.0
+
+      - name: Build
+        run: |
+          # a tag names the version to check against the tree; a dry run
+          # takes the tree's own
+          if [ "$GITHUB_REF_TYPE" = tag ]; then v=${GITHUB_REF_NAME#hw-rev-}; else v=; fi
+          scripts/release_hw.sh $v
+
+      - name: Publish
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rev=${GITHUB_REF_NAME#hw-rev-}
+          prev=$(git describe --tags --abbrev=0 --match 'hw-rev-*' "${GITHUB_REF_NAME}^" 2>/dev/null || true)
+          {
+            echo "FastPROM boards, revision $rev: fastprom-lower and fastprom-upper."
+            echo
+            echo "- \`fastprom-hw-rev-$rev.zip\`: KiCad projects, PDFs, BOMs, and the JLCPCB"
+            echo "  gerbers, BOM and CPL for each board and for the assembly panel"
+            echo "- schematic and board PDFs for each board"
+            echo "- \`fastprom-panel-gerbers.zip\`, \`-bom.csv\`, \`-cpl.csv\`: what to upload to"
+            echo "  JLCPCB for the assembly panel, and \`ORDER-JLCPCB.md\`: every field of"
+            echo "  their order form, set for this design"
+            echo
+            echo "Ordering: docs/07-bom.md. Firmware is released separately (fw-v* tags)."
+            if [ -n "$prev" ]; then
+              echo
+              echo "Changes since $prev:"
+              git log --format='- %s' "$prev..$GITHUB_REF_NAME" -- hw tools docs DESIGN_NOTES.md Makefile
+            fi
+          } > notes.md
+          gh release create "$GITHUB_REF_NAME" build/release/hw/* \
+            --title "FastPROM hardware rev $rev" --notes-file notes.md --latest=false
