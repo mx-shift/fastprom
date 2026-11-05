@@ -1,0 +1,17 @@
+# Rust toolchain for the FastPROM firmware (fw/).
+#
+# cosmic-toad's tools/rust/Containerfile (its ct-rust image), plus llvm-tools:
+# the AG32 target (RV32IMAFC, bare metal), clippy and rustfmt, cargo-cycles
+# for the module-cycle check in `make fw-lint`, and llvm-objcopy / llvm-size /
+# llvm-nm, which `make fw-build` uses to turn the ELF into the raw .bin that
+# AGM's loader programs and to report section sizes. ct-rust has no
+# llvm-tools, hence a separate image (fastprom-rust).
+FROM docker.io/library/rust:1-slim
+RUN rustup target add riscv32imafc-unknown-none-elf && \
+    rustup component add clippy rustfmt llvm-tools
+RUN for t in llvm-objcopy llvm-size llvm-nm llvm-objdump; do \
+        ln -s "$(rustc --print sysroot)/lib/rustlib/x86_64-unknown-linux-gnu/bin/$t" \
+              "/usr/local/bin/$t"; \
+    done
+RUN cargo install --locked cargo-cycles@0.2.0 && \
+    rm -rf /usr/local/cargo/registry /usr/local/cargo/git

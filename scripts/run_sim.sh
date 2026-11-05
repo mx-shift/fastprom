@@ -80,9 +80,38 @@ if [ -n "${ALTA_SIM_V:-}" ]; then
     done
 fi
 
-echo "== firmware host tests =="
-if ! make -C fw test 2>&1 | grep -E 'crc32:|PASS|FAIL|Error'; then fail=1; fi
-make -C fw test 2>&1 | grep -q 'test_fw: PASS' || fail=1
+# The Rust firmware's host tests (fw/). Where neither cargo nor podman is
+# available - inside the hdlc/sim container - this accepts the result
+# `make fw-test` recorded, if fw/ is unchanged since; see scripts/fw_tests.sh.
+echo "== firmware host tests (Rust, fw/) =="
+if ! scripts/fw_tests.sh; then fail=1; fi
+
+# Those tests write traces of the firmware's load sequence; replay them on
+# the AHB slave itself, back to back (a pipelined master) and with idle
+# cycles between transfers, checking every read and the loaded image.
+echo "== tb_fw_load: the firmware's load sequence on fastprom_ahb_slave =="
+traces=$(ls build/fw/trace/*.trace 2>/dev/null || true)
+if [ -z "$traces" ]; then
+    echo "  no traces in build/fw/trace (the host tests write them)"
+    fail=1
+fi
+for t in $traces; do
+    b=$(basename "$t" .trace)
+    aw=${b#*_aw}; aw=${aw%%_*}; dw=${b##*_dw}
+    case $b in
+        hazard*) gaps=0; check=0 ;;  # the hazard only exists back to back
+        *)       gaps="0 1"; check=1 ;;
+    esac
+    for g in $gaps; do
+        iverilog -g2012 -Ptb_fw_load.AW="$aw" -Ptb_fw_load.DW="$dw" \
+            -Ptb_fw_load.GAP="$g" -Ptb_fw_load.CHECK_IMAGE="$check" \
+            -Ptb_fw_load.TRACE="\"$t\"" -Ptb_fw_load.IMAGE="\"build/fw/trace/$b.hex\"" \
+            -o build/tb_fw_load.vvp sim/tb_fw_load.v hdl/fastprom_ahb_slave.v
+        out=$(vvp -n build/tb_fw_load.vvp)
+        printf '  %-16s %s\n' "$b" "$(echo "$out" | grep -E 'PASS|FAIL' | head -1)"
+        echo "$out" | grep -q ': PASS' || fail=1
+    done
+done
 
 if [ "$fail" -ne 0 ]; then
     echo "SUITE: FAIL"

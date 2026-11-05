@@ -1,0 +1,17 @@
+[package]
+name = "fastprom-ag32"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "FastPROM firmware for the AG32VF303KCU6 (startup, clocks, pins, UART, fabric)"
+
+[[bin]]
+name = "fastprom-ag32"
+test = false
+bench = false
+
+[dependencies]
+fastprom-core.workspace = true
+thiserror.workspace = true
+riscv = "0.16"
+riscv-rt = { version = "0.18", features = ["memory", "single-hart"] }

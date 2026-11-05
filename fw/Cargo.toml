@@ -1,0 +1,29 @@
+# FastPROM firmware: pure Rust, no vendor C.
+#
+#   fastprom-core  no_std library: CRC-32, image table, image select, the
+#                  fabric load sequence against a trait. Host-tested.
+#   fastprom-ag32  the AG32 board binary: startup (riscv-rt), memory map,
+#                  clocks, GPIO, UART, the fabric's AHB window, main.
+#
+# Host commands (`cargo test`, `cargo clippy --all-targets`) build only the
+# library; the board binary is built for riscv32imafc-unknown-none-elf by
+# `make fw-build`. See docs/06-build-and-flash.md.
+[workspace]
+resolver = "2"
+members = ["fastprom-core", "fastprom-ag32"]
+default-members = ["fastprom-core"]
+
+[workspace.dependencies]
+thiserror = { version = "2", default-features = false }
+fastprom-core = { path = "fastprom-core" }
+
+[workspace.package]
+edition = "2021"
+license = "Apache-2.0"
+version = "0.1.0"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+debug = true

@@ -1,0 +1,9 @@
+[package]
+name = "fastprom-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "FastPROM firmware logic: CRC-32, image table, image select, fabric load sequence"
+
+[dependencies]
+thiserror.workspace = true
