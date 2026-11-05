@@ -15,7 +15,7 @@
 # usage: tools/ag32/run_flow.sh <AgRV_pio dir> <part> <logic|bram> <work dir>
 #        [image kind: random|palette|decode, default random] [bank bits, default 0]
 #
-# Environment: BOARD (default fastprom-r5-upper-qfn32), SYNC_STAGES (BRAM, 1),
+# Environment: BOARD (default fastprom-upper), SYNC_STAGES (BRAM, 1),
 # SYSCLK (MHz, default the .ve's 100; BUSCLK follows at half), VE_EDIT (a sed
 # script applied to the .ve, for what-if pin experiments - not the board's map),
 # SEED (Supra's placement seed, default 666 as AGM ships it), RDCLK (MHz for
@@ -28,7 +28,7 @@ set -e
 [ $# -ge 4 ] || { sed -n '2,30p' "$0"; exit 2; }
 PIO=$(realpath "$1"); PART=$2; MODE=$3; WORK=$(realpath -m "$4")
 KIND=${5:-random}; BANKW=${6:-0}
-BOARD=${BOARD:-fastprom-r5-upper-qfn32}
+BOARD=${BOARD:-fastprom-upper}
 SYNC_STAGES=${SYNC_STAGES:-1}
 IMAGE=${SUPRA_IMAGE:-ct-supra}
 DEVICE=AGRV2KQ32

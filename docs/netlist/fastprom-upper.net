@@ -1,8 +1,8 @@
 (export
 	(version "E")
 	(design
-		(source "/home/mxshift/Projects/fastprom/hw/fastprom-r5-upper-qfn32.kicad_sch")
-		(date "2026-11-05T03:32:51")
+		(source "/home/mxshift/Projects/fastprom/hw/fastprom-upper.kicad_sch")
+		(date "2026-11-16T17:33:48")
 		(tool "Eeschema 10.0.8")
 		(sheet
 			(number "1")
@@ -13,7 +13,7 @@
 				(company)
 				(rev)
 				(date)
-				(source "fastprom-r5-upper-qfn32.kicad_sch")
+				(source "fastprom-upper.kicad_sch")
 				(comment
 					(number "1")
 					(value "")
@@ -57,10 +57,10 @@
 		(comp
 			(ref "C1")
 			(value "4.7uF/16V")
-			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(footprint "fastprom:C_0603_1608Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+					(name "Footprint") "fastprom:C_0603_1608Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -75,11 +75,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -103,10 +103,10 @@
 		(comp
 			(ref "C2")
 			(value "10uF/10V")
-			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(footprint "fastprom:C_0603_1608Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+					(name "Footprint") "fastprom:C_0603_1608Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -121,11 +121,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -149,10 +149,10 @@
 		(comp
 			(ref "C3")
 			(value "100nF/16V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -167,17 +167,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "c7a23299-e9b2-5cba-beaf-494ba9cbbc4d")
+			(tstamps "c58c0741-d444-5493-b00b-0b80f5b9abe5")
 			(units
 				(unit
 					(name "A")
@@ -195,10 +195,10 @@
 		(comp
 			(ref "C4")
 			(value "100nF/16V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -213,17 +213,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "649f2b7d-a9e7-5138-85a1-d0098befad87")
+			(tstamps "f51c9faa-433c-5367-ab7b-8c92d1fe2333")
 			(units
 				(unit
 					(name "A")
@@ -241,10 +241,10 @@
 		(comp
 			(ref "C5")
 			(value "100nF/16V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -259,17 +259,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "a5366840-aa79-5726-9964-6f1292ca096e")
+			(tstamps "e07409dc-7240-5a18-853f-82056c41b257")
 			(units
 				(unit
 					(name "A")
@@ -287,10 +287,10 @@
 		(comp
 			(ref "C11")
 			(value "100nF/16V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -305,17 +305,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "dffc4918-0def-56ff-b466-d79033652207")
+			(tstamps "38069b5b-4b06-5a19-8654-a97b1fd23ffd")
 			(units
 				(unit
 					(name "A")
@@ -333,10 +333,10 @@
 		(comp
 			(ref "C14")
 			(value "10uF/10V")
-			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(footprint "fastprom:C_0603_1608Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+					(name "Footprint") "fastprom:C_0603_1608Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -351,17 +351,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d0178d47-059c-5d05-872a-981a6c2861a5")
+			(tstamps "5c852f2f-c654-55e2-80c0-9477a19dce8a")
 			(units
 				(unit
 					(name "A")
@@ -379,10 +379,10 @@
 		(comp
 			(ref "C15")
 			(value "1uF/25V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -397,17 +397,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "2cb0e2a5-6e0a-5c51-bd9f-52f9186f9cf7")
+			(tstamps "4b8b4988-8599-5501-89ea-13dca239a0ad")
 			(units
 				(unit
 					(name "A")
@@ -425,10 +425,10 @@
 		(comp
 			(ref "C16")
 			(value "100nF/16V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -443,17 +443,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "29c8b5eb-4481-53cc-bfbd-bc121ea29109")
+			(tstamps "09ad96f5-ecb8-551b-a520-3919c20872ef")
 			(units
 				(unit
 					(name "A")
@@ -471,10 +471,10 @@
 		(comp
 			(ref "C19")
 			(value "100nF/16V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -489,11 +489,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -517,10 +517,10 @@
 		(comp
 			(ref "C20")
 			(value "4.7uF/16V")
-			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(footprint "fastprom:C_0603_1608Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+					(name "Footprint") "fastprom:C_0603_1608Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -535,11 +535,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -563,10 +563,10 @@
 		(comp
 			(ref "D2")
 			(value "Schottky")
-			(footprint "Diode_SMD:D_SOD-323")
+			(footprint "fastprom:D_SOD-323")
 			(fields
 				(field
-					(name "Footprint") "Diode_SMD:D_SOD-323")
+					(name "Footprint") "fastprom:D_SOD-323")
 				(field
 					(name "Datasheet")
 				)
@@ -581,11 +581,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -609,10 +609,10 @@
 		(comp
 			(ref "D3")
 			(value "Schottky")
-			(footprint "Diode_SMD:D_SOD-323")
+			(footprint "fastprom:D_SOD-323")
 			(fields
 				(field
-					(name "Footprint") "Diode_SMD:D_SOD-323")
+					(name "Footprint") "fastprom:D_SOD-323")
 				(field
 					(name "Datasheet")
 				)
@@ -627,11 +627,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -655,10 +655,10 @@
 		(comp
 			(ref "FB1")
 			(value "220R@100MHz/2.2A")
-			(footprint "Inductor_SMD:L_0603_1608Metric")
+			(footprint "fastprom:L_0603_1608Metric")
 			(fields
 				(field
-					(name "Footprint") "Inductor_SMD:L_0603_1608Metric")
+					(name "Footprint") "fastprom:L_0603_1608Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -673,11 +673,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -700,11 +700,11 @@
 		)
 		(comp
 			(ref "J3")
-			(value "UART_Prog")
-			(footprint "fastprom:Pads_1x06_P1.27mm_SMD")
+			(value "SOICbite")
+			(footprint "fastprom:SOICbite_2x04_P1.27mm_BoardEdge")
 			(fields
 				(field
-					(name "Footprint") "fastprom:Pads_1x06_P1.27mm_SMD")
+					(name "Footprint") "fastprom:SOICbite_2x04_P1.27mm_BoardEdge")
 				(field
 					(name "Datasheet")
 				)
@@ -714,22 +714,22 @@
 			)
 			(libsource
 				(lib "fastprom")
-				(part "CONN_1x6")
-				(description "6-way header / solder pads")
+				(part "SOICbite")
+				(description "SOICbite edge pads for a SOIC-8 clip or pogo fixture")
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "7e28a518-dc2c-5ddd-9550-27ae7ead4e5a")
+			(tstamps "1e76b30e-3fb8-5e46-8564-4adcf56b121c")
 			(units
 				(unit
 					(name "A")
@@ -751,6 +751,12 @@
 						)
 						(pin
 							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
 						)
 					)
 				)
@@ -777,11 +783,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -850,10 +856,10 @@
 		(comp
 			(ref "J6")
 			(value "DF40HC(3.0)-30DS-0.4V")
-			(footprint "Connector_Hirose_DF40:Hirose_DF40HC(3.0)-30DS-0.4V_2x15_P0.4mm")
+			(footprint "fastprom:Hirose_DF40HC(3.0)-30DS-0.4V_2x15_P0.4mm")
 			(fields
 				(field
-					(name "Footprint") "Connector_Hirose_DF40:Hirose_DF40HC(3.0)-30DS-0.4V_2x15_P0.4mm")
+					(name "Footprint") "fastprom:Hirose_DF40HC(3.0)-30DS-0.4V_2x15_P0.4mm")
 				(field
 					(name "Datasheet")
 				)
@@ -868,11 +874,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -980,10 +986,10 @@
 		(comp
 			(ref "R9")
 			(value "10k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -998,17 +1004,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "07b0b778-6a7d-5ece-b8ea-3b65b6e2e46a")
+			(tstamps "16874317-88f7-5672-ac6e-8b2a5ac40bb2")
 			(units
 				(unit
 					(name "A")
@@ -1026,10 +1032,10 @@
 		(comp
 			(ref "R10")
 			(value "10k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -1044,17 +1050,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "375ecc60-3bb8-57e6-aca5-1c7d74cbeac8")
+			(tstamps "2eba002c-c6f6-5cf4-baa9-566a2d975b1e")
 			(units
 				(unit
 					(name "A")
@@ -1072,10 +1078,10 @@
 		(comp
 			(ref "R11")
 			(value "4k7")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -1090,17 +1096,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e6626911-bc51-59b8-b3c3-8c8568598268")
+			(tstamps "b28eb0d9-e7c0-5bfb-93a1-736a4be9bc17")
 			(units
 				(unit
 					(name "A")
@@ -1118,10 +1124,10 @@
 		(comp
 			(ref "R17")
 			(value "100k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -1136,17 +1142,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "979650e7-b9a9-52eb-b4f0-f3ead0bbc623")
+			(tstamps "25105ea3-7411-5bb3-82d3-1fd9b7433bc9")
 			(units
 				(unit
 					(name "A")
@@ -1164,10 +1170,10 @@
 		(comp
 			(ref "R18")
 			(value "100k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -1182,17 +1188,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "2bbce350-982a-5b72-9137-b3f35b1c2e81")
+			(tstamps "2f4a6581-2fcf-54e0-8986-6694e5c110fd")
 			(units
 				(unit
 					(name "A")
@@ -1210,10 +1216,10 @@
 		(comp
 			(ref "R22")
 			(value "5k1")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -1228,11 +1234,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1256,10 +1262,10 @@
 		(comp
 			(ref "R23")
 			(value "5k1")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -1274,11 +1280,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1302,10 +1308,10 @@
 		(comp
 			(ref "R24")
 			(value "10k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -1320,17 +1326,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e76ac897-f6ee-51d0-90c3-b0e4efac2056")
+			(tstamps "1a4c3947-9b7f-5491-a5d8-24d1eca92c81")
 			(units
 				(unit
 					(name "A")
@@ -1348,10 +1354,10 @@
 		(comp
 			(ref "R25")
 			(value "10k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -1366,17 +1372,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "291a3cb7-b081-552e-b6d7-bdc10309af2e")
+			(tstamps "2a9b8006-ffc1-58f3-8cb6-9e396972fec9")
 			(units
 				(unit
 					(name "A")
@@ -1394,10 +1400,10 @@
 		(comp
 			(ref "R27")
 			(value "1R")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -1412,11 +1418,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1440,10 +1446,10 @@
 		(comp
 			(ref "SW1")
 			(value "Image_Select")
-			(footprint "Button_Switch_SMD:SW_DIP_SPSTx02_Slide_KingTek_DSHP02TS_W7.62mm_P1.27mm")
+			(footprint "fastprom:SW_DIP_SPSTx02_Slide_KingTek_DSHP02TS_W7.62mm_P1.27mm")
 			(fields
 				(field
-					(name "Footprint") "Button_Switch_SMD:SW_DIP_SPSTx02_Slide_KingTek_DSHP02TS_W7.62mm_P1.27mm")
+					(name "Footprint") "fastprom:SW_DIP_SPSTx02_Slide_KingTek_DSHP02TS_W7.62mm_P1.27mm")
 				(field
 					(name "Datasheet")
 				)
@@ -1458,17 +1464,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "f264955d-a0d2-50f0-b9b0-faa11124cb7b")
+			(tstamps "5b5b6d58-f4a0-5bd9-85a8-8f220db55b06")
 			(units
 				(unit
 					(name "A")
@@ -1490,12 +1496,98 @@
 			)
 		)
 		(comp
-			(ref "U1")
-			(value "AG32VF303KCU6")
-			(footprint "Package_DFN_QFN:QFN-32-1EP_4x4mm_P0.4mm_EP2.65x2.65mm")
+			(ref "TP2")
+			(value "TestPoint")
+			(footprint "fastprom:TestPoint_Pad_D1.0mm")
 			(fields
 				(field
-					(name "Footprint") "Package_DFN_QFN:QFN-32-1EP_4x4mm_P0.4mm_EP2.65x2.65mm")
+					(name "Footprint") "fastprom:TestPoint_Pad_D1.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "fastprom")
+				(part "TestPoint")
+				(description "Bare test pad")
+			)
+			(property
+				(name "Sheetname")
+				(value "fastprom-upper")
+			)
+			(property
+				(name "Sheetfile")
+				(value "fastprom-upper.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f9bfcc65-9c6a-5d04-969c-c55d2fe20751")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP3")
+			(value "TestPoint")
+			(footprint "fastprom:TestPoint_Pad_D1.0mm")
+			(fields
+				(field
+					(name "Footprint") "fastprom:TestPoint_Pad_D1.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "fastprom")
+				(part "TestPoint")
+				(description "Bare test pad")
+			)
+			(property
+				(name "Sheetname")
+				(value "fastprom-upper")
+			)
+			(property
+				(name "Sheetfile")
+				(value "fastprom-upper.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "72f4d0bc-2a9d-5175-8634-6385fcb78930")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U1")
+			(value "AG32VF303KCU6")
+			(footprint "fastprom:QFN-32-1EP_4x4mm_P0.4mm_EP2.65x2.65mm")
+			(fields
+				(field
+					(name "Footprint") "fastprom:QFN-32-1EP_4x4mm_P0.4mm_EP2.65x2.65mm")
 				(field
 					(name "Datasheet")
 				)
@@ -1510,11 +1602,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1631,10 +1723,10 @@
 		(comp
 			(ref "U5")
 			(value "AP2112K-3.3")
-			(footprint "Package_TO_SOT_SMD:SOT-23-5")
+			(footprint "fastprom:SOT-23-5")
 			(fields
 				(field
-					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-5")
+					(name "Footprint") "fastprom:SOT-23-5")
 				(field
 					(name "Datasheet")
 				)
@@ -1649,11 +1741,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1686,10 +1778,10 @@
 		(comp
 			(ref "U6")
 			(value "USBLC6-2SC6")
-			(footprint "Package_TO_SOT_SMD:SOT-23-6")
+			(footprint "fastprom:SOT-23-6")
 			(fields
 				(field
-					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-6")
+					(name "Footprint") "fastprom:SOT-23-6")
 				(field
 					(name "Datasheet")
 				)
@@ -1704,11 +1796,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1744,10 +1836,10 @@
 		(comp
 			(ref "X1")
 			(value "12MHz")
-			(footprint "Oscillator:Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm")
+			(footprint "fastprom:Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm")
 			(fields
 				(field
-					(name "Footprint") "Oscillator:Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm")
+					(name "Footprint") "fastprom:Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm")
 				(field
 					(name "Datasheet")
 				)
@@ -1762,17 +1854,17 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-upper-qfn32")
+				(value "fastprom-upper")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-upper-qfn32.kicad_sch")
+				(value "fastprom-upper.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "3ebc35e0-5749-59e0-bfb6-2f5fd4184b9c")
+			(tstamps "52eab6a6-0672-5f96-99d1-344db60b646b")
 			(units
 				(unit
 					(name "A")
@@ -1807,7 +1899,7 @@
 				(field
 					(name "Value") "AG32VF303KCU6")
 				(field
-					(name "Footprint") "Package_DFN_QFN:QFN-32-1EP_4x4mm_P0.4mm_EP2.65x2.65mm")
+					(name "Footprint") "fastprom:QFN-32-1EP_4x4mm_P0.4mm_EP2.65x2.65mm")
 				(field
 					(name "Datasheet")
 				)
@@ -1992,7 +2084,7 @@
 				(field
 					(name "Value") "AP2112K-3.3")
 				(field
-					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-5")
+					(name "Footprint") "fastprom:SOT-23-5")
 				(field
 					(name "Datasheet")
 				)
@@ -2037,7 +2129,7 @@
 				(field
 					(name "Value") "C")
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -2059,56 +2151,6 @@
 		)
 		(libpart
 			(lib "fastprom")
-			(part "CONN_1x6")
-			(description "6-way header / solder pads")
-			(fields
-				(field
-					(name "Reference") "J")
-				(field
-					(name "Value") "CONN_1x6")
-				(field
-					(name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description") "6-way header / solder pads")
-			)
-			(pins
-				(pin
-					(num "1")
-					(name "P1")
-					(type "passive")
-				)
-				(pin
-					(num "2")
-					(name "P2")
-					(type "passive")
-				)
-				(pin
-					(num "3")
-					(name "P3")
-					(type "passive")
-				)
-				(pin
-					(num "4")
-					(name "P4")
-					(type "passive")
-				)
-				(pin
-					(num "5")
-					(name "P5")
-					(type "passive")
-				)
-				(pin
-					(num "6")
-					(name "P6")
-					(type "passive")
-				)
-			)
-		)
-		(libpart
-			(lib "fastprom")
 			(part "DF40C-30DS")
 			(description "0.4mm board-to-board socket, 30 contacts")
 			(fields
@@ -2117,7 +2159,7 @@
 				(field
 					(name "Value") "DF40C-30DS-0.4V")
 				(field
-					(name "Footprint") "Connector_Hirose_DF40:Hirose_DF40HC(3.0)-30DS-0.4V_2x15_P0.4mm")
+					(name "Footprint") "fastprom:Hirose_DF40HC(3.0)-30DS-0.4V_2x15_P0.4mm")
 				(field
 					(name "Datasheet")
 				)
@@ -2287,7 +2329,7 @@
 				(field
 					(name "Value") "D_Schottky")
 				(field
-					(name "Footprint") "Diode_SMD:D_SOD-323")
+					(name "Footprint") "fastprom:D_SOD-323")
 				(field
 					(name "Datasheet")
 				)
@@ -2317,7 +2359,7 @@
 				(field
 					(name "Value") "FerriteBead")
 				(field
-					(name "Footprint") "Inductor_SMD:L_0603_1608Metric")
+					(name "Footprint") "fastprom:L_0603_1608Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -2347,7 +2389,7 @@
 				(field
 					(name "Value") "OSC")
 				(field
-					(name "Footprint") "Oscillator:Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm")
+					(name "Footprint") "fastprom:Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm")
 				(field
 					(name "Datasheet")
 				)
@@ -2387,7 +2429,7 @@
 				(field
 					(name "Value") "R")
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -2409,6 +2451,66 @@
 		)
 		(libpart
 			(lib "fastprom")
+			(part "SOICbite")
+			(description "SOICbite edge pads for a SOIC-8 clip or pogo fixture")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "SOICbite")
+				(field
+					(name "Footprint") "fastprom:SOICbite_2x04_P1.27mm_BoardEdge")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "SOICbite edge pads for a SOIC-8 clip or pogo fixture")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "P1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "P2")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "P3")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "P4")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "P5")
+					(type "passive")
+				)
+				(pin
+					(num "6")
+					(name "P6")
+					(type "passive")
+				)
+				(pin
+					(num "7")
+					(name "P7")
+					(type "passive")
+				)
+				(pin
+					(num "8")
+					(name "P8")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "fastprom")
 			(part "SW_DIP_x02")
 			(description "2-position DIP switch")
 			(fields
@@ -2417,7 +2519,7 @@
 				(field
 					(name "Value") "SW_DIP_x02")
 				(field
-					(name "Footprint") "Button_Switch_SMD:SW_DIP_SPSTx02_Slide_KingTek_DSHP02TS_W7.62mm_P1.27mm")
+					(name "Footprint") "fastprom:SW_DIP_SPSTx02_Slide_KingTek_DSHP02TS_W7.62mm_P1.27mm")
 				(field
 					(name "Datasheet")
 				)
@@ -2449,6 +2551,31 @@
 		)
 		(libpart
 			(lib "fastprom")
+			(part "TestPoint")
+			(description "Bare test pad")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "TestPoint")
+				(field
+					(name "Footprint") "fastprom:TestPoint_Pad_D1.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Bare test pad")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "fastprom")
 			(part "USBLC6-2SC6")
 			(description "Dual-line USB ESD protection")
 			(fields
@@ -2457,7 +2584,7 @@
 				(field
 					(name "Value") "USBLC6-2SC6")
 				(field
-					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-6")
+					(name "Footprint") "fastprom:SOT-23-6")
 				(field
 					(name "Datasheet")
 				)
@@ -2626,8 +2753,8 @@
 			)
 			(node
 				(ref "J3")
-				(pin "5")
-				(pinfunction "P5_5")
+				(pin "1")
+				(pinfunction "P1_1")
 				(pintype "passive")
 			)
 			(node
@@ -2691,6 +2818,12 @@
 			(node
 				(ref "R9")
 				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP3")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -2822,6 +2955,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "TP2")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U6")
 				(pin "5")
 				(pinfunction "VBUS_5")
@@ -2866,8 +3005,8 @@
 			(class "Default")
 			(node
 				(ref "J3")
-				(pin "4")
-				(pinfunction "P4_4")
+				(pin "2")
+				(pinfunction "P2_2")
 				(pintype "passive")
 			)
 			(node
@@ -2884,7 +3023,7 @@
 		)
 		(net
 			(code "9")
-			(name "BUF_1")
+			(name "BUF_A0")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -2901,7 +3040,7 @@
 		)
 		(net
 			(code "10")
-			(name "BUF_2")
+			(name "BUF_A1")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -2918,7 +3057,7 @@
 		)
 		(net
 			(code "11")
-			(name "BUF_3")
+			(name "BUF_A2")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -2935,7 +3074,7 @@
 		)
 		(net
 			(code "12")
-			(name "BUF_4")
+			(name "BUF_A3")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -2952,7 +3091,7 @@
 		)
 		(net
 			(code "13")
-			(name "BUF_5")
+			(name "BUF_A4")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -2969,7 +3108,75 @@
 		)
 		(net
 			(code "14")
-			(name "BUF_6")
+			(name "BUF_A5")
+			(class "Default")
+			(node
+				(ref "J6")
+				(pin "4")
+				(pinfunction "C4_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "10")
+				(pinfunction "PIN_10_10")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "15")
+			(name "BUF_A6")
+			(class "Default")
+			(node
+				(ref "J6")
+				(pin "8")
+				(pinfunction "C8_8")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "11")
+				(pinfunction "PIN_11_11")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "16")
+			(name "BUF_A7")
+			(class "Default")
+			(node
+				(ref "J6")
+				(pin "10")
+				(pinfunction "C10_10")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "12")
+				(pinfunction "PIN_12_12")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "17")
+			(name "BUF_A8")
+			(class "Default")
+			(node
+				(ref "J6")
+				(pin "14")
+				(pinfunction "C14_14")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "13")
+				(pinfunction "PIN_13_13")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "18")
+			(name "BUF_D0")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -2985,8 +3192,8 @@
 			)
 		)
 		(net
-			(code "15")
-			(name "BUF_7")
+			(code "19")
+			(name "BUF_D1")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -3002,8 +3209,8 @@
 			)
 		)
 		(net
-			(code "16")
-			(name "BUF_8")
+			(code "20")
+			(name "BUF_D2")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -3024,8 +3231,8 @@
 			)
 		)
 		(net
-			(code "17")
-			(name "BUF_9")
+			(code "21")
+			(name "BUF_D3")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -3041,8 +3248,8 @@
 			)
 		)
 		(net
-			(code "18")
-			(name "BUF_11")
+			(code "22")
+			(name "BUF_D4")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -3058,8 +3265,8 @@
 			)
 		)
 		(net
-			(code "19")
-			(name "BUF_12")
+			(code "23")
+			(name "BUF_D5")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -3075,8 +3282,8 @@
 			)
 		)
 		(net
-			(code "20")
-			(name "BUF_13")
+			(code "24")
+			(name "BUF_D6")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -3092,8 +3299,8 @@
 			)
 		)
 		(net
-			(code "21")
-			(name "BUF_14")
+			(code "25")
+			(name "BUF_D7")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -3109,8 +3316,8 @@
 			)
 		)
 		(net
-			(code "22")
-			(name "BUF_15")
+			(code "26")
+			(name "BUF_nCE0")
 			(class "Default")
 			(node
 				(ref "J6")
@@ -3122,74 +3329,6 @@
 				(ref "U1")
 				(pin "9")
 				(pinfunction "PIN_9_9")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "23")
-			(name "BUF_16")
-			(class "Default")
-			(node
-				(ref "J6")
-				(pin "4")
-				(pinfunction "C4_4")
-				(pintype "passive")
-			)
-			(node
-				(ref "U1")
-				(pin "10")
-				(pinfunction "PIN_10_10")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "24")
-			(name "BUF_17")
-			(class "Default")
-			(node
-				(ref "J6")
-				(pin "8")
-				(pinfunction "C8_8")
-				(pintype "passive")
-			)
-			(node
-				(ref "U1")
-				(pin "11")
-				(pinfunction "PIN_11_11")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "25")
-			(name "BUF_18")
-			(class "Default")
-			(node
-				(ref "J6")
-				(pin "10")
-				(pinfunction "C10_10")
-				(pintype "passive")
-			)
-			(node
-				(ref "U1")
-				(pin "12")
-				(pinfunction "PIN_12_12")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "26")
-			(name "BUF_19")
-			(class "Default")
-			(node
-				(ref "J6")
-				(pin "14")
-				(pinfunction "C14_14")
-				(pintype "passive")
-			)
-			(node
-				(ref "U1")
-				(pin "13")
-				(pinfunction "PIN_13_13")
 				(pintype "bidirectional")
 			)
 		)
@@ -3271,8 +3410,8 @@
 			)
 			(node
 				(ref "J3")
-				(pin "3")
-				(pinfunction "P3_3")
+				(pin "4")
+				(pinfunction "P4_4")
 				(pintype "passive")
 			)
 			(node
@@ -3448,8 +3587,8 @@
 			)
 			(node
 				(ref "J3")
-				(pin "6")
-				(pinfunction "P6_6")
+				(pin "8")
+				(pinfunction "P8_8")
 				(pintype "passive")
 			)
 			(node
@@ -3470,8 +3609,8 @@
 			(class "Default")
 			(node
 				(ref "J3")
-				(pin "2")
-				(pinfunction "P2_2")
+				(pin "5")
+				(pinfunction "P5_5")
 				(pintype "passive")
 			)
 			(node
@@ -3497,8 +3636,8 @@
 			(class "Default")
 			(node
 				(ref "J3")
-				(pin "1")
-				(pinfunction "P1_1")
+				(pin "6")
+				(pinfunction "P6_6")
 				(pintype "passive")
 			)
 			(node
@@ -3647,6 +3786,28 @@
 		)
 		(net
 			(code "40")
+			(name "unconnected-(J3-P3-Pad3)")
+			(class "Default")
+			(node
+				(ref "J3")
+				(pin "3")
+				(pinfunction "P3_3")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "41")
+			(name "unconnected-(J3-P7-Pad7)")
+			(class "Default")
+			(node
+				(ref "J3")
+				(pin "7")
+				(pinfunction "P7_7")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "42")
 			(name "unconnected-(J4-SBU1-PadA8)")
 			(class "Default")
 			(node
@@ -3657,7 +3818,7 @@
 			)
 		)
 		(net
-			(code "41")
+			(code "43")
 			(name "unconnected-(J4-SBU2-PadB8)")
 			(class "Default")
 			(node
@@ -3668,7 +3829,7 @@
 			)
 		)
 		(net
-			(code "42")
+			(code "44")
 			(name "unconnected-(U1-PIN_24-Pad24)")
 			(class "Default")
 			(node
@@ -3679,7 +3840,7 @@
 			)
 		)
 		(net
-			(code "43")
+			(code "45")
 			(name "unconnected-(U1-PIN_25-Pad25)")
 			(class "Default")
 			(node
@@ -3690,7 +3851,7 @@
 			)
 		)
 		(net
-			(code "44")
+			(code "46")
 			(name "unconnected-(U5-NC-Pad4)")
 			(class "Default")
 			(node

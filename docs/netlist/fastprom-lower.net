@@ -1,8 +1,8 @@
 (export
 	(version "E")
 	(design
-		(source "/home/mxshift/Projects/fastprom/hw/fastprom-r5-lower.kicad_sch")
-		(date "2026-11-05T03:32:49")
+		(source "/home/mxshift/Projects/fastprom/hw/fastprom-lower.kicad_sch")
+		(date "2026-11-16T17:33:45")
 		(tool "Eeschema 10.0.8")
 		(sheet
 			(number "1")
@@ -13,7 +13,7 @@
 				(company)
 				(rev)
 				(date)
-				(source "fastprom-r5-lower.kicad_sch")
+				(source "fastprom-lower.kicad_sch")
 				(comment
 					(number "1")
 					(value "")
@@ -57,10 +57,10 @@
 		(comp
 			(ref "C8")
 			(value "100nF/16V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -75,11 +75,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -103,10 +103,10 @@
 		(comp
 			(ref "C9")
 			(value "100nF/16V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -121,11 +121,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -149,10 +149,10 @@
 		(comp
 			(ref "C10")
 			(value "1uF/25V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -167,11 +167,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -195,10 +195,10 @@
 		(comp
 			(ref "C12")
 			(value "1uF/25V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -213,11 +213,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -241,10 +241,10 @@
 		(comp
 			(ref "C13")
 			(value "1uF/25V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -259,11 +259,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -287,10 +287,10 @@
 		(comp
 			(ref "C17")
 			(value "100nF/16V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -305,11 +305,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -333,10 +333,10 @@
 		(comp
 			(ref "C18")
 			(value "100nF/16V")
-			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(footprint "fastprom:C_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -351,11 +351,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -397,11 +397,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -479,10 +479,10 @@
 		(comp
 			(ref "J5")
 			(value "DF40C-30DP-0.4V")
-			(footprint "Connector_Hirose_DF40:Hirose_DF40C-30DP-0.4V_2x15-1MP_P0.4mm")
+			(footprint "fastprom:Hirose_DF40C-30DP-0.4V_2x15-1MP_P0.4mm")
 			(fields
 				(field
-					(name "Footprint") "Connector_Hirose_DF40:Hirose_DF40C-30DP-0.4V_2x15-1MP_P0.4mm")
+					(name "Footprint") "fastprom:Hirose_DF40C-30DP-0.4V_2x15-1MP_P0.4mm")
 				(field
 					(name "Datasheet")
 				)
@@ -497,11 +497,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -609,10 +609,10 @@
 		(comp
 			(ref "R12")
 			(value "100k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -627,11 +627,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -655,10 +655,10 @@
 		(comp
 			(ref "R13")
 			(value "100k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -673,11 +673,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -701,10 +701,10 @@
 		(comp
 			(ref "R14")
 			(value "100k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -719,11 +719,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -747,10 +747,10 @@
 		(comp
 			(ref "R15")
 			(value "100k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -765,11 +765,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -793,10 +793,10 @@
 		(comp
 			(ref "R16")
 			(value "100k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -811,11 +811,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -839,10 +839,10 @@
 		(comp
 			(ref "R20")
 			(value "100k_DNP_256x8")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -857,11 +857,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(property
 				(name "dnp")
@@ -888,10 +888,10 @@
 		(comp
 			(ref "R21")
 			(value "10k_OE_PULLUP")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -906,11 +906,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -934,10 +934,10 @@
 		(comp
 			(ref "R26")
 			(value "100k")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(footprint "fastprom:R_0402_1005Metric")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -952,11 +952,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -980,10 +980,10 @@
 		(comp
 			(ref "RN1")
 			(value "4x33R")
-			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
+			(footprint "fastprom:R_Array_Convex_4x0402")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
+					(name "Footprint") "fastprom:R_Array_Convex_4x0402")
 				(field
 					(name "Datasheet")
 				)
@@ -998,11 +998,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1044,10 +1044,10 @@
 		(comp
 			(ref "RN2")
 			(value "4x33R")
-			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
+			(footprint "fastprom:R_Array_Convex_4x0402")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
+					(name "Footprint") "fastprom:R_Array_Convex_4x0402")
 				(field
 					(name "Datasheet")
 				)
@@ -1062,11 +1062,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1106,12 +1106,55 @@
 			)
 		)
 		(comp
-			(ref "U2")
-			(value "SN74LVT245B")
-			(footprint "Package_DFN_QFN:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
+			(ref "TP1")
+			(value "TestPoint")
+			(footprint "fastprom:TestPoint_Pad_D1.0mm")
 			(fields
 				(field
-					(name "Footprint") "Package_DFN_QFN:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
+					(name "Footprint") "fastprom:TestPoint_Pad_D1.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "fastprom")
+				(part "TestPoint")
+				(description "Bare test pad")
+			)
+			(property
+				(name "Sheetname")
+				(value "fastprom-lower")
+			)
+			(property
+				(name "Sheetfile")
+				(value "fastprom-lower.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "deeb07bf-8899-53fb-8575-8be4332ea528")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U2")
+			(value "SN74LVT245B")
+			(footprint "fastprom:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
+			(fields
+				(field
+					(name "Footprint") "fastprom:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
 				(field
 					(name "Datasheet")
 				)
@@ -1126,11 +1169,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1211,10 +1254,10 @@
 		(comp
 			(ref "U3")
 			(value "SN74LVT245B")
-			(footprint "Package_DFN_QFN:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
+			(footprint "fastprom:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
 			(fields
 				(field
-					(name "Footprint") "Package_DFN_QFN:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
+					(name "Footprint") "fastprom:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
 				(field
 					(name "Datasheet")
 				)
@@ -1229,11 +1272,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1314,10 +1357,10 @@
 		(comp
 			(ref "U4")
 			(value "SN74LVT245B")
-			(footprint "Package_DFN_QFN:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
+			(footprint "fastprom:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
 			(fields
 				(field
-					(name "Footprint") "Package_DFN_QFN:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
+					(name "Footprint") "fastprom:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
 				(field
 					(name "Datasheet")
 				)
@@ -1332,11 +1375,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1435,11 +1478,11 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "fastprom-r5-lower")
+				(value "fastprom-lower")
 			)
 			(property
 				(name "Sheetfile")
-				(value "fastprom-r5-lower.kicad_sch")
+				(value "fastprom-lower.kicad_sch")
 			)
 			(sheetpath
 				(names "/")
@@ -1480,7 +1523,7 @@
 				(field
 					(name "Value") "C")
 				(field
-					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+					(name "Footprint") "fastprom:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -1510,7 +1553,7 @@
 				(field
 					(name "Value") "DF40C-30DP-0.4V")
 				(field
-					(name "Footprint") "Connector_Hirose_DF40:Hirose_DF40C-30DP-0.4V_2x15-1MP_P0.4mm")
+					(name "Footprint") "fastprom:Hirose_DF40C-30DP-0.4V_2x15-1MP_P0.4mm")
 				(field
 					(name "Datasheet")
 				)
@@ -1800,7 +1843,7 @@
 				(field
 					(name "Value") "R")
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "Footprint") "fastprom:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -1830,7 +1873,7 @@
 				(field
 					(name "Value") "R_Pack04")
 				(field
-					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
+					(name "Footprint") "fastprom:R_Array_Convex_4x0402")
 				(field
 					(name "Datasheet")
 				)
@@ -1890,7 +1933,7 @@
 				(field
 					(name "Value") "SN74LVT245B")
 				(field
-					(name "Footprint") "Package_DFN_QFN:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
+					(name "Footprint") "fastprom:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
 				(field
 					(name "Datasheet")
 				)
@@ -2015,7 +2058,7 @@
 				(field
 					(name "Value") "SN74LVT245B")
 				(field
-					(name "Footprint") "Package_DFN_QFN:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
+					(name "Footprint") "fastprom:Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm")
 				(field
 					(name "Datasheet")
 				)
@@ -2170,6 +2213,31 @@
 				)
 			)
 		)
+		(libpart
+			(lib "fastprom")
+			(part "TestPoint")
+			(description "Bare test pad")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "TestPoint")
+				(field
+					(name "Footprint") "fastprom:TestPoint_Pad_D1.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Bare test pad")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+			)
+		)
 	)
 	(libraries
 		(library
@@ -2205,6 +2273,12 @@
 			(node
 				(ref "R21")
 				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP1")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -2300,7 +2374,185 @@
 		)
 		(net
 			(code "3")
-			(name "BUF_1")
+			(name "A0")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "1")
+				(pinfunction "P1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "2")
+				(pinfunction "A1_2")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "4")
+			(name "A1")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "2")
+				(pinfunction "P2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "3")
+				(pinfunction "A2_3")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "5")
+			(name "A2")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "3")
+				(pinfunction "P3_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "4")
+				(pinfunction "A3_4")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "6")
+			(name "A3")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "4")
+				(pinfunction "P4_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "5")
+				(pinfunction "A4_5")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "7")
+			(name "A4")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "5")
+				(pinfunction "P5_5")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "6")
+				(pinfunction "A5_6")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "8")
+			(name "A5")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "16")
+				(pinfunction "P16_16")
+				(pintype "passive")
+			)
+			(node
+				(ref "R16")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R20")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "3")
+				(pinfunction "A2_3")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "9")
+			(name "A6")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "17")
+				(pinfunction "P17_17")
+				(pintype "passive")
+			)
+			(node
+				(ref "R12")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "4")
+				(pinfunction "A3_4")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "10")
+			(name "A7")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "18")
+				(pinfunction "P18_18")
+				(pintype "passive")
+			)
+			(node
+				(ref "R13")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "5")
+				(pinfunction "A4_5")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "11")
+			(name "A8")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "19")
+				(pinfunction "P19_19")
+				(pintype "passive")
+			)
+			(node
+				(ref "R14")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "6")
+				(pinfunction "A5_6")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "12")
+			(name "BUF_A0")
 			(class "Default")
 			(node
 				(ref "J5")
@@ -2316,8 +2568,8 @@
 			)
 		)
 		(net
-			(code "4")
-			(name "BUF_2")
+			(code "13")
+			(name "BUF_A1")
 			(class "Default")
 			(node
 				(ref "J5")
@@ -2333,8 +2585,8 @@
 			)
 		)
 		(net
-			(code "5")
-			(name "BUF_3")
+			(code "14")
+			(name "BUF_A2")
 			(class "Default")
 			(node
 				(ref "J5")
@@ -2350,8 +2602,8 @@
 			)
 		)
 		(net
-			(code "6")
-			(name "BUF_4")
+			(code "15")
+			(name "BUF_A3")
 			(class "Default")
 			(node
 				(ref "J5")
@@ -2367,8 +2619,8 @@
 			)
 		)
 		(net
-			(code "7")
-			(name "BUF_5")
+			(code "16")
+			(name "BUF_A4")
 			(class "Default")
 			(node
 				(ref "J5")
@@ -2384,161 +2636,8 @@
 			)
 		)
 		(net
-			(code "8")
-			(name "BUF_6")
-			(class "Default")
-			(node
-				(ref "J5")
-				(pin "30")
-				(pinfunction "C30_30")
-				(pintype "passive")
-			)
-			(node
-				(ref "U4")
-				(pin "18")
-				(pinfunction "B1_18")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "9")
-			(name "BUF_7")
-			(class "Default")
-			(node
-				(ref "J5")
-				(pin "24")
-				(pinfunction "C24_24")
-				(pintype "passive")
-			)
-			(node
-				(ref "U4")
-				(pin "17")
-				(pinfunction "B2_17")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "10")
-			(name "BUF_8")
-			(class "Default")
-			(node
-				(ref "J5")
-				(pin "22")
-				(pinfunction "C22_22")
-				(pintype "passive")
-			)
-			(node
-				(ref "U4")
-				(pin "16")
-				(pinfunction "B3_16")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "11")
-			(name "BUF_9")
-			(class "Default")
-			(node
-				(ref "J5")
-				(pin "19")
-				(pinfunction "C19_19")
-				(pintype "passive")
-			)
-			(node
-				(ref "U4")
-				(pin "15")
-				(pinfunction "B4_15")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "12")
-			(name "BUF_11")
-			(class "Default")
-			(node
-				(ref "J5")
-				(pin "21")
-				(pinfunction "C21_21")
-				(pintype "passive")
-			)
-			(node
-				(ref "U4")
-				(pin "14")
-				(pinfunction "B5_14")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "13")
-			(name "BUF_12")
-			(class "Default")
-			(node
-				(ref "J5")
-				(pin "29")
-				(pinfunction "C29_29")
-				(pintype "passive")
-			)
-			(node
-				(ref "U4")
-				(pin "13")
-				(pinfunction "B6_13")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "14")
-			(name "BUF_13")
-			(class "Default")
-			(node
-				(ref "J5")
-				(pin "27")
-				(pinfunction "C27_27")
-				(pintype "passive")
-			)
-			(node
-				(ref "U4")
-				(pin "12")
-				(pinfunction "B7_12")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "15")
-			(name "BUF_14")
-			(class "Default")
-			(node
-				(ref "J5")
-				(pin "17")
-				(pinfunction "C17_17")
-				(pintype "passive")
-			)
-			(node
-				(ref "U4")
-				(pin "11")
-				(pinfunction "B8_11")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "16")
-			(name "BUF_15")
-			(class "Default")
-			(node
-				(ref "J5")
-				(pin "2")
-				(pinfunction "C2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "18")
-				(pinfunction "B1_18")
-				(pintype "output")
-			)
-		)
-		(net
 			(code "17")
-			(name "BUF_16")
+			(name "BUF_A5")
 			(class "Default")
 			(node
 				(ref "J5")
@@ -2555,7 +2654,7 @@
 		)
 		(net
 			(code "18")
-			(name "BUF_17")
+			(name "BUF_A6")
 			(class "Default")
 			(node
 				(ref "J5")
@@ -2572,7 +2671,7 @@
 		)
 		(net
 			(code "19")
-			(name "BUF_18")
+			(name "BUF_A7")
 			(class "Default")
 			(node
 				(ref "J5")
@@ -2589,7 +2688,7 @@
 		)
 		(net
 			(code "20")
-			(name "BUF_19")
+			(name "BUF_A8")
 			(class "Default")
 			(node
 				(ref "J5")
@@ -2606,6 +2705,142 @@
 		)
 		(net
 			(code "21")
+			(name "BUF_D0")
+			(class "Default")
+			(node
+				(ref "J5")
+				(pin "30")
+				(pinfunction "C30_30")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "18")
+				(pinfunction "B1_18")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "22")
+			(name "BUF_D1")
+			(class "Default")
+			(node
+				(ref "J5")
+				(pin "24")
+				(pinfunction "C24_24")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "17")
+				(pinfunction "B2_17")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "23")
+			(name "BUF_D2")
+			(class "Default")
+			(node
+				(ref "J5")
+				(pin "22")
+				(pinfunction "C22_22")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "16")
+				(pinfunction "B3_16")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "24")
+			(name "BUF_D3")
+			(class "Default")
+			(node
+				(ref "J5")
+				(pin "19")
+				(pinfunction "C19_19")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "15")
+				(pinfunction "B4_15")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "25")
+			(name "BUF_D4")
+			(class "Default")
+			(node
+				(ref "J5")
+				(pin "21")
+				(pinfunction "C21_21")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "14")
+				(pinfunction "B5_14")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "26")
+			(name "BUF_D5")
+			(class "Default")
+			(node
+				(ref "J5")
+				(pin "29")
+				(pinfunction "C29_29")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "13")
+				(pinfunction "B6_13")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "27")
+			(name "BUF_D6")
+			(class "Default")
+			(node
+				(ref "J5")
+				(pin "27")
+				(pinfunction "C27_27")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "12")
+				(pinfunction "B7_12")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "28")
+			(name "BUF_D7")
+			(class "Default")
+			(node
+				(ref "J5")
+				(pin "17")
+				(pinfunction "C17_17")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "11")
+				(pinfunction "B8_11")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "29")
 			(name "BUF_EN")
 			(class "Default")
 			(node
@@ -2626,8 +2861,161 @@
 			)
 		)
 		(net
-			(code "22")
-			(name "DOUT_6")
+			(code "30")
+			(name "BUF_nCE0")
+			(class "Default")
+			(node
+				(ref "J5")
+				(pin "2")
+				(pinfunction "C2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "18")
+				(pinfunction "B1_18")
+				(pintype "output")
+			)
+		)
+		(net
+			(code "31")
+			(name "D0")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "6")
+				(pinfunction "P6_6")
+				(pintype "passive")
+			)
+			(node
+				(ref "RN1")
+				(pin "1")
+				(pinfunction "R1.1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "32")
+			(name "D1")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "7")
+				(pinfunction "P7_7")
+				(pintype "passive")
+			)
+			(node
+				(ref "RN1")
+				(pin "2")
+				(pinfunction "R2.1_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "33")
+			(name "D2")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "8")
+				(pinfunction "P8_8")
+				(pintype "passive")
+			)
+			(node
+				(ref "RN1")
+				(pin "3")
+				(pinfunction "R3.1_3")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "34")
+			(name "D3")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "9")
+				(pinfunction "P9_9")
+				(pintype "passive")
+			)
+			(node
+				(ref "RN1")
+				(pin "4")
+				(pinfunction "R4.1_4")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "35")
+			(name "D4")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "11")
+				(pinfunction "P11_11")
+				(pintype "passive")
+			)
+			(node
+				(ref "RN2")
+				(pin "1")
+				(pinfunction "R1.1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "36")
+			(name "D5")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "12")
+				(pinfunction "P12_12")
+				(pintype "passive")
+			)
+			(node
+				(ref "RN2")
+				(pin "2")
+				(pinfunction "R2.1_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "37")
+			(name "D6")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "13")
+				(pinfunction "P13_13")
+				(pintype "passive")
+			)
+			(node
+				(ref "RN2")
+				(pin "3")
+				(pinfunction "R3.1_3")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "38")
+			(name "D7")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "14")
+				(pinfunction "P14_14")
+				(pintype "passive")
+			)
+			(node
+				(ref "RN2")
+				(pin "4")
+				(pinfunction "R4.1_4")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "39")
+			(name "DOUT_D0")
 			(class "Default")
 			(node
 				(ref "RN1")
@@ -2643,8 +3031,8 @@
 			)
 		)
 		(net
-			(code "23")
-			(name "DOUT_7")
+			(code "40")
+			(name "DOUT_D1")
 			(class "Default")
 			(node
 				(ref "RN1")
@@ -2660,8 +3048,8 @@
 			)
 		)
 		(net
-			(code "24")
-			(name "DOUT_8")
+			(code "41")
+			(name "DOUT_D2")
 			(class "Default")
 			(node
 				(ref "RN1")
@@ -2677,8 +3065,8 @@
 			)
 		)
 		(net
-			(code "25")
-			(name "DOUT_9")
+			(code "42")
+			(name "DOUT_D3")
 			(class "Default")
 			(node
 				(ref "RN1")
@@ -2694,8 +3082,8 @@
 			)
 		)
 		(net
-			(code "26")
-			(name "DOUT_11")
+			(code "43")
+			(name "DOUT_D4")
 			(class "Default")
 			(node
 				(ref "RN2")
@@ -2711,8 +3099,8 @@
 			)
 		)
 		(net
-			(code "27")
-			(name "DOUT_12")
+			(code "44")
+			(name "DOUT_D5")
 			(class "Default")
 			(node
 				(ref "RN2")
@@ -2728,8 +3116,8 @@
 			)
 		)
 		(net
-			(code "28")
-			(name "DOUT_13")
+			(code "45")
+			(name "DOUT_D6")
 			(class "Default")
 			(node
 				(ref "RN2")
@@ -2745,8 +3133,8 @@
 			)
 		)
 		(net
-			(code "29")
-			(name "DOUT_14")
+			(code "46")
+			(name "DOUT_D7")
 			(class "Default")
 			(node
 				(ref "RN2")
@@ -2762,7 +3150,7 @@
 			)
 		)
 		(net
-			(code "30")
+			(code "47")
 			(name "D_BUF_NOE")
 			(class "Default")
 			(node
@@ -2784,7 +3172,7 @@
 			)
 		)
 		(net
-			(code "31")
+			(code "48")
 			(name "GND")
 			(class "Default")
 			(node
@@ -3000,229 +3388,8 @@
 			)
 		)
 		(net
-			(code "32")
-			(name "SKT_1")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "1")
-				(pinfunction "P1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U2")
-				(pin "2")
-				(pinfunction "A1_2")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "33")
-			(name "SKT_2")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "2")
-				(pinfunction "P2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U2")
-				(pin "3")
-				(pinfunction "A2_3")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "34")
-			(name "SKT_3")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "3")
-				(pinfunction "P3_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "U2")
-				(pin "4")
-				(pinfunction "A3_4")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "35")
-			(name "SKT_4")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "4")
-				(pinfunction "P4_4")
-				(pintype "passive")
-			)
-			(node
-				(ref "U2")
-				(pin "5")
-				(pinfunction "A4_5")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "36")
-			(name "SKT_5")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "5")
-				(pinfunction "P5_5")
-				(pintype "passive")
-			)
-			(node
-				(ref "U2")
-				(pin "6")
-				(pinfunction "A5_6")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "37")
-			(name "SKT_6")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "6")
-				(pinfunction "P6_6")
-				(pintype "passive")
-			)
-			(node
-				(ref "RN1")
-				(pin "1")
-				(pinfunction "R1.1_1")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "38")
-			(name "SKT_7")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "7")
-				(pinfunction "P7_7")
-				(pintype "passive")
-			)
-			(node
-				(ref "RN1")
-				(pin "2")
-				(pinfunction "R2.1_2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "39")
-			(name "SKT_8")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "8")
-				(pinfunction "P8_8")
-				(pintype "passive")
-			)
-			(node
-				(ref "RN1")
-				(pin "3")
-				(pinfunction "R3.1_3")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "40")
-			(name "SKT_9")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "9")
-				(pinfunction "P9_9")
-				(pintype "passive")
-			)
-			(node
-				(ref "RN1")
-				(pin "4")
-				(pinfunction "R4.1_4")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "41")
-			(name "SKT_11")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "11")
-				(pinfunction "P11_11")
-				(pintype "passive")
-			)
-			(node
-				(ref "RN2")
-				(pin "1")
-				(pinfunction "R1.1_1")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "42")
-			(name "SKT_12")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "12")
-				(pinfunction "P12_12")
-				(pintype "passive")
-			)
-			(node
-				(ref "RN2")
-				(pin "2")
-				(pinfunction "R2.1_2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "43")
-			(name "SKT_13")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "13")
-				(pinfunction "P13_13")
-				(pintype "passive")
-			)
-			(node
-				(ref "RN2")
-				(pin "3")
-				(pinfunction "R3.1_3")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "44")
-			(name "SKT_14")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "14")
-				(pinfunction "P14_14")
-				(pintype "passive")
-			)
-			(node
-				(ref "RN2")
-				(pin "4")
-				(pinfunction "R4.1_4")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "45")
-			(name "SKT_15")
+			(code "49")
+			(name "nCE0")
 			(class "Default")
 			(node
 				(ref "J1")
@@ -3239,99 +3406,6 @@
 				(ref "U3")
 				(pin "2")
 				(pinfunction "A1_2")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "46")
-			(name "SKT_16")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "16")
-				(pinfunction "P16_16")
-				(pintype "passive")
-			)
-			(node
-				(ref "R16")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R20")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "3")
-				(pinfunction "A2_3")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "47")
-			(name "SKT_17")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "17")
-				(pinfunction "P17_17")
-				(pintype "passive")
-			)
-			(node
-				(ref "R12")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "4")
-				(pinfunction "A3_4")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "48")
-			(name "SKT_18")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "18")
-				(pinfunction "P18_18")
-				(pintype "passive")
-			)
-			(node
-				(ref "R13")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "5")
-				(pinfunction "A4_5")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "49")
-			(name "SKT_19")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "19")
-				(pinfunction "P19_19")
-				(pintype "passive")
-			)
-			(node
-				(ref "R14")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "6")
-				(pinfunction "A5_6")
 				(pintype "input")
 			)
 		)

@@ -59,7 +59,7 @@ def base(port):
 
 def main():
     work, part, mode, kind, bankw = sys.argv[1:6]
-    board = sys.argv[6] if len(sys.argv) > 6 else "fastprom-r5-upper-qfn32"
+    board = sys.argv[6] if len(sys.argv) > 6 else "fastprom-upper"
     logic = os.path.join(work, "logic")
     db = os.path.join(logic, "alta_db")
 
