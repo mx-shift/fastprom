@@ -3,8 +3,8 @@
 use fastprom_core::regmap::FABRIC_MAGIC;
 use fastprom_core::{Fabric, ReadReg, WriteReg};
 
-use crate::mmio::Reg;
-use crate::regs::fabric::BASE;
+use fastprom_hal::mmio::Reg;
+use fastprom_hal::regs::fabric::BASE;
 
 /// The fabric's register block at 0x6000_0000 (`hdl/fastprom_ahb_slave.v`).
 /// One volatile access per call, so each call is one AHB transfer, in

@@ -1,0 +1,17 @@
+[package]
+name = "fastprom-recovery"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "FastPROM's recovery loader for the AG32VF303KCU6: uploaded into SRAM through the mask ROM's UART loader, it writes the flash and option bytes"
+
+[[bin]]
+name = "fastprom-recovery"
+test = false
+bench = false
+
+[dependencies]
+fastprom-core.workspace = true
+fastprom-hal.workspace = true
+riscv = "0.16"
+riscv-rt = { version = "0.18", features = ["memory", "single-hart"] }

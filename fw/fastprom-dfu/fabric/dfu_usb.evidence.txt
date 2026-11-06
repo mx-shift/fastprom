@@ -1,0 +1,7 @@
+DFU fabric: pin and bitstream evidence (tools/ag32/check_dfu_fabric.py)
+  SDK /opt/agm/AgRV_pio
+  .ve keys: BUSCLK HSECLK SYSCLK USB0
+  logic: ports PIN_HSE, PIN_HSI, PIN_OSC (input, input, input); pad cells 3, oe and data tied low; io.asf places 3, each on itself
+  logic: packer 'Total        Pins : 3/ 128'; Supra 'Total 0 fatals, 0 errors, 0 warnings'; 5 unconstrained connections, all clock network: pll_inst|clkout1 => PLL_CLKOUT[1]_gclkgen|clkin; pll_inst|clkout3 => PLL_CLKOUT[3]_gclkgen|clkin; gclksw_inst|clkout => gclksw_gen|clkin; pll_inst|clkfbout => pll_inst|clkfb; PLL_CLKOUT[1]_gclkgen|clkout => usb0_xcvr_clk_gclk|inclk
+  bitstream: 3226 bytes compressed, expands to 99944 bytes, identical to Supra's plain 99944-byte one (CRC-32 0x58939d56)
+  PASS: no package pin but the clock input has a pad cell; nothing drives the socket or buf_noe

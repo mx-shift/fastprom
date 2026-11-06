@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FastPROM updater</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>FastPROM updater</h1>
+    <p class="lede">Change the ROM images, firmware and fabric of a FastPROM board over its USB-C port.</p>
+  </header>
+
+  <main>
+    <div id="unsupported" class="notice error" role="alert" hidden>
+      <p><strong>This browser cannot talk to USB devices.</strong> The updater needs WebUSB, which
+        Chrome, Edge and other Chromium browsers have on desktop and Android. Open this page in one of them.</p>
+      <p>To look around without a board, open the <a href="?sim">simulated board</a>.</p>
+    </div>
+
+    <div id="sim-banner" class="notice sim" hidden>
+      <p><strong>Simulated board.</strong> Nothing here touches real hardware: the board is FastPROM's
+        firmware update core running in this page. <a href="./">Use a real board</a>.</p>
+    </div>
+
+    <div id="error" class="notice error" role="alert" hidden></div>
+
+    <section id="connect" aria-labelledby="connect-h">
+      <h2 id="connect-h">1. Connect</h2>
+      <p>Plug the board into this computer with a USB-C cable, then connect. The board keeps serving
+        its ROM while it is connected.</p>
+      <p><button id="connect-btn" type="button">Connect</button>
+        <span id="connect-status" class="status" aria-live="polite">Not connected.</span></p>
+      <div id="device" hidden>
+        <dl class="facts">
+          <dt>Running</dt><dd id="d-mode"></dd>
+          <dt>Firmware</dt><dd id="d-fw"></dd>
+          <dt>Board revision</dt><dd id="d-rev"></dd>
+          <dt>Part</dt><dd id="d-part"></dd>
+          <dt>Fabric</dt><dd id="d-fabric"></dd>
+          <dt>Switch at power-up</dt><dd id="d-bank"></dd>
+        </dl>
+        <table class="positions">
+          <caption>What each switch position holds</caption>
+          <thead><tr><th scope="col">Position</th><th scope="col">Image</th><th scope="col">CRC-32</th></tr></thead>
+          <tbody id="d-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="images" aria-labelledby="images-h">
+      <h2 id="images-h">2. ROM images</h2>
+      <p id="images-intro">Connect a board first.</p>
+      <fieldset id="images-form" disabled>
+        <legend>An image for each switch position</legend>
+        <div id="slots"></div>
+        <p><button id="write-btn" type="button">Write and verify</button></p>
+      </fieldset>
+      <div id="load-step" class="notice warn" hidden>
+        <p><strong>Power off the host machine before loading.</strong> Loading changes what the socket
+          serves while it serves it: a running host would read a mixture of the old and new image.
+          The board releases the socket while it loads.</p>
+        <p><label><input type="checkbox" id="host-off"> The host is powered off</label></p>
+        <p><button id="load-btn" type="button" disabled>Load the new image now</button></p>
+      </div>
+    </section>
+
+    <section id="update" aria-labelledby="update-h">
+      <h2 id="update-h">3. Firmware and fabric</h2>
+      <div id="bundle-info"><p>Looking for the update published with this page...</p></div>
+      <fieldset id="update-form" disabled>
+        <legend>Update</legend>
+        <p><label><input type="checkbox" id="u-fw"> Firmware <span id="u-fw-what"></span></label></p>
+        <p><label><input type="checkbox" id="u-fabric"> Fabric <span id="u-fabric-what"></span></label></p>
+        <p id="u-part-row" hidden><label>Part <select id="u-part"></select></label></p>
+        <p>The board restarts into its update mode, is written and checked, and restarts again.
+          Leave it plugged in until it is done; if the power goes, connect again and run the update
+          again: the board is then in its update mode or on its old firmware, never on half of the new.</p>
+        <p><button id="update-btn" type="button">Update</button></p>
+      </fieldset>
+    </section>
+
+    <section id="recovery" aria-labelledby="recovery-h">
+      <h2 id="recovery-h">4. Recovery</h2>
+      <p>For a board that USB cannot reach - new and blank, or with a damaged update mode - through its
+        serial pads and the chip's own boot loader. It writes everything the board needs: its update mode,
+        firmware, fabric and settings. You need a 3.3&nbsp;V USB-serial adapter (not 5&nbsp;V) and a desktop
+        Chrome or Edge.</p>
+      <div id="serial-unsupported" class="notice warn" hidden>
+        <p><strong>This browser cannot talk to serial ports.</strong> Recovery needs Web Serial, which
+          desktop Chrome, Edge and other Chromium browsers have (not on phones).</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <p><strong>Clip the programming fixture onto J3</strong>, the SOICbite pads on both faces of the
+            upper board's edge at its pin 1 end: a SOIC-8 test clip, or a clip with pogo pins, wired to a
+            3.3&nbsp;V USB-UART adapter. Pin 1 is on top, at the dot. Cross TX and RX:</p>
+          <table class="positions" id="j3">
+            <caption>J3, the SOICbite pads (1-4 on top, 8-5 under them)</caption>
+            <thead><tr><th scope="col">Pin</th><th scope="col">Signal</th><th scope="col">Connect to</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1</th><td>+3.3&nbsp;V</td><td>the fixture's 3.3&nbsp;V, to power a bare board (150&nbsp;mA or more)</td></tr>
+              <tr><th scope="row">2</th><td>BOOT0</td><td>3.3&nbsp;V in the fixture, to select the loader</td></tr>
+              <tr><th scope="row">4</th><td>GND</td><td>the adapter's GND</td></tr>
+              <tr><th scope="row">5</th><td>UART0 RX</td><td>the adapter's TX</td></tr>
+              <tr><th scope="row">6</th><td>UART0 TX</td><td>the adapter's RX</td></tr>
+              <tr><th scope="row">8</th><td>NRST</td><td>pull to GND to reset</td></tr>
+            </tbody>
+          </table>
+        </li>
+        <li><p><strong>Power the board</strong> (its USB-C, the host socket, or 3.3&nbsp;V on pin 1) and
+          <strong>reset it</strong> with the fixture on and BOOT0 held high: pull pin 8 to GND, or power it off
+          and on. The board now waits for the page, its socket off.</p></li>
+        <li>
+          <p><strong>Choose what to write.</strong></p>
+          <fieldset id="recovery-form" disabled>
+            <legend>Recovery</legend>
+            <div id="r-plan"><p>Looking for the update published with this page...</p></div>
+            <p id="r-part-row"><label>Part <select id="r-part"></select></label></p>
+            <p><label><input type="checkbox" id="r-rev"> <span id="r-rev-text">The board's revision is the update's</span></label></p>
+            <p><button id="r-port" type="button">Choose the serial port</button>
+              <span id="r-port-status" class="status" aria-live="polite">No port chosen.</span></p>
+            <p><button id="r-go" type="button" disabled>Recover the board</button></p>
+          </fieldset>
+        </li>
+        <li><p><strong>When it is done, take the fixture off and power the board off and on.</strong> Then
+          connect it over USB (step 1).</p></li>
+      </ol>
+      <div id="r-done" class="notice sim" role="status" hidden></div>
+    </section>
+
+    <section id="progress-box" aria-labelledby="progress-h" hidden>
+      <h2 id="progress-h">Progress</h2>
+      <p><label for="progress" id="progress-label">Working</label></p>
+      <progress id="progress" max="1" value="0"></progress>
+    </section>
+
+    <section id="sim-panel" aria-labelledby="sim-h" hidden>
+      <h2 id="sim-h">Simulated board</h2>
+      <p><label>Switch position (read at power-up)
+        <select id="sim-switch"><option>0</option><option>1</option><option>2</option><option>3</option></select></label></p>
+      <p><label>Cut the power after <input id="sim-ops" type="number" min="1" value="200" inputmode="numeric"> flash operations</label>
+        <button id="sim-arm" type="button">Arm</button></p>
+      <p><button id="sim-off" type="button">Power off</button> <button id="sim-on" type="button">Power on</button></p>
+      <p><label><input type="checkbox" id="sim-boot0"> BOOT0 held at 3.3 V by the fixture (read at power-on)</label></p>
+      <p><label>A fault on the serial wire
+        <select id="sim-fault-kind"><option value="corrupt">a byte to the board corrupted</option><option value="drop">a byte from the board lost</option></select></label>
+        <label>after <input id="sim-fault-after" type="number" min="1" value="20000" inputmode="numeric"> bytes</label>
+        <button id="sim-fault" type="button">Inject</button></p>
+      <p id="sim-status" class="status" aria-live="polite"></p>
+    </section>
+
+    <section aria-labelledby="log-h">
+      <h2 id="log-h">Log</h2>
+      <ol id="log" aria-live="polite"></ol>
+    </section>
+  </main>
+</body>
+</html>

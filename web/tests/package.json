@@ -1,0 +1,10 @@
+{
+  "name": "fastprom-web-tests",
+  "private": true,
+  "license": "Apache-2.0",
+  "description": "The update page in headless Chromium against the simulated board (make web-test)",
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "1.64.0"
+  }
+}

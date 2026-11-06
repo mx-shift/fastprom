@@ -10,36 +10,46 @@
 //! 3. Start UART0 and print the boot banner.
 //! 4. Parse the image table, check the image's CRC, load it through the
 //!    fabric's AHB slave verifying the load pointer word by word, set READY.
-//! 5. Idle. On any failure READY is never set, so the module stays
-//!    high-impedance to the host, and the failure is reported on UART0
-//!    every two seconds.
+//! 5. Serve the update core (`fastprom_core::update`) over USB, which can
+//!    rewrite the image table, reload the block RAM, or reboot into the DFU
+//!    stage. On any boot failure READY is never set, so the module stays
+//!    high-impedance to the host, the failure is reported on UART0 every
+//!    two seconds, and USB is served all the same, so that the page can put
+//!    a good table in.
 //!
-//! The logic is in `fastprom-core` (host-tested); this crate is startup
-//! (riscv-rt), the memory map, the registers and the report.
+//! The binary sits at `memmap::APP_BASE` behind its header (`header.rs`);
+//! the DFU stage at the reset vector jumps to it. Nothing above changed for
+//! that: USB starts only once the outcome is reported.
+//!
+//! The logic is in `fastprom-core` (host-tested); the registers, clocks and
+//! flash are `fastprom-hal`; this crate is startup (riscv-rt), the fabric
+//! window, the switch, the UART, the report and the board's update traits.
 #![no_std]
 #![no_main]
 
-mod clock;
-mod delay;
+mod board;
+mod build_info {
+    include!(concat!(env!("OUT_DIR"), "/build_info.rs"));
+}
 mod error;
 mod fabric;
-#[allow(
-    dead_code,
-    reason = "shared with build.rs, which uses every constant; the firmware needs only some"
-)]
-mod memmap;
-mod mmio;
-mod regs;
+mod header;
 mod report;
 mod switch;
 mod uart;
 
 use core::panic::PanicInfo;
 
-use fastprom_core::select::SAMPLES;
+use fastprom_core::select::{self, SAMPLES};
+use fastprom_core::update::{self, Identity, Mode};
 use fastprom_core::{boot, Released};
+use fastprom_hal::clock::{self, Clocks};
+use fastprom_hal::delay::Every;
+use fastprom_hal::flash::Ag32Flash;
+use fastprom_hal::usb::Ag32Usb;
+use fastprom_usb::{CdcAcm, Device, Serial};
 
-use crate::clock::Clocks;
+use crate::board::{table, AppBoard};
 use crate::error::FwError;
 use crate::fabric::Ag32Fabric;
 use crate::report::Console;
@@ -50,20 +60,12 @@ const BAUD: u32 = 115_200;
 /// How often a failure is repeated.
 const REPEAT_US: u32 = 2_000_000;
 
-/// The image table's flash.
-fn table() -> &'static [u8] {
-    // SAFETY: TABLE_BASE..+TABLE_LEN is on-chip flash (memmap.rs), always
-    // mapped and readable by plain loads (AGM's example_flash.c reads flash
-    // this way), and nothing writes flash while the firmware runs, so a
-    // shared 'static borrow is sound. Unprogrammed flash reads as 0xFF,
-    // which the table parser rejects.
-    unsafe {
-        core::slice::from_raw_parts(
-            memmap::TABLE_BASE as usize as *const u8,
-            memmap::TABLE_LEN as usize,
-        )
-    }
-}
+/// Who `INFO` says is serving.
+const IDENTITY: Identity = Identity {
+    mode: Mode::Application,
+    fw_version: build_info::FW_VERSION,
+    board_rev: build_info::BOARD_REV,
+};
 
 #[riscv_rt::entry]
 fn main() -> ! {
@@ -85,15 +87,28 @@ fn main() -> ! {
         Ok(boot(released, table(), &samples)?)
     });
     report::outcome(&mut console, &result);
+    let failed = result.err();
 
-    match result {
-        Ok(_) => loop {
-            riscv::asm::wfi();
-        },
-        Err(e) => loop {
-            delay::us(running.core_hz(), REPEAT_US);
-            report::failure(&mut console, &e);
-        },
+    // Only now, with the socket served (or refused): the update core.
+    let flash = Ag32Flash::init();
+    let serial = Serial::from_uid(flash.unique_id());
+    let board = AppBoard::new(flash, select::decide(&samples).ok());
+    let server = update::Server::new(&board, IDENTITY);
+    // The application variant: the update interface 0, the CDC-ACM port
+    // carrying this report on 1 and 2 (docs/11-usb-driver.md).
+    let Some(controller) = Ag32Usb::take() else {
+        halt()
+    };
+    let mut usb = Device::new(controller, serial, server, CdcAcm::new());
+    let mut repeat = Every::new(running.core_hz(), REPEAT_US);
+    loop {
+        usb.poll();
+        console.drain_log(|bytes| usb.function().write(bytes));
+        if let Some(e) = &failed {
+            if repeat.due() {
+                report::failure(&mut console, e);
+            }
+        }
     }
 }
 

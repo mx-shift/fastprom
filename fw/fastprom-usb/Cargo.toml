@@ -1,0 +1,11 @@
+[package]
+name = "fastprom-usb"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "FastPROM USB device: the AG32 ChipIdea controller, a small device stack, the descriptors, the update interface and CDC-ACM"
+
+[dependencies]
+# The update protocol's server (fastprom_core::update), which the update
+# interface carries.
+fastprom-core.workspace = true

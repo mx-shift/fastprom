@@ -1,4 +1,5 @@
-//! The boot report on UART0, for bring-up and the field.
+//! The boot report on UART0 and the USB serial port, for bring-up and the
+//! field.
 //!
 //! Lines are plain text at 115200 8N1 on J3 (TX pad 1). A failure line
 //! starts `FAIL Ennn`, with the stable code from
@@ -11,32 +12,69 @@ use core::fmt::{self, Write};
 
 use fastprom_core::{select, FabricError, FailureCode, Released, Report, SwitchSample};
 
-use crate::clock::Clocks;
-use crate::error::{ClockError, FwError};
-use crate::fabric::Ag32Fabric;
-use crate::memmap::TABLE_BASE;
-use crate::uart::Uart0;
+use fastprom_core::memmap::TABLE_BASE;
+use fastprom_hal::clock::{ClockError, Clocks};
 
-/// Where the report goes: UART0 if it could be started, else nowhere.
-pub struct Console(Option<Uart0>);
+use crate::error::FwError;
+use crate::fabric::Ag32Fabric;
+use crate::uart::Uart0;
+use fastprom_usb::fifo::Fifo;
+
+/// What the report keeps for the USB serial port: the banner and outcome
+/// are written before USB starts, so they wait here, and every later line
+/// passes through. A full log drops what does not fit.
+pub const LOG_LEN: usize = 512;
+
+/// The copy of the report kept for USB.
+struct Log(Fifo<LOG_LEN>);
+
+impl Write for Log {
+    fn write_str(&mut self, s: &str) -> fmt::Result {
+        self.0.push(s.as_bytes());
+        Ok(())
+    }
+}
+
+/// Where the report goes: UART0 if it could be started, and a log for the
+/// USB serial port (`docs/11-usb-driver.md`).
+pub struct Console {
+    uart: Option<Uart0>,
+    log: Log,
+}
 
 impl Console {
     pub const fn new(uart: Option<Uart0>) -> Self {
-        Self(uart)
-    }
-
-    /// Write one formatted chunk. Uart0 never fails a write (it drops
-    /// bytes it cannot send), and a console has nowhere to report its own
-    /// failure, so the result is dropped here and only here.
-    fn put(&mut self, args: fmt::Arguments<'_>) {
-        if let Some(uart) = &mut self.0 {
-            let _infallible = uart.write_fmt(args);
+        Self {
+            uart,
+            log: Log(Fifo::new()),
         }
     }
 
+    /// Write one formatted chunk. Uart0 never fails a write (it drops
+    /// bytes it cannot send), nor does the log, and a console has nowhere
+    /// to report its own failure, so the results are dropped here and only
+    /// here.
+    fn put(&mut self, args: fmt::Arguments<'_>) {
+        if let Some(uart) = &mut self.uart {
+            let _infallible = uart.write_fmt(args);
+        }
+        let _infallible = self.log.write_fmt(args);
+    }
+
     pub fn flush(&mut self) {
-        if let Some(uart) = &mut self.0 {
+        if let Some(uart) = &mut self.uart {
             uart.flush();
+        }
+    }
+
+    /// Hand what the log holds to `sink` (the USB serial port), which says
+    /// how much it took.
+    pub fn drain_log(&mut self, sink: impl FnOnce(&[u8]) -> usize) {
+        let mut chunk = [0u8; 64];
+        let n = self.log.0.peek(&mut chunk);
+        if n != 0 {
+            let taken = sink(chunk.get(..n).unwrap_or(&[]));
+            self.log.0.consume(taken);
         }
     }
 }
@@ -100,7 +138,7 @@ pub fn outcome(c: &mut Console, result: &Result<Report<'_>, FwError>) {
     match result {
         Ok(r) => say!(
             c,
-            "OK: serving image {} '{}' ({} of {}, {}x{} for {}), crc32 {:#010x} at {:#010x}, READY set\n",
+            "OK: serving image {} '{}' ({} of {}, {}x{}, part {}), crc32 {:#010x} at {:#010x}, READY set\n",
             r.loaded.bank(),
             r.name,
             r.loaded.bank().number() + 1,

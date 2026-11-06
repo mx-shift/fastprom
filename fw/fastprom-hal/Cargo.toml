@@ -1,0 +1,12 @@
+[package]
+name = "fastprom-hal"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "FastPROM's AG32 board support, shared by the application and the DFU stage: registers, clocks, flash, reset, the USB controller"
+
+[dependencies]
+fastprom-core.workspace = true
+fastprom-usb.workspace = true
+thiserror.workspace = true
+riscv = "0.16"

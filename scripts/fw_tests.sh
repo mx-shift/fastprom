@@ -33,7 +33,9 @@ sources_hash() {
     {
         find fw -path fw/target -prune -o -path fw/.cargo-home -prune -o -type f -print \
             | LC_ALL=C sort | xargs sha256sum
-        sha256sum tools/mkimage.py tools/mkimagetable.py
+        sha256sum tools/mkimage.py tools/mkimagetable.py tools/partdb.yaml tools/fw_stamp.py tools/fw_layout.py \
+            tools/ag32/usb0.asf tools/ag32/dfu_usb.sdc tools/ag32/dfu_usb_pre.tcl \
+            tools/ag32/dfu_usb_post.tcl
     } | sha256sum | cut -d' ' -f1
 }
 

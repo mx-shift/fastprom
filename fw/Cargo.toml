@@ -2,20 +2,57 @@
 #
 #   fastprom-core  no_std library: CRC-32, image table, image select, the
 #                  fabric load sequence against a trait. Host-tested.
+#   fastprom-hal   the AG32's registers, clocks, flash, reset (no_std).
 #   fastprom-ag32  the AG32 board binary: startup (riscv-rt), memory map,
 #                  clocks, GPIO, UART, the fabric's AHB window, main.
+#   fastprom-dfu   the DFU stage binary.
+#   fastprom-recovery  the recovery loader binary: uploaded into SRAM over
+#                  the UART by the page, it writes the flash and option bytes.
+#   fastprom-usb   no_std library: the AG32's USB controller, a small
+#                  device stack, the descriptors, the update protocol's
+#                  vendor interface and CDC-ACM (docs/11-usb-driver.md).
+#                  Host-tested above the registers.
+#   fastprom-host  the host side of USB updates (std): the update client,
+#                  the update procedures, the image-table builder, update
+#                  bundles, and a simulated device (fastprom-core's update
+#                  core over a NOR flash model).
+#   fastprom-web   fastprom-host for the web page: wasm-bindgen bindings,
+#                  built for wasm32-unknown-unknown by `make web`
+#                  (docs/12-web.md).
 #
-# Host commands (`cargo test`, `cargo clippy --all-targets`) build only the
-# library; the board binary is built for riscv32imafc-unknown-none-elf by
-# `make fw-build`. See docs/06-build-and-flash.md.
+# Host commands (`cargo test`, `cargo clippy --all-targets`) build the
+# libraries and the web crates; the board binaries are built for
+# riscv32imafc-unknown-none-elf by `make fw-build`. See
+# docs/06-build-and-flash.md.
 [workspace]
 resolver = "2"
-members = ["fastprom-core", "fastprom-ag32"]
-default-members = ["fastprom-core"]
+members = [
+    "fastprom-core",
+    "fastprom-hal",
+    "fastprom-usb",
+    "fastprom-ag32",
+    "fastprom-dfu",
+    "fastprom-recovery",
+    "fastprom-host",
+    "fastprom-web",
+]
+# What `cargo test` and the host `cargo clippy` build: everything that runs
+# on the host. The board binaries are riscv32 only (make fw-build).
+default-members = ["fastprom-core", "fastprom-usb", "fastprom-host", "fastprom-web"]
 
 [workspace.dependencies]
 thiserror = { version = "2", default-features = false }
 fastprom-core = { path = "fastprom-core" }
+fastprom-hal = { path = "fastprom-hal" }
+fastprom-usb = { path = "fastprom-usb" }
+fastprom-host = { path = "fastprom-host" }
+# The web page's bindings. wasm-bindgen is pinned exactly: the
+# wasm-bindgen-cli in tools/rust/Containerfile must be the same version.
+wasm-bindgen = "=0.2.130"
+wasm-bindgen-futures = "0.4.80"
+js-sys = "0.3.107"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
 
 [workspace.package]
 edition = "2021"
@@ -27,3 +64,10 @@ opt-level = "s"
 lto = true
 codegen-units = 1
 debug = true
+
+# The web page's WebAssembly (make web): the release profile less the debug
+# information, which the page has no use for.
+[profile.web]
+inherits = "release"
+debug = false
+strip = "debuginfo"

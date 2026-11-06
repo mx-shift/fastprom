@@ -1,8 +1,10 @@
 //! Volatile 32-bit register access.
 //!
-//! The only `unsafe` in the firmware is here and where [`Reg`]s are named
-//! (`regs.rs`, `fabric.rs`) and where the image table's flash is borrowed
-//! (`main.rs`).
+//! The firmware's `unsafe` is here, where [`Reg`]s are named (`regs.rs`,
+//! `fastprom-ag32`'s `fabric.rs`), where flash is borrowed or written
+//! (`flash.rs`, `fastprom-ag32`'s `main.rs` and `board.rs`), at `mscratch`
+//! (`reset.rs`), and in the DFU stage's boot check and jump
+//! (`fastprom-dfu`'s `boot.rs`).
 
 /// A 32-bit memory-mapped register.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

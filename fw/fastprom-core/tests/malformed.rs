@@ -9,7 +9,7 @@ use fastprom_core::{ImageTable, TableError, TextField};
 fn good() -> Vec<u8> {
     let a = pattern(256, 1, 0xFF);
     let b = pattern(256, 2, 0xFF);
-    build_table("82S129", 256, 8, &[("a.bin", &a), ("b.bin", &b)])
+    build_table("256x8", 256, 8, &[("a.bin", &a), ("b.bin", &b)])
 }
 
 fn set_u32(t: &mut [u8], at: usize, v: u32) {

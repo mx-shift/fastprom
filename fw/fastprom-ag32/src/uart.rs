@@ -7,7 +7,7 @@ use core::fmt;
 
 use fastprom_core::baud::Divisors;
 
-use crate::regs::{sys, uart0};
+use fastprom_hal::regs::{sys, uart0};
 
 /// Polls of the flag register before a byte is dropped: about 10 ms at
 /// 100 MHz, several byte times at any sane baud rate.

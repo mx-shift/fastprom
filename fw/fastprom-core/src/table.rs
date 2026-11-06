@@ -72,6 +72,34 @@ pub struct ImageTable<'a> {
     data: &'a [u8],
 }
 
+/// What a table holds, without borrowing it: for the update core's `INFO`.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct TableSummary {
+    /// Words per image.
+    pub depth: u32,
+    /// Bits per word.
+    pub width: Width,
+    /// Images in the table.
+    pub count: ImageCount,
+    /// Each image's CRC-32; zero past `count`.
+    pub crcs: [u32; MAX_IMAGES],
+    /// The part name, NUL padded.
+    pub part: [u8; PART_LEN],
+    /// Bit `n` set: image `n`'s words match its CRC and its width, as the
+    /// load at boot checks them ([`crate::loader::verify`]). A header
+    /// written whole over images a power cut left half written parses, and
+    /// this is what tells the two apart.
+    pub intact: u8,
+}
+
+impl TableSummary {
+    /// Every image in the table is intact.
+    pub const fn all_intact(&self) -> bool {
+        let all = (1u8 << self.count.get()) - 1;
+        self.intact & all == all
+    }
+}
+
 /// One image of the table: its directory entry and its words.
 #[derive(Debug, Clone, Copy)]
 pub struct Image<'a> {
@@ -201,6 +229,32 @@ impl<'a> ImageTable<'a> {
     /// The target part name the table was built for.
     pub const fn part(&self) -> &'a str {
         self.part
+    }
+
+    /// The table's header fields, owned, and which images are intact: a
+    /// CRC over each image's words (at most 16 KiB in all).
+    pub fn summary(&self) -> TableSummary {
+        let mut part = [0u8; PART_LEN];
+        for (dst, src) in part.iter_mut().zip(self.part.bytes()) {
+            *dst = src;
+        }
+        let mut intact = 0;
+        for bank in (0u8..).map_while(Bank::new) {
+            if self
+                .image(bank)
+                .is_some_and(|i| crate::loader::verify(&i).is_ok())
+            {
+                intact |= 1 << bank.index();
+            }
+        }
+        TableSummary {
+            depth: self.depth,
+            width: self.width,
+            count: self.count,
+            crcs: self.crcs,
+            part,
+            intact,
+        }
     }
 
     /// Image `bank`, or `None` if the table holds fewer images.

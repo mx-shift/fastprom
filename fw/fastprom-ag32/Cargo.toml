@@ -3,7 +3,7 @@ name = "fastprom-ag32"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-description = "FastPROM firmware for the AG32VF303KCU6 (startup, clocks, pins, UART, fabric)"
+description = "FastPROM application for the AG32VF303KCU6 (boot sequence, boot report, update core over USB)"
 
 [[bin]]
 name = "fastprom-ag32"
@@ -12,6 +12,8 @@ bench = false
 
 [dependencies]
 fastprom-core.workspace = true
+fastprom-hal.workspace = true
+fastprom-usb.workspace = true
 thiserror.workspace = true
 riscv = "0.16"
 riscv-rt = { version = "0.18", features = ["memory", "single-hart"] }

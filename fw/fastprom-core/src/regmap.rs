@@ -13,6 +13,13 @@
 
 /// What `ID` reads when the fabric is configured with FastPROM's logic.
 pub const FABRIC_MAGIC: u32 = 0x4650_524D;
+/// The fabric interface this firmware drives: this register map, as
+/// `hdl/fastprom_ahb_slave.v` implements it. `ID` reads the same magic in
+/// every build, so the interface's revision is recorded beside the
+/// bitstream instead, in its manifest, and in the application header as the
+/// one the firmware expects (`crate::header`). Bump it with any change to
+/// the registers above or below.
+pub const FABRIC_ID: u32 = 1;
 /// `CTRL` bit 0.
 pub const CTRL_READY: u32 = 1 << 0;
 

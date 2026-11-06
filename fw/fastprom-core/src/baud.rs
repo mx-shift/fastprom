@@ -20,11 +20,13 @@ impl Divisors {
         if baud == 0 {
             return None;
         }
-        let pclk = u64::from(pclk_hz);
-        let baud = u64::from(baud);
-        let mut ibrd = pclk / baud / 16;
-        let rem = pclk - ibrd * baud * 16;
-        let mut fbrd = (rem * 4 + baud / 2) / baud;
+        // In 32 bits, as uart.c computes it (and without a 64-bit divide
+        // in the recovery loader, which has 5 KiB): ibrd * baud * 16 is at
+        // most pclk_hz, and rem is below 16 * baud, so only rem * 4 can
+        // overflow, for a baud rate past 60 MHz, which is refused.
+        let mut ibrd = pclk_hz / baud / 16;
+        let rem = pclk_hz - ibrd * baud * 16;
+        let mut fbrd = rem.checked_mul(4)?.checked_add(baud / 2)? / baud;
         if fbrd >= 64 {
             ibrd += 1;
             fbrd = 0;

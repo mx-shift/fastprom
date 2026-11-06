@@ -2,9 +2,9 @@
 
 use fastprom_core::SwitchSample;
 
-use crate::clock::Clocks;
-use crate::delay;
-use crate::regs::{pins, sys};
+use fastprom_hal::clock::Clocks;
+use fastprom_hal::delay;
+use fastprom_hal::regs::{pins, sys};
 
 /// Time for the pins to settle once they are inputs. The 100 k pull-down
 /// against the pad and trace capacitance is a few microseconds.

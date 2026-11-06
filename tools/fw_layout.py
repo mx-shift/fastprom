@@ -1,39 +1,60 @@
 #!/usr/bin/env python3
 """Check the firmware against the AG32's memory map and report the flash layout.
 
-Reads the linked ELF directly (section and program headers, symbol table), so
-it needs no target binutils:
+Two board binaries, the DFU stage at the reset vector and the application
+behind its header (docs/10-updates.md, "Flash map"), and the recovery
+loader the page uploads into SRAM. Reads each linked ELF directly (section
+and program headers, symbol table), so it needs no target binutils, and for
+each of the two in flash:
 
-  - every allocated section must sit in its region: code and read-only data
-    in the firmware's flash window, below the fabric bitstream; .data's load
-    image too; RAM sections in SRAM;
+  - every allocated section must sit in that binary's flash window; RAM
+    sections in SRAM, and their flash load images (.data, .ramfunc) in the
+    window too;
+  - the entry point must be the one the map gives it: the reset vector for
+    the DFU stage, the first byte after the header for the application;
   - the raw .bin must be exactly the flash image of the ELF;
   - no panic machinery may be linked (the firmware is built so that nothing
-    can panic; a `core::panicking` symbol means a path crept in);
-  - with --batch, the combined image AGM's gen_batch wrote must place the
-    firmware, the image table and the fabric bitstream where the ELF's
-    layout symbols say, and point the option bytes at the bitstream.
+    can panic; a `core::panicking` symbol means a path crept in).
 
-The region boundaries come from the ELF itself: fw/fastprom-ag32/build.rs
-records __fastprom_{fabric,table}_{start,end} from src/memmap.rs.
+For the recovery loader: every section in its upload window at 0x20010000
+(at most 5,296 bytes, the most AGM's tools upload through the mask ROM) or
+in its RAM at the bottom of SRAM, .data's load image in the window; its
+entry the instruction after its 32-byte header; the .bin exactly the bytes
+to upload, its header stamped (tools/fw_stamp.py loader) with their length
+and CRC, the version and board revision; no panic machinery.
 
-usage: fw_layout.py --elf E --bin B [--fabric top.bin] [--table images.bin]
-                    [--batch batch.bin]
+For the application, also its header (fastprom-core header.rs): committed,
+stamped by tools/fw_stamp.py with the length and CRC-32 of exactly the bytes
+after it, the version in fw/Cargo.toml, the board revision in hw/REVISION
+and the fabric ID the firmware expects. With --manifest, the manifest must
+describe --fabric. With --batch, the combined image AGM's gen_batch wrote
+must place the DFU stage, the application, the fabric bitstream, the
+manifest and the image table where the ELFs' layout symbols say, and point
+the option bytes at the bitstream.
+
+The region boundaries come from the ELFs: fw/fastprom-hal/build_support.rs
+records __fastprom_*_{start,end} from fw/fastprom-core/src/memmap.rs, and
+both ELFs must agree on them.
+
+usage: fw_layout.py --elf APP.elf --bin APP.bin --dfu-elf DFU.elf --dfu-bin DFU.bin
+                    --recovery-elf REC.elf --recovery-bin REC.bin
+                    [--fabric top.bin] [--manifest manifest.bin]
+                    [--table images.bin] [--batch batch.bin]
 """
 import argparse
 import os
+import re
 import struct
 import sys
 import zlib
 
-FLASH_BASE = 0x80000000
-FLASH_SIZE = 256 * 1024
+REPO = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 SRAM_BASE = 0x20000000
 SRAM_SIZE = 128 * 1024
-OPTION_BYTES = 0x81000000
 SHF_ALLOC = 0x2
 SHT_NOBITS = 8
 PT_LOAD = 1
+REGIONS = ("dfu", "app", "fabric", "manifest", "table", "option")
 
 
 class Elf:
@@ -115,29 +136,28 @@ def batch_sections(path):
     return out
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__,
-                                 formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--elf", required=True)
-    ap.add_argument("--bin", required=True)
-    ap.add_argument("--fabric", help="the fabric bitstream (top.bin)")
-    ap.add_argument("--table", help="the image table (.bin)")
-    ap.add_argument("--batch", help="the combined image from gen_batch")
-    args = ap.parse_args()
-
-    elf = Elf(args.elf)
-    errors = []
-    sym = elf.symbols
+def regions(elf, path):
+    """The flash map the ELF was linked against."""
     try:
-        fabric_lo, fabric_hi = sym["__fastprom_fabric_start"], sym["__fastprom_fabric_end"]
-        table_lo, table_hi = sym["__fastprom_table_start"], sym["__fastprom_table_end"]
+        m = {r: (elf.symbols[f"__fastprom_{r}_start"], elf.symbols[f"__fastprom_{r}_end"])
+             for r in REGIONS}
+        m["image"] = (elf.symbols["__fastprom_image_start"], elf.symbols["__fastprom_image_end"])
+        m["entry"] = elf.symbols["__fastprom_entry"]
+        m["flash_end"] = elf.symbols["__fastprom_flash_end"]
+        m["page"] = elf.symbols["__fastprom_page"]
     except KeyError as e:
-        sys.exit(f"{args.elf}: no layout symbol {e} (built without build.rs's memory.x?)")
-    fw_lo, fw_hi = FLASH_BASE, fabric_lo
+        sys.exit(f"{path}: no layout symbol {e} (built without build_support.rs's memory.x?)")
+    return m
 
-    print(f"firmware {args.elf}")
-    print(f"  {'section':<14} {'address':>10} {'size':>8}  region")
-    flash_end = fw_lo
+
+def check_binary(what, elf_path, bin_path, errors):
+    """Sections, entry, .bin and panics of one board binary; its layout."""
+    elf = Elf(elf_path)
+    m = regions(elf, elf_path)
+    lo, hi = m["image"]
+    print(f"{what} {elf_path}")
+    print(f"  {'section':<17} {'address':>10} {'size':>8}  region")
+    flash_end = lo
     ram_used = 0
     for s in elf.sections:
         if not s["flags"] & SHF_ALLOC or (s["size"] == 0 and s["name"] != ".stack"):
@@ -146,66 +166,210 @@ def main():
         if SRAM_BASE <= addr < SRAM_BASE + SRAM_SIZE:
             region = "SRAM"
             if addr + size > SRAM_BASE + SRAM_SIZE:
-                errors.append(f"{s['name']} runs past the end of SRAM")
-            if s["name"] != ".stack":
+                errors.append(f"{what}: {s['name']} runs past the end of SRAM")
+            if s["name"] not in (".stack", ".ramfunc"):
                 ram_used += size
-            if s["type"] != SHT_NOBITS:  # .data: also has a flash load image
+            if s["type"] != SHT_NOBITS:  # .data, .ramfunc: also a flash load image
                 lma = elf.lma(addr)
                 region += f", loaded from {lma:#010x}"
-                if not (fw_lo <= lma and lma + size <= fw_hi):
-                    errors.append(f"{s['name']}'s load image is outside the firmware window")
+                if not (lo <= lma and lma + size <= hi):
+                    errors.append(f"{what}: {s['name']}'s load image is outside its window")
                 flash_end = max(flash_end, lma + size)
-        elif fw_lo <= addr and addr + size <= fw_hi:
-            region = "flash (firmware)"
+        elif lo <= addr and addr + size <= hi:
+            region = "flash"
             flash_end = max(flash_end, addr + size)
         else:
             region = "OUTSIDE ITS REGION"
-            errors.append(f"{s['name']} at {addr:#010x}+{size:#x} is outside "
-                          f"the firmware window {fw_lo:#010x}-{fw_hi:#010x}")
-        print(f"  {s['name']:<14} {addr:#010x} {size:>8}  {region}")
-    if elf.entry != FLASH_BASE:
-        errors.append(f"entry point {elf.entry:#010x}, the mask ROM jumps to {FLASH_BASE:#010x}")
+            errors.append(f"{what}: {s['name']} at {addr:#010x}+{size:#x} is outside "
+                          f"its window {lo:#010x}-{hi:#010x}")
+        print(f"  {s['name']:<17} {addr:#010x} {size:>8}  {region}")
+    if elf.entry != m["entry"]:
+        errors.append(f"{what}: entry point {elf.entry:#010x}, expected {m['entry']:#010x}")
 
     start, image = elf.flash_image()
-    with open(args.bin, "rb") as fh:
+    with open(bin_path, "rb") as fh:
         binary = fh.read()
-    if start != FLASH_BASE or binary != image:
-        errors.append(f"{args.bin} is not the ELF's flash image "
+    if start != lo or binary != image:
+        errors.append(f"{what}: {bin_path} is not the ELF's flash image "
                       f"({len(binary)} bytes vs {len(image)} at {start:#010x})")
 
-    panics = sorted(n for n in sym if "panicking" in n or "panic_bounds_check" in n)
+    panics = sorted(n for n in elf.symbols if "panicking" in n or "panic_bounds_check" in n)
     if panics:
-        errors.append(f"panic machinery is linked: {', '.join(panics[:3])}")
-
-    used = flash_end - fw_lo
-    window = fw_hi - fw_lo
-    print(f"  entry {elf.entry:#010x}; SRAM: {ram_used} bytes of .data/.bss, the rest stack")
+        errors.append(f"{what}: panic machinery is linked: {', '.join(panics[:3])}")
+    ramfunc = next((s for s in elf.sections if s["name"] == ".ramfunc"), None)
+    rf = f", {ramfunc['size']} bytes of .ramfunc" if ramfunc else ""
+    print(f"  entry {elf.entry:#010x}; SRAM: {ram_used} bytes of .data/.bss{rf}, the rest stack")
     print(f"  panic paths linked: {'yes' if panics else 'none'}")
     print()
-    print(f"flash, {kib(FLASH_SIZE)} at {FLASH_BASE:#010x}:")
+    return elf, m, binary, flash_end
+
+
+def check_recovery(elf_path, bin_path, errors):
+    """The recovery loader: SRAM only, the upload window, its header."""
+    import fw_stamp
+    elf = Elf(elf_path)
+    try:
+        lo, hi = elf.symbols["__fastprom_image_start"], elf.symbols["__fastprom_image_end"]
+        rlo, rhi = elf.symbols["__fastprom_ram_start"], elf.symbols["__fastprom_ram_end"]
+        entry = elf.symbols["__fastprom_entry"]
+    except KeyError as e:
+        sys.exit(f"{elf_path}: no layout symbol {e} (not the recovery loader's memory.x?)")
+    what = "recovery loader"
+    print(f"{what} {elf_path}")
+    print(f"  {'section':<23} {'address':>10} {'size':>8}  region")
+    for s in elf.sections:
+        if not s["flags"] & SHF_ALLOC or (s["size"] == 0 and s["name"] != ".stack"):
+            continue
+        addr, size = s["addr"], s["size"]
+        if lo <= addr and addr + size <= hi:
+            region = "upload window"
+        elif rlo <= addr and addr + size <= rhi:
+            region = "loader RAM"
+            if s["type"] != SHT_NOBITS:
+                lma = elf.lma(addr)
+                region += f", loaded from {lma:#010x}"
+                if not (lo <= lma and lma + size <= hi):
+                    errors.append(f"{what}: {s['name']}'s load image is outside the window")
+        else:
+            region = "OUTSIDE ITS REGION"
+            errors.append(f"{what}: {s['name']} at {addr:#010x}+{size:#x} is outside its "
+                          f"window {lo:#010x}-{hi:#010x} and its RAM {rlo:#010x}-{rhi:#010x}")
+        print(f"  {s['name']:<23} {addr:#010x} {size:>8}  {region}")
+    if elf.entry != entry:
+        errors.append(f"{what}: entry point {elf.entry:#010x}, expected {entry:#010x}")
+    start, image = elf.flash_image()
+    with open(bin_path, "rb") as fh:
+        binary = fh.read()
+    if start != lo or binary != image:
+        errors.append(f"{what}: {bin_path} is not the ELF's upload image "
+                      f"({len(binary)} bytes vs {len(image)} at {start:#010x})")
+    if len(binary) > hi - lo:
+        errors.append(f"{what}: {len(binary)} bytes, more than the {hi - lo} the window holds")
+    try:
+        h = fw_stamp.decode_loader(binary)
+        want = {"version": cargo_version(), "board_rev": fw_stamp.board_rev()}
+        for k, v in want.items():
+            if h[k] != v:
+                errors.append(f"{what} header: {k} is {h[k]!r}, expected {v!r}")
+        print(f"  header: {h['length']} bytes, crc32 {h['crc']:#010x}, firmware "
+              f"{h['version']}, board rev {h['board_rev']}")
+    except ValueError as e:
+        errors.append(f"{what} header: {e} (not stamped by tools/fw_stamp.py loader?)")
+    panics = sorted(n for n in elf.symbols if "panicking" in n or "panic_bounds_check" in n)
+    if panics:
+        errors.append(f"{what}: panic machinery is linked: {', '.join(panics[:3])}")
+    print(f"  entry {elf.entry:#010x}; {len(binary)} bytes to upload, "
+          f"{100 * len(binary) / (hi - lo):.0f} % of {hi - lo}")
+    print(f"  panic paths linked: {'yes' if panics else 'none'}")
+    print()
+
+
+def cargo_version():
+    s = open(os.path.join(REPO, "fw", "Cargo.toml")).read()
+    sect = s.split("[workspace.package]", 1)[1].split("\n[", 1)[0]
+    return re.search(r'^version\s*=\s*"([^"]+)"', sect, re.M).group(1)
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--elf", required=True, help="the application ELF")
+    ap.add_argument("--bin", required=True, help="the application .bin")
+    ap.add_argument("--dfu-elf", required=True, help="the DFU stage ELF")
+    ap.add_argument("--dfu-bin", required=True, help="the DFU stage .bin")
+    ap.add_argument("--recovery-elf", required=True, help="the recovery loader ELF")
+    ap.add_argument("--recovery-bin", required=True, help="the recovery loader .bin")
+    ap.add_argument("--fabric", help="the fabric bitstream (top.bin)")
+    ap.add_argument("--manifest", help="the fabric manifest page (fw_stamp.py manifest)")
+    ap.add_argument("--table", help="the image table (.bin)")
+    ap.add_argument("--batch", help="the combined image from gen_batch")
+    args = ap.parse_args()
+    import fw_stamp  # here, not at the top: fw_stamp imports this module
+
+    errors = []
+    dfu, dm, dfu_bin, dfu_end = check_binary("DFU stage", args.dfu_elf, args.dfu_bin, errors)
+    app, am, app_bin, app_end = check_binary("application", args.elf, args.bin, errors)
+    check_recovery(args.recovery_elf, args.recovery_bin, errors)
+    for r in REGIONS:
+        if dm[r] != am[r]:
+            errors.append(f"the two ELFs disagree on the {r} region: {dm[r]} vs {am[r]}")
+    if dm["image"] != dm["dfu"] or am["image"] != am["app"]:
+        errors.append("an ELF was linked into the other's region")
+    m = am
+
+    # The application header.
+    page = m["page"]
+    hdr = None
+    try:
+        hdr = fw_stamp.decode_app_header(app_bin[:page])
+    except (ValueError, struct.error) as e:
+        errors.append(f"application header: {e} (not stamped by tools/fw_stamp.py?)")
+    if hdr:
+        body = app_bin[page:]
+        want = {
+            "committed": True,
+            "length": len(body),
+            "crc": fw_stamp.crc32(body),
+            "version": cargo_version(),
+            "board_rev": fw_stamp.board_rev(),
+            "fabric_id": fw_stamp.FABRIC_ID,
+        }
+        for k, v in want.items():
+            if hdr[k] != v:
+                errors.append(f"application header: {k} is {hdr[k]!r}, expected {v!r}")
+        print(f"application header at {m['app'][0]:#010x}: {hdr['length']} bytes, crc32 "
+              f"{hdr['crc']:#010x}, firmware {hdr['version']}, board rev {hdr['board_rev']}, "
+              f"fabric ID {hdr['fabric_id']}, committed")
+        print()
+
+    flash_base, flash_end = m["dfu"][0], m["flash_end"]
+    print(f"flash, {kib(flash_end - flash_base)} at {flash_base:#010x}:")
 
     def row(lo, hi, what):
         print(f"  {lo:#010x}-{hi:#010x}  {kib(hi - lo):>10}  {what}")
 
-    row(fw_lo, flash_end, f"firmware, {len(binary)} bytes ({100 * used / window:.0f} % of "
-        f"the {kib(window)} window)")
-    row(flash_end, fw_hi, "free")
+    def used(lo, hi, end, n, what):
+        row(lo, end, f"{what}, {n} bytes ({100 * (end - lo) / (hi - lo):.0f} % of {kib(hi - lo)})")
+        if end < hi:
+            row(end, hi, "free")
+
+    used(*m["dfu"], dfu_end, len(dfu_bin), "DFU stage")
+    used(*m["app"], app_end, len(app_bin), "application, header and code")
+    fabric_data = None
     if args.fabric:
-        n = os.path.getsize(args.fabric)
-        row(fabric_lo, fabric_lo + n, f"fabric bitstream {args.fabric}, {n} bytes")
-        row(fabric_lo + n, fabric_hi, "fabric reserve, unused")
-        if fabric_lo + n > fabric_hi:
+        with open(args.fabric, "rb") as fh:
+            fabric_data = fh.read()
+        lo, hi = m["fabric"]
+        n = len(fabric_data)
+        row(lo, min(lo + n, hi), f"fabric bitstream {args.fabric}, {n} bytes")
+        if lo + n < hi:
+            row(lo + n, hi, "fabric reserve, unused")
+        if lo + n > hi:
             errors.append(f"{args.fabric} is {n} bytes, larger than the fabric reserve")
     else:
-        row(fabric_lo, fabric_hi, "fabric bitstream reserve")
+        row(*m["fabric"], "fabric bitstream reserve")
+    manifest_data = None
+    if args.manifest:
+        with open(args.manifest, "rb") as fh:
+            manifest_data = fh.read()
+        row(*m["manifest"], f"fabric manifest {args.manifest}, {len(manifest_data)} bytes")
+        if fabric_data is None:
+            errors.append("--manifest needs --fabric, to check it against")
+        else:
+            want = fw_stamp.manifest(fabric_data, *fw_stamp.manifest_fields(manifest_data))
+            if manifest_data != want:
+                errors.append(f"{args.manifest} does not describe {args.fabric}")
+    else:
+        row(*m["manifest"], "fabric manifest")
     if args.table:
+        lo, hi = m["table"]
         n = os.path.getsize(args.table)
-        row(table_lo, table_lo + n, f"image table {args.table}, {n} bytes")
-        row(table_lo + n, table_hi, "free")
-        if table_lo + n > table_hi:
+        row(lo, lo + n, f"image table {args.table}, {n} bytes")
+        row(lo + n, hi, "free")
+        if lo + n > hi:
             errors.append(f"{args.table} is {n} bytes, larger than the table region")
     else:
-        row(table_lo, table_hi, "image table region")
+        row(*m["table"], "image table region")
 
     if args.batch:
         print()
@@ -214,17 +378,19 @@ def main():
         for addr, data in secs:
             print(f"  {addr:#010x}  {len(data):>7} bytes")
         by_addr = {a: d for a, d in secs}
-        want = {FLASH_BASE: ("firmware", binary)}
+        want = {m["dfu"][0]: ("DFU stage", dfu_bin), m["app"][0]: ("application", app_bin)}
         if args.table:
             with open(args.table, "rb") as fh:
-                want[table_lo] = ("image table", fh.read())
-        if args.fabric:
-            with open(args.fabric, "rb") as fh:
-                want[fabric_lo] = ("fabric bitstream", fh.read())
+                want[m["table"][0]] = ("image table", fh.read())
+        if fabric_data is not None:
+            want[m["fabric"][0]] = ("fabric bitstream", fabric_data)
+        if manifest_data is not None:
+            want[m["manifest"][0]] = ("fabric manifest", manifest_data)
         for addr, (what, data) in want.items():
             if by_addr.get(addr) != data:
                 errors.append(f"{args.batch}: the {what} is not at {addr:#010x}")
-        opt = by_addr.get(OPTION_BYTES)
+        opt = by_addr.get(m["option"][0])
+        fabric_lo = m["fabric"][0]
         if opt is None:
             errors.append(f"{args.batch}: no option bytes")
         else:
@@ -233,7 +399,7 @@ def main():
                 errors.append(f"{args.batch}: option byte 0x30 points the fabric at {cfg:#010x}")
             else:
                 print(f"  option bytes: fabric configuration address {cfg:#010x} "
-                      "(0x81000030, uncompressed)")
+                      f"({m['option'][0] + 0x30:#010x}, uncompressed)")
 
     if errors:
         for e in errors:

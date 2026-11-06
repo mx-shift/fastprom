@@ -28,6 +28,12 @@ jobs:
         with:
           fetch-depth: 0        # earlier tags, for the release notes
 
+      - name: Tools
+        run: |
+          # tools/mkweb.py and tools/mkbundle.py read tools/partdb.yaml
+          sudo apt-get update -q
+          sudo apt-get install -yq python3-yaml
+
       - name: Build
         run: |
           # a tag names the version to check against the tree; a dry run
@@ -45,16 +51,21 @@ jobs:
           {
             echo "FastPROM AG32 firmware $ver."
             echo
-            echo "- \`fastprom-fw-$ver.bin\`: raw image for flash at 0x80000000"
-            echo "- \`fastprom-fw-$ver.elf\`: the same with symbols, for debugging"
+            echo "- \`fastprom-fw-$ver.bin\`: the application, raw image for flash at 0x80008000"
+            echo "- \`fastprom-fw-$ver-dfu.bin\`: the DFU stage, raw image for flash at 0x80000000"
+            echo "- \`fastprom-fw-$ver-recovery.bin\`: the recovery loader, which the page uploads into SRAM"
+            echo "  through the mask ROM for UART recovery (never flashed)"
+            echo "- \`fastprom-fw-$ver.elf\`, \`-dfu.elf\`, \`-recovery.elf\`: the same with symbols, for debugging"
             echo "- \`fastprom-fw-$ver-layout.txt\`: sections and the flash map"
+            echo "- \`fastprom-web-$ver.zip\`: the update page, a static site with this firmware's update"
+            echo "  bundle (docs/12-web.md); host it anywhere over HTTPS, or open it with \`?sim\` to try it"
             echo
             echo "Programming, and the combined image with the fabric bitstream"
             echo "(make fw-batch, which needs AGM's SDK): docs/06-build-and-flash.md."
             if [ -n "$prev" ]; then
               echo
               echo "Changes since $prev:"
-              git log --format='- %s' "$prev..$GITHUB_REF_NAME" -- fw tools/rust tools/mkimage.py tools/mkimagetable.py tools/fw_layout.py
+              git log --format='- %s' "$prev..$GITHUB_REF_NAME" -- fw tools/rust tools/mkimage.py tools/mkimagetable.py tools/fw_layout.py tools/fw_stamp.py web tools/mkweb.py tools/mkbundle.py
             fi
           } > notes.md
           gh release create "$GITHUB_REF_NAME" build/release/fw/* \

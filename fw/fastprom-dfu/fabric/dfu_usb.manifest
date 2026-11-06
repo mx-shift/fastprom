@@ -1,0 +1,9 @@
+# The DFU stage's USB-only fabric, dfu_usb.bin beside this file: written by
+# tools/ag32/build_dfu_fabric.sh --install, checked by fastprom-dfu's build.rs
+# and fastprom-core's tests/fcb.rs. Do not edit.
+bin_len 3226
+bin_crc32 0x9ed3d846
+raw_len 99944
+raw_crc32 0x58939d56
+# CRC-32 of dfu_usb.ve, usb0.asf, dfu_usb.sdc, dfu_usb_pre.tcl, dfu_usb_post.tcl, concatenated
+inputs_crc32 0xc2bad22b

@@ -1,0 +1,18 @@
+[package]
+name = "fastprom-dfu"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "FastPROM DFU stage for the AG32VF303KCU6: the reset vector's boot check, and the USB update core in DFU mode"
+
+[[bin]]
+name = "fastprom-dfu"
+test = false
+bench = false
+
+[dependencies]
+fastprom-core.workspace = true
+fastprom-hal.workspace = true
+fastprom-usb.workspace = true
+riscv = "0.16"
+riscv-rt = { version = "0.18", features = ["memory", "single-hart"] }

@@ -12,7 +12,7 @@ outputs stay tri-stated instead, which is the safe failure.
 Two encodings of the same table (format version 1), chosen by --out:
 
   *.bin  the binary table the Rust firmware reads from flash at TABLE_ADDR
-         (0x80020000, fw/fastprom-ag32/memory.x); layout below
+         (0x8002E000, fw/fastprom-core/src/memmap.rs); layout below
   *.c    a C source table (fastprom_image.h), as the retired C firmware
          linked it
 
@@ -23,7 +23,8 @@ Binary layout, all integers little-endian u32:
   0x008  depth        words per image, a power of two, 16..65536
   0x00c  width        bits per word, 4 or 8
   0x010  image_count  1, 2 or 4 (two image-select switches)
-  0x014  part[28]     target part name, ASCII, NUL padded, NUL terminated
+  0x014  part[28]     the part: its tools/partdb.yaml key (e.g. "512x8"),
+                      ASCII, NUL padded, NUL terminated
   0x030  4 entries of 48 bytes, one per image (unused ones all zero):
            +0x00 name[40]  source filename, ASCII, NUL padded and terminated
            +0x28 crc32     zlib.crc32 over exactly depth bytes of data
@@ -33,12 +34,29 @@ Binary layout, all integers little-endian u32:
   0x100  image data: image i at 0x100 + i * depth, one word per byte
 
 fw/fastprom-core/src/table.rs parses exactly this; change both together.
+
+The part is a tools/partdb.yaml key, and --depth and --width, when given,
+must be its organisation: the page and the firmware read the field as that
+key (the page falls back on it when a board has no fabric manifest).
+
+Image files are read as the update page reads them (fw/fastprom-host's
+rom.rs): .hex, .txt and .mem (any case) are tools/mkimage.py's text, hex
+words separated by white space with // comments; Intel HEX (a first ':') is
+refused; any other name (.bin, .BIN, .rom, ...) is binary, one word per
+byte. A name with an ASCII control character is refused: the firmware's
+parser would refuse the table.
 """
 import argparse
 import os
 import struct
 import sys
 import zlib
+
+import yaml
+
+PARTDB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "partdb.yaml")
+# The extensions read as text; anything else is binary (as rom.rs reads them).
+TEXT_EXTENSIONS = (".hex", ".txt", ".mem")
 
 MAGIC = 0x4650524D  # 'FPRM'
 FORMAT_VERSION = 1
@@ -52,8 +70,18 @@ BIN_MIN_DEPTH = 16
 BIN_MAX_DEPTH = 1 << 16
 
 
+def control_chars(text):
+    """The ASCII control characters in text (the firmware's parser refuses them)."""
+    return sorted({c for c in text if ord(c) < 0x20 or ord(c) == 0x7F})
+
+
 def ascii_field(text, length, what):
     """NUL-padded ASCII, always NUL terminated; truncates with a warning."""
+    bad = control_chars(text)
+    if bad:
+        codes = ", ".join(f"0x{ord(c):02x}" for c in bad)
+        sys.exit(f"{what} {text!r} has ASCII control characters ({codes}), which the "
+                 "firmware's table parser refuses: rename it")
     raw = text.encode("ascii", errors="replace")
     if len(raw) > length - 1:
         print(f"warning: {what} {text!r} truncated to {length - 1} bytes",
@@ -82,17 +110,26 @@ def binary_table(part, depth, width, rows):
     return head + b"".join(bytes(words) for _src, _crc, words in rows)
 
 
+def is_text(path):
+    """Text or binary, by the name: the page's rule (rom.rs is_text)."""
+    return path.lower().endswith(TEXT_EXTENSIONS)
+
+
 def read_image(path, width, depth):
-    if path.endswith(".bin"):
+    if not is_text(path):
         with open(path, "rb") as fh:
             words = list(fh.read())
     else:
         words = []
         with open(path) as fh:
-            for raw in fh:
-                line = raw.split("//")[0].strip()
-                if line:
-                    words.extend(int(t, 16) for t in line.split())
+            text = fh.read()
+        if text.startswith(":"):
+            sys.exit(f"{path}: this is Intel HEX, which this tool does not read: give a "
+                     "binary image (.bin, one byte per word) or mkimage.py's hex words")
+        for raw in text.splitlines():
+            line = raw.split("//")[0].strip()
+            if line:
+                words.extend(int(t, 16) for t in line.split())
 
     mask = (1 << width) - 1
     if any(w > mask for w in words):
@@ -110,13 +147,27 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--image", action="append", required=True, metavar="PATH",
                     help="an image; repeat for a multi-image build (bank order)")
-    ap.add_argument("--depth", type=int, required=True,
-                    help="words per image, e.g. 512 for a 512x8 part")
-    ap.add_argument("--width", type=int, default=8, choices=(4, 8))
-    ap.add_argument("--part", default="unknown", help="target part name, for the header")
+    ap.add_argument("--part", required=True,
+                    help="the part: a tools/partdb.yaml key, e.g. 512x8")
+    ap.add_argument("--depth", type=int,
+                    help="words per image; must be the part's (default: the part's)")
+    ap.add_argument("--width", type=int, choices=(4, 8),
+                    help="bits per word; must be the part's (default: the part's)")
     ap.add_argument("--out", required=True,
                     help="output path: .bin (binary table, for the firmware) or .c")
     args = ap.parse_args()
+
+    with open(PARTDB) as fh:
+        parts = yaml.safe_load(fh)["parts"]
+    if args.part not in parts:
+        sys.exit(f"part {args.part!r} is not in tools/partdb.yaml "
+                 f"(one of {', '.join(parts)}): the table records the part's key")
+    org = parts[args.part]
+    for what, given, want in (("depth", args.depth, org["depth"]),
+                              ("width", args.width, org["width"])):
+        if given is not None and given != want:
+            sys.exit(f"--{what} {given}: part {args.part} is {org['depth']}x{org['width']}")
+    args.depth, args.width = org["depth"], org["width"]
 
     n = len(args.image)
     if n & (n - 1):
@@ -127,7 +178,13 @@ def main():
     rows = []
     for path, words in zip(args.image, images):
         blob = bytes(words)
-        rows.append((os.path.basename(path), zlib.crc32(blob) & 0xFFFFFFFF, words))
+        name = os.path.basename(path)
+        bad = control_chars(name)
+        if bad:
+            codes = ", ".join(f"0x{ord(c):02x}" for c in bad)
+            sys.exit(f"image name {name!r} has ASCII control characters ({codes}), which "
+                     "the firmware's table parser refuses: rename the file")
+        rows.append((name, zlib.crc32(blob) & 0xFFFFFFFF, words))
 
     if args.out.endswith(".bin"):
         blob = binary_table(args.part, args.depth, args.width, rows)
