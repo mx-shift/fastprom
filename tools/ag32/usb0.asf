@@ -1,0 +1,15 @@
+# usb0.asf - Supra assignments for a fabric with USB0 enabled.
+#
+# The USB pads' pull resistors are fabric configuration bits:
+# CFG_PULLUP_ENB and CFG_PULLDN_ENB in the IO configuration block
+# (framework-agrv_sdk src/fcb.h, FCB_IO_TypeDef), Supra's tile (0 1 3).
+# Every AGM board file clears both whenever the .ve enables USB0
+# (platforms/AgRV/boards/agrv2k_*/board.asf), and AGM's USB examples are
+# built with it; AGM documents neither bit further, so this does exactly
+# what they do. USB0_MODE comes from the top.hx gen_vlog writes for
+# `USB0 device`.
+if { [info exists USB0_MODE] } {
+  alta::tcl_info "USB0_MODE = $USB0_MODE: USB pad pull configuration as AGM's boards"
+  set_config -loc 0 1 3 CFG_PULLUP_ENB 1'b0
+  set_config -loc 0 1 3 CFG_PULLDN_ENB 1'b0
+}

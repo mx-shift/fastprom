@@ -55,20 +55,20 @@ fi
 if [ -n "$SYSCLK" ]; then   # sys_clock: the AHB clock, and BRAM mode's sampling clock
   sed -i "s/^SYSCLK .*/SYSCLK $SYSCLK/; s/^BUSCLK .*/BUSCLK $((SYSCLK / 2))/" "$WORK/top.ve"
 fi
-# BRAM read clock: gen_pins.py puts it on PLL output 1 (PLLCLK1, 200 MHz by
+# BRAM read clock: gen_pins.py puts it on PLL output 2 (PLLCLK2, 200 MHz by
 # default). RDCLK=<MHz> changes it; RDCLK=0 clocks the read port from
 # sys_clock instead, as the first builds did.
 if [ -n "$RDCLK" ]; then
   if [ "$RDCLK" = 0 ]; then
-    sed -i '/^PLLCLK1 /d; /^PLL_CLKOUT1 rd_clk/d' "$WORK/top.ve"
-  elif grep -q '^PLLCLK1 ' "$WORK/top.ve"; then
-    sed -i "s/^PLLCLK1 [^ ]*/PLLCLK1 $RDCLK/" "$WORK/top.ve"
+    sed -i '/^PLLCLK2 /d; /^PLL_CLKOUT2 rd_clk/d' "$WORK/top.ve"
+  elif grep -q '^PLLCLK2 ' "$WORK/top.ve"; then
+    sed -i "s/^PLLCLK2 [^ ]*/PLLCLK2 $RDCLK/" "$WORK/top.ve"
   else
-    printf 'PLLCLK1 %s\nPLL_CLKOUT1 rd_clk:OUTPUT\n' "$RDCLK" >> "$WORK/top.ve"
+    printf 'PLLCLK2 %s\nPLL_CLKOUT2 rd_clk:OUTPUT\n' "$RDCLK" >> "$WORK/top.ve"
   fi
 fi
-if grep -q '^PLL_CLKOUT1 rd_clk' "$WORK/top.ve"; then
-  FP_RDCLK=1; RDCLK_NAME=pll_inst\|clkout1
+if grep -q '^PLL_CLKOUT2 rd_clk' "$WORK/top.ve"; then
+  FP_RDCLK=1; RDCLK_NAME=pll_inst\|clkout2
 else
   FP_RDCLK=; RDCLK_NAME=pll_inst\|clkout0
 fi
@@ -111,11 +111,15 @@ cd "$WORK"
     -d $DEVICE -x logic/top.vex top.ve logic/top.v -m logic/fastprom_ip.v -F \
     > logic/gen_vlog.log 2>&1 || { cat logic/gen_vlog.log; exit 1; }
 
+# The USB pads' pull configuration, as AGM's board files give every design
+# with USB0 (tools/ag32/usb0.asf); pre_logic.tcl copies LOGIC_ASF (relative
+# to LOGIC_DIR) into logic/top.asf.
+cp "$HERE/usb0.asf" logic/usb0.asf
 SUPRA="podman run --rm --security-opt label=disable -v $PIO:/pio -v $WORK:/work -w /work $IMAGE"
 BIN=/pio/packages/tool-agrv_logic/bin
 $SUPRA $BIN/af_cmd -L logic/logic_log.txt \
     -X "set LOGIC_DEVICE {$DEVICE}" -X "set LOGIC_DESIGN {top}" -X "set LOGIC_TOPPIN {false}" \
-    -X "set LOGIC_DIR {logic}" -X "set LOGIC_VV {top.v}" -X "set LOGIC_ASF {}" -X "set LOGIC_PRE {}" \
+    -X "set LOGIC_DIR {logic}" -X "set LOGIC_VV {top.v}" -X "set LOGIC_ASF {usb0.asf}" -X "set LOGIC_PRE {}" \
     -X "set LOGIC_POST {}" -X "set DESIGN_ASF {}" -X "set DESIGN_PRE {}" -X "set DESIGN_POST {}" \
     -X "set LOGIC_FORCE {true}" -X "set VEX_FILE {top.vex}" -X "set AGF_FILE {}" -X "set SDC_FILE {}" \
     -X "set IP_VV {fastprom_ip.v}" -X "set ORIGINAL_PIN {-}" -F /pio/platforms/AgRV/etc/pre_logic.tcl \

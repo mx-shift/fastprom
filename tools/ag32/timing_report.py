@@ -112,7 +112,7 @@ def main():
                               brams=util("Block Rams"))
     fm = re.findall(r"User constraint: *([\d.]+)MHz, Fmax: *([\d.]+)MHz, Clock: pll_inst\|clkout0",
                     console)
-    rk = re.findall(r"User constraint: *([\d.]+)MHz, Fmax: *([\d.]+)MHz, Clock: pll_inst\|clkout1",
+    rk = re.findall(r"User constraint: *([\d.]+)MHz, Fmax: *([\d.]+)MHz, Clock: pll_inst\|clkout2",
                     console)
     if rk:
         res["rd_clock_mhz"], res["rd_fmax_mhz"] = float(rk[-1][0]), float(rk[-1][1])

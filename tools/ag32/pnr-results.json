@@ -29,12 +29,12 @@
   }
  },
  "flow": "tools/ag32/run_matrix.sh (AgRV_pio native flow, device AGRV2KQ32)",
- "generated": "2026-11-04",
+ "generated": "2026-11-05",
  "runs": {
   "256x8-bram": {
    "aa": {
-    "d_pin[0]": 17.964,
-    "d_pin[1]": 18.286,
+    "d_pin[0]": 18.286,
+    "d_pin[1]": 17.964,
     "d_pin[2]": 18.393,
     "d_pin[3]": 17.412,
     "d_pin[4]": 17.061,
@@ -46,8 +46,8 @@
    "bank_bits": 0,
    "board": "fastprom-upper",
    "bram_capture": 1.706,
-   "ea": 7.13,
-   "fmax_mhz": 232.504,
+   "ea": 7.472,
+   "fmax_mhz": 233.1,
    "kind": "random",
    "mode": "bram",
    "pad_xy": {
@@ -174,20 +174,20 @@
   },
   "256x8-bram-sys100": {
    "aa": {
-    "d_pin[0]": 23.337,
-    "d_pin[1]": 23.273,
+    "d_pin[0]": 23.273,
+    "d_pin[1]": 23.337,
     "d_pin[2]": 23.38,
     "d_pin[3]": 22.399,
     "d_pin[4]": 22.048,
     "d_pin[5]": 22.766,
-    "d_pin[6]": 22.417,
-    "d_pin[7]": 22.048
+    "d_pin[6]": 22.048,
+    "d_pin[7]": 22.417
    },
    "aa_worst": 23.38,
    "bank_bits": 0,
    "board": "fastprom-upper",
    "bram_capture": 1.546,
-   "ea": 7.595,
+   "ea": 7.636,
    "fmax_mhz": 215.983,
    "kind": "random",
    "mode": "bram",
@@ -315,20 +315,20 @@
   },
   "256x8-bram-sys150": {
    "aa": {
-    "d_pin[0]": 19.987,
-    "d_pin[1]": 20.051,
-    "d_pin[2]": 20.094,
-    "d_pin[3]": 19.113,
-    "d_pin[4]": 18.762,
-    "d_pin[5]": 19.48,
-    "d_pin[6]": 19.131,
-    "d_pin[7]": 18.762
+    "d_pin[0]": 19.979,
+    "d_pin[1]": 19.94,
+    "d_pin[2]": 20.047,
+    "d_pin[3]": 19.066,
+    "d_pin[4]": 18.715,
+    "d_pin[5]": 19.433,
+    "d_pin[6]": 18.715,
+    "d_pin[7]": 19.084
    },
-   "aa_worst": 20.094,
+   "aa_worst": 20.047,
    "bank_bits": 0,
    "board": "fastprom-upper",
-   "bram_capture": 1.593,
-   "ea": 7.466,
+   "bram_capture": 1.546,
+   "ea": 7.431,
    "fmax_mhz": 246.731,
    "kind": "random",
    "mode": "bram",
@@ -456,21 +456,21 @@
   },
   "256x8-logic": {
    "aa": {
-    "d_pin[0]": 14.465,
-    "d_pin[1]": 14.429,
-    "d_pin[2]": 13.79,
-    "d_pin[3]": 12.904,
-    "d_pin[4]": 12.398,
-    "d_pin[5]": 14.676,
-    "d_pin[6]": 13.173,
-    "d_pin[7]": 13.13
+    "d_pin[0]": 13.685,
+    "d_pin[1]": 14.306,
+    "d_pin[2]": 13.871,
+    "d_pin[3]": 12.976,
+    "d_pin[4]": 12.699,
+    "d_pin[5]": 14.594,
+    "d_pin[6]": 13.176,
+    "d_pin[7]": 13.021
    },
-   "aa_worst": 14.676,
+   "aa_worst": 14.594,
    "bank_bits": 0,
    "board": "fastprom-upper",
    "bram_capture": null,
    "ea": 7.65,
-   "fmax_mhz": 227.998,
+   "fmax_mhz": 233.1,
    "kind": "random",
    "mode": "logic",
    "pad_xy": {
@@ -593,25 +593,25 @@
      2112
     ]
    },
-   "worst_clocked_slack": 5.614
+   "worst_clocked_slack": 5.71
   },
   "512x8-bram": {
    "aa": {
-    "d_pin[0]": 18.333,
-    "d_pin[1]": 18.011,
-    "d_pin[2]": 18.44,
-    "d_pin[3]": 17.459,
-    "d_pin[4]": 17.108,
-    "d_pin[5]": 17.826,
-    "d_pin[6]": 17.108,
-    "d_pin[7]": 17.477
+    "d_pin[0]": 18.286,
+    "d_pin[1]": 18.325,
+    "d_pin[2]": 18.393,
+    "d_pin[3]": 17.412,
+    "d_pin[4]": 17.061,
+    "d_pin[5]": 17.779,
+    "d_pin[6]": 17.43,
+    "d_pin[7]": 17.061
    },
-   "aa_worst": 18.44,
+   "aa_worst": 18.393,
    "bank_bits": 0,
    "board": "fastprom-upper",
-   "bram_capture": 1.753,
-   "ea": 7.411,
-   "fmax_mhz": 186.463,
+   "bram_capture": 1.706,
+   "ea": 7.13,
+   "fmax_mhz": 216.31,
    "kind": "random",
    "mode": "bram",
    "pad_xy": {
@@ -734,7 +734,7 @@
      2112
     ]
    },
-   "worst_clocked_slack": 3.247
+   "worst_clocked_slack": 3.294
   },
   "512x8-bram-sys100": {
    "aa": {
@@ -744,8 +744,8 @@
     "d_pin[3]": 22.399,
     "d_pin[4]": 22.048,
     "d_pin[5]": 22.766,
-    "d_pin[6]": 22.417,
-    "d_pin[7]": 22.048
+    "d_pin[6]": 22.048,
+    "d_pin[7]": 22.417
    },
    "aa_worst": 23.38,
    "bank_bits": 0,
@@ -879,8 +879,8 @@
   },
   "512x8-bram-sys150": {
    "aa": {
-    "d_pin[0]": 19.94,
-    "d_pin[1]": 20.004,
+    "d_pin[0]": 19.979,
+    "d_pin[1]": 19.94,
     "d_pin[2]": 20.047,
     "d_pin[3]": 19.066,
     "d_pin[4]": 18.715,
@@ -893,7 +893,7 @@
    "board": "fastprom-upper",
    "bram_capture": 1.546,
    "ea": 7.13,
-   "fmax_mhz": 239.578,
+   "fmax_mhz": 216.263,
    "kind": "random",
    "mode": "bram",
    "pad_xy": {
@@ -1016,25 +1016,25 @@
      2112
     ]
    },
-   "worst_clocked_slack": 2.493
+   "worst_clocked_slack": 2.043
   },
   "512x8-logic": {
    "aa": {
-    "d_pin[0]": 15.926,
-    "d_pin[1]": 15.309,
-    "d_pin[2]": 14.483,
-    "d_pin[3]": 14.488,
-    "d_pin[4]": 15.766,
-    "d_pin[5]": 15.417,
-    "d_pin[6]": 14.608,
-    "d_pin[7]": 14.755
+    "d_pin[0]": 16.023,
+    "d_pin[1]": 15.806,
+    "d_pin[2]": 14.717,
+    "d_pin[3]": 14.329,
+    "d_pin[4]": 14.895,
+    "d_pin[5]": 15.879,
+    "d_pin[6]": 15.509,
+    "d_pin[7]": 15.585
    },
-   "aa_worst": 15.926,
+   "aa_worst": 16.023,
    "bank_bits": 0,
    "board": "fastprom-upper",
    "bram_capture": null,
-   "ea": 7.52,
-   "fmax_mhz": 198.926,
+   "ea": 7.314,
+   "fmax_mhz": 224.014,
    "kind": "random",
    "mode": "logic",
    "pad_xy": {
@@ -1157,20 +1157,20 @@
      2112
     ]
    },
-   "worst_clocked_slack": 4.973
+   "worst_clocked_slack": 5.536
   },
   "512x8-logic-pal": {
    "aa": {
-    "d_pin[0]": 10.778,
-    "d_pin[1]": 11.152,
-    "d_pin[2]": 9.239,
-    "d_pin[3]": 10.24,
-    "d_pin[4]": 9.983,
-    "d_pin[5]": 11.631,
-    "d_pin[6]": 10.163,
-    "d_pin[7]": 10.199
+    "d_pin[0]": 10.818,
+    "d_pin[1]": 11.151,
+    "d_pin[2]": 9.256,
+    "d_pin[3]": 10.223,
+    "d_pin[4]": 10.18,
+    "d_pin[5]": 11.63,
+    "d_pin[6]": 10.18,
+    "d_pin[7]": 10.182
    },
-   "aa_worst": 11.631,
+   "aa_worst": 11.63,
    "bank_bits": 0,
    "board": "fastprom-upper",
    "bram_capture": null,
@@ -1299,284 +1299,6 @@
     ]
    },
    "worst_clocked_slack": 5.356
-  },
-  "r3-512x8-bram": {
-   "aa": {
-    "d_pin[0]": 23.589,
-    "d_pin[1]": 23.232,
-    "d_pin[2]": 23.273,
-    "d_pin[3]": 22.951,
-    "d_pin[4]": 22.766,
-    "d_pin[5]": 22.048,
-    "d_pin[6]": 22.048,
-    "d_pin[7]": 22.721
-   },
-   "aa_worst": 23.589,
-   "bank_bits": 0,
-   "board": "fastprom-r3-qfn32-usb",
-   "bram_capture": 1.546,
-   "ea": 8.155,
-   "fmax_mhz": 204.541,
-   "kind": "random",
-   "mode": "bram",
-   "pad_xy": {
-    "a_pin[0]": [
-     22,
-     2
-    ],
-    "a_pin[1]": [
-     22,
-     3
-    ],
-    "a_pin[2]": [
-     22,
-     3
-    ],
-    "a_pin[3]": [
-     22,
-     3
-    ],
-    "a_pin[4]": [
-     20,
-     13
-    ],
-    "a_pin[5]": [
-     19,
-     13
-    ],
-    "a_pin[6]": [
-     20,
-     13
-    ],
-    "a_pin[7]": [
-     20,
-     13
-    ],
-    "a_pin[8]": [
-     19,
-     13
-    ],
-    "buf_noe": [
-     17,
-     0
-    ],
-    "ce_pin": [
-     19,
-     13
-    ],
-    "d_pin[0]": [
-     19,
-     13
-    ],
-    "d_pin[1]": [
-     18,
-     13
-    ],
-    "d_pin[2]": [
-     0,
-     4
-    ],
-    "d_pin[3]": [
-     0,
-     4
-    ],
-    "d_pin[4]": [
-     1,
-     0
-    ],
-    "d_pin[5]": [
-     17,
-     0
-    ],
-    "d_pin[6]": [
-     17,
-     0
-    ],
-    "d_pin[7]": [
-     19,
-     0
-    ]
-   },
-   "part": "512x8",
-   "period": 10.0,
-   "pins": {
-    "a_pin[0]": "PIN_1",
-    "a_pin[1]": "PIN_2",
-    "a_pin[2]": "PIN_3",
-    "a_pin[3]": "PIN_5",
-    "a_pin[4]": "PIN_7",
-    "a_pin[5]": "PIN_12",
-    "a_pin[6]": "PIN_8",
-    "a_pin[7]": "PIN_9",
-    "a_pin[8]": "PIN_10",
-    "buf_noe": "PIN_28",
-    "ce_pin": "PIN_11",
-    "d_pin[0]": "PIN_13",
-    "d_pin[1]": "PIN_14",
-    "d_pin[2]": "PIN_18",
-    "d_pin[3]": "PIN_19",
-    "d_pin[4]": "PIN_26",
-    "d_pin[5]": "PIN_27",
-    "d_pin[6]": "PIN_29",
-    "d_pin[7]": "PIN_31"
-   },
-   "rd_clock_mhz": null,
-   "rd_fmax_mhz": null,
-   "sys_clock_mhz": 100.0,
-   "utilisation": {
-    "brams": [
-     1,
-     4
-    ],
-    "luts": [
-     27,
-     2112
-    ],
-    "registers": [
-     41,
-     2112
-    ]
-   },
-   "worst_clocked_slack": 5.111
-  },
-  "r3-512x8-logic": {
-   "aa": {
-    "d_pin[0]": 14.762,
-    "d_pin[1]": 13.875,
-    "d_pin[2]": 15.605,
-    "d_pin[3]": 15.562,
-    "d_pin[4]": 15.662,
-    "d_pin[5]": 14.964,
-    "d_pin[6]": 13.915,
-    "d_pin[7]": 14.586
-   },
-   "aa_worst": 15.662,
-   "bank_bits": 0,
-   "board": "fastprom-r3-qfn32-usb",
-   "bram_capture": null,
-   "ea": 8.471,
-   "fmax_mhz": 203.749,
-   "kind": "random",
-   "mode": "logic",
-   "pad_xy": {
-    "a_pin[0]": [
-     22,
-     2
-    ],
-    "a_pin[1]": [
-     22,
-     3
-    ],
-    "a_pin[2]": [
-     22,
-     3
-    ],
-    "a_pin[3]": [
-     22,
-     3
-    ],
-    "a_pin[4]": [
-     20,
-     13
-    ],
-    "a_pin[5]": [
-     19,
-     13
-    ],
-    "a_pin[6]": [
-     20,
-     13
-    ],
-    "a_pin[7]": [
-     20,
-     13
-    ],
-    "a_pin[8]": [
-     19,
-     13
-    ],
-    "buf_noe": [
-     17,
-     0
-    ],
-    "ce_pin": [
-     19,
-     13
-    ],
-    "d_pin[0]": [
-     19,
-     13
-    ],
-    "d_pin[1]": [
-     18,
-     13
-    ],
-    "d_pin[2]": [
-     0,
-     4
-    ],
-    "d_pin[3]": [
-     0,
-     4
-    ],
-    "d_pin[4]": [
-     1,
-     0
-    ],
-    "d_pin[5]": [
-     17,
-     0
-    ],
-    "d_pin[6]": [
-     17,
-     0
-    ],
-    "d_pin[7]": [
-     19,
-     0
-    ]
-   },
-   "part": "512x8",
-   "period": null,
-   "pins": {
-    "a_pin[0]": "PIN_1",
-    "a_pin[1]": "PIN_2",
-    "a_pin[2]": "PIN_3",
-    "a_pin[3]": "PIN_5",
-    "a_pin[4]": "PIN_7",
-    "a_pin[5]": "PIN_12",
-    "a_pin[6]": "PIN_8",
-    "a_pin[7]": "PIN_9",
-    "a_pin[8]": "PIN_10",
-    "buf_noe": "PIN_28",
-    "ce_pin": "PIN_11",
-    "d_pin[0]": "PIN_13",
-    "d_pin[1]": "PIN_14",
-    "d_pin[2]": "PIN_18",
-    "d_pin[3]": "PIN_19",
-    "d_pin[4]": "PIN_26",
-    "d_pin[5]": "PIN_27",
-    "d_pin[6]": "PIN_29",
-    "d_pin[7]": "PIN_31"
-   },
-   "rd_clock_mhz": null,
-   "rd_fmax_mhz": null,
-   "sys_clock_mhz": 100.0,
-   "utilisation": {
-    "brams": [
-     0,
-     4
-    ],
-    "luts": [
-     576,
-     2112
-    ],
-    "registers": [
-     23,
-     2112
-    ]
-   },
-   "worst_clocked_slack": 5.092
   }
  },
  "tool": "AGM Supra 2024.11.b0(2d866f99)"
