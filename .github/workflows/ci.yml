@@ -1,0 +1,90 @@
+# Every push to main and every pull request: the firmware, the web page,
+# the simulation suite, and the boards. The same targets as a developer runs
+# (docs/06-build-and-flash.md), with containers under docker: under the
+# runner's rootless podman a container's user cannot write the checkout.
+# Releases are release-hw.yml and release-fw.yml.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  firmware:
+    # firmware, web page, then the simulation suite, which replays the load
+    # traces fw-test records (scripts/fw_tests.sh), so it runs in this job
+    runs-on: ubuntu-24.04
+    env:
+      FW_ENGINE: docker
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Tools
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -yq python3-yaml
+
+      - name: Rust image
+        run: make fw-image
+
+      - name: Lint
+        run: make fw-lint
+
+      - name: Host tests
+        run: make fw-test
+
+      - name: Build (no fabric; layout and panic-path checks)
+        run: make fw-build FW_LOGIC=none
+
+      - name: Web page
+        run: make web
+
+      - name: Browser tests
+        run: make web-test
+
+      - name: Simulation suite
+        run: make test
+
+  boards:
+    # schematics and boards build from their sources; ERC, DRC, the
+    # drafting grade, the netlist comparison and the stack check are clean
+    # (scripts/release_hw.sh, which publishes nothing)
+    runs-on: ubuntu-24.04
+    env:
+      KICAD_ENGINE: docker
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Tools
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -yq python3-yaml
+          docker pull -q docker.io/kicad/kicad:10.0
+
+      - name: Check
+        run: scripts/release_hw.sh
+
+      # the schematics and boards as built from this commit, for review
+      # between releases (the PDFs are not tracked: make pdf writes build/pdf)
+      - name: PDFs
+        uses: actions/upload-artifact@v7
+        with:
+          name: fastprom-pdf-${{ github.sha }}
+          path: build/pdf/*.pdf
+          if-no-files-found: error
+
+  licenses:
+    # every tracked file has a licence and copyright (REUSE.toml)
+    runs-on: ubuntu-24.04
+    env:
+      FW_ENGINE: docker
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: reuse lint
+        run: make licenses
