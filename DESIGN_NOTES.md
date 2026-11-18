@@ -1902,16 +1902,16 @@ JLC's order form leaves most of the board's specification to the order;
   suits too.
 - **1 oz outer copper.** The boards use 0.1 mm track and space; JLC's
   4-layer minimum is 0.09 mm at 1 oz and 0.15 mm at 2 oz.
-- **0.2 mm / 0.45 mm vias are JLC's standard tier.** Only 0.2-0.25 mm holes
-  with a diameter under 0.45 mm cost extra (JLC's PCB capabilities page).
-- **Outline tolerance ±0.1 mm, if JLC will hold it.** Both boards are
-  exactly the socket footprint's 11.02 mm wide, which must not grow
-  (`docs/05-hardware.md`). JLC's regular milling tolerance is ±0.2 mm;
-  its blog describes a ±0.1 mm precision option, but a JLC support reply
-  said it could not hold it, so the order sheet says to ask if the form
-  does not offer it. The tab nubs, sanded to about 0.25 mm, come on top.
+- **0.2 mm vias.** Every via is 0.2 mm drill, 0.45 mm diameter, so the
+  order takes JLC's 0.2 mm via tier, which costs more than the 0.3 mm
+  default.
+- **Outline tolerance ±0.1 mm.** Both boards are exactly the socket
+  footprint's 11.02 mm wide, which must not grow (`docs/05-hardware.md`).
+  JLC's regular milling tolerance is ±0.2 mm; the form offers ±0.1 mm
+  (Precision) for this board. The tab nubs, sanded to about 0.25 mm, come
+  on top.
 - **No impedance control.** Full-speed USB and the 5 V socket bus are not
-  impedance-controlled lines; JLC's default 0.8 mm 4-layer stack-up.
+  impedance-controlled lines.
 
 ### Test pads: the supplies, where they can be probed
 

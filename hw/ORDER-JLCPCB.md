@@ -15,8 +15,10 @@ The files, from the hardware release (or `make jlc-panel` into
 | `fastprom-panel-cpl.csv` | PCB Assembly, CPL (pick-and-place) |
 
 JLC's form changes its labels from time to time; the fields are named here
-as the form names them at the time of writing, with the setting's reason so
-that a renamed field can still be matched. The reasons and calculations are
+as the form names them on 2026-11-18, with the setting's reason so that a
+renamed field can still be matched. Some fields appear only once an earlier
+one is set (Panel Format, Gold Thickness, Layer Stackup); they are listed
+where they appear. The reasons and calculations are
 in `../DESIGN_NOTES.md`, "Fabrication options" and "Assembly panel".
 
 ## PCB
@@ -26,25 +28,29 @@ in `../DESIGN_NOTES.md`, "Fabrication options" and "Assembly panel".
 | Base Material | FR-4 | |
 | Layers | 4 | detected from the gerbers; F.Cu, In1 (ground), In2 (ground), B.Cu |
 | Dimensions | 77.10 × 74.02 mm | detected: the panel's outline |
-| PCB Qty | 5 | panels; JLC's minimum (prototypes: see below) |
+| Panel Qty | 5 | panels (the field is "PCB Qty" until Delivery Format is set); JLC's minimum (prototypes: see below) |
 | Product Type | Industrial/Consumer electronics | |
 | Different Design | 2 | the panel carries two designs, the lower and upper boards |
-| Delivery Format | Panel by Customer | the panel is in the files; if asked for its layout, 5 columns × 2 rows, edge rails and fiducials already added |
+| Delivery Format | Panel by Customer | the panel is in the files, edge rails, tooling holes and fiducials included |
+| Panel Format | Column 5, Row 2 | five pairs side by side, the lower boards in one row and the upper boards in the other |
 | PCB Thickness | 0.8 mm | the stack's height (`../docs/09-two-board-stack.md`) and J1's tail trim (`../DESIGN_NOTES.md`, "Pin-tail trim") assume it |
 | PCB Color | Green | any colour works; green is the quickest |
 | Silkscreen | White | |
-| Material Type | FR4, standard Tg | |
+| Material Type | FR4 TG135 | the default; nothing on the boards needs a higher Tg |
 | Surface Finish | ENIG | the 0.4 mm-pitch QFN-32 and DF40 connectors want a flat finish, and J3's edge pads take a clip or pogo pins |
+| Gold Thickness | 1 U" | the default |
 | Outer Copper Weight | 1 oz | 0.1 mm track and space need 1 oz; 2 oz needs 0.15 mm |
 | Inner Copper Weight | 0.5 oz | JLC's default |
-| Impedance Control | No | no line is impedance-controlled; USB is full speed |
-| Layer Stackup | JLC04081H-3313 | the stack-up both board files record: 1 oz outer copper on 3313 prepreg (0.0994 mm) over the two 0.5 oz ground planes, 0.45 mm core (`../DESIGN_NOTES.md`, "Four layers on both boards") |
+| Specify Stackup | Yes | opens the stack-up dialog |
+| Layer Stackup | JLC04081H-3313 | chosen in that dialog, then Confirm. The stack-up both board files record: 1 oz outer copper on 3313 prepreg (0.0994 mm) over the two 0.5 oz ground planes, 0.45 mm core (`../DESIGN_NOTES.md`, "Four layers on both boards") |
+| Impedance Control | No requirement | no line is impedance-controlled; USB is full speed |
 | Via Covering | Epoxy Filled & Capped | eleven vias sit in pads: ten in exposed pads (U1, U2, U3) and one in C4's ground pad; open vias there wick the solder away, and "plugged" is not offered for vias inside a mask opening |
-| Min via hole size/diameter | the tier with 0.2 mm holes | every via is 0.2 mm drill, 0.45 mm diameter, which JLC's capabilities price as standard (only 0.2-0.25 mm holes under 0.45 mm cost more) |
-| Board Outline Tolerance | ±0.1 mm (Precision), if offered | each board is exactly the socket footprint's 11.02 mm wide and must not grow; if the form has only ±0.2 mm, ask JLC before ordering. Each board's pin 1 corner is a 1 mm 45-degree chamfer (the module's pin 1 mark), routed with the rest of the outline: no special request |
-| Confirm Production File | Yes | first order: check how JLC has read the panel, its tabs and mouse bites |
-| Remove Order Number / Mark on PCB | Specify a location | the rail carries `JLCJLCJLCJLC` for it |
-| Electrical Test | Flying probe, fully tested | |
+| Via Plating Method | Not Specified | the default |
+| Min via hole size/diameter | 0.2mm/(0.3/0.35mm) | every via is 0.2 mm drill, 0.45 mm diameter. This tier costs more than the 0.3 mm default (about $38 on five panels on 2026-11-18) |
+| Board Outline Tolerance | ±0.1mm(Precision) | each board is exactly the socket footprint's 11.02 mm wide and must not grow. Each board's pin 1 corner is a 1 mm 45-degree chamfer (the module's pin 1 mark), routed with the rest of the outline: no special request |
+| Confirm Production file | Yes | first order: check how JLC has read the panel, its tabs and mouse bites |
+| Mark on PCB | Remove Mark | the default: no order number or code is added to the boards |
+| Electrical Test | Flying Probe Fully Test | the only choice |
 | Gold Fingers | No | |
 | Castellated Holes | No | |
 | Edge Plating | No | |

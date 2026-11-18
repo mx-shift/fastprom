@@ -245,22 +245,11 @@ writes the order files into `build/jlc/fastprom-panel/`:
 The reasons and JLC's rules behind the panel are in `../DESIGN_NOTES.md`,
 "Assembly panel".
 
-**PCB order.** Upload `fastprom-panel-gerbers.zip`, then set:
-- 4 layers, 0.8 mm thick, JLC's standard 4-layer stack-up;
-- delivery format "Panel by Customer", with **2 different designs**;
-- panel size 77.10 × 74.02 mm;
-- edge rails and fiducials "added by customer", since they are already in
-  the files;
-- order number at a specified location: the rail carries `JLCJLCJLCJLC`;
-- quantity in panels.
-
-**Assembly.** Choose:
-- **Standard** PCBA, **both sides**. Economic assembly places one side only,
-  and both boards carry parts on both sides.
-- Tooling holes "added by customer".
-
-Upload `fastprom-panel-bom.csv` and `fastprom-panel-cpl.csv`. JLC
-counts the panel as two designs, so it adds one panel fee to the setup fee.
+Every field of JLC's PCB and assembly order form is set in
+`../hw/ORDER-JLCPCB.md`. Assembly is Standard PCBA on both sides, since
+Economic places one side only and both boards carry parts on both sides.
+JLC counts the panel as two designs, so it adds one panel fee to the setup
+fee.
 
 **Prototypes.** JLC's minimums are 5 bare panels and 2 assembled. Order 5
 panels with PCBA quantity 2. That gives 10 modules, or 2N if the BOM and
