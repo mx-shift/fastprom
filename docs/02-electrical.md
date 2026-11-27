@@ -105,12 +105,14 @@ on top of the enable-to-output times these parts specify. It is kept in the
 tool as a comparison.
 
 **SN74LVT245B rather than the LVTH variant.** Its switching characteristics
-are identical (3.5 ns, 5.5 ns and 5.9 ns, from its own datasheet), and unlike
-every TSSOP member of this family it is in stock (`07-bom.md`). It has no bus
-hold. The `LVTH` suffix means active bus hold on the inputs, which sources or
-sinks up to about 500 uA to keep a floating input at its last state; on the
-lines we *receive*, address and chip enable, that would be extra loading on
-the host's drivers, roughly comparable to a TTL load.
+are identical (3.5 ns, 5.5 ns and 5.9 ns, from its own datasheet). It has no
+bus hold. The `LVTH` suffix means active bus hold on the A and B ports, which
+holds an undriven input at its last state and takes 500 uA (low to high) or
+750 uA (high to low) of overdrive to switch (SN74LVTH245A datasheet, II(hold)
+at 3.6 V). The 100 kOhm socket pulls supply 33-50 uA, so on the lines we
+*receive*, address and chip enable, a floating pin would keep whatever level
+it last had instead of the pull's; TI advises against pull resistors with bus
+hold.
 
 ## Direction and arrangement
 

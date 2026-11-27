@@ -14,13 +14,13 @@ processor loads the contents at boot and is then out of the path.
 
 ## Status
 
-Rev A hardware is designed, checked and released
-([hw-rev-A](https://github.com/mx-shift/fastprom/releases/tag/hw-rev-A)):
-both boards, the JLCPCB assembly panel and its order files. The fabric,
+Rev A hardware is released
+([hw-rev-A](https://github.com/mx-shift/fastprom/releases/tag/hw-rev-A))
+and on order from JLCPCB: five assembled panels, 25 modules. The fabric,
 firmware and update page are built and tested in simulation.
 
-Nothing has run on silicon yet. Next: build rev A, bring it up, measure how
-long after power-on the fabric is live, and check the timing below on real
+Nothing has run on silicon yet. Next: bring rev A up, measure how long
+after power-on the fabric is live, and check the timing below on real
 parts.
 
 ## Timing

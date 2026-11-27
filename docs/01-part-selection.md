@@ -62,8 +62,8 @@ That leaves, on the top side of a board in the socket's footprint:
 
 Every part on top has to fit in that 5.08 mm channel, which is why the BOM
 calls for VQFN buffers rather than the more convenient packages: a 20-VQFN
-at 3.5 mm wide fits the channel, a 20-TSSOP at 4.4 mm fits, and a 20-SSOP at
-5.3 mm does not. See `07-bom.md`.
+at 3.5 mm wide fits the channel, while a 20-TSSOP (6.4 mm across its leads)
+and a 20-SSOP (7.8 mm) do not. See `07-bom.md`.
 
 ## Pinout source
 

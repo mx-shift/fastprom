@@ -225,8 +225,10 @@ grounded on top through pins 1 and 10.
 ### SN74LVT245B, not LVTH
 
 The LVT and LVTH parts have identical switching characteristics; LVTH adds
-bus hold. Bus hold is unwanted on pins that receive from an unknown host, and
-the LVT part in TI's RGY package is in stock.
+bus hold. Bus hold takes 500-750 uA of overdrive to switch (II(hold) in the
+SN74LVTH245A datasheet), and the 100 kOhm socket pulls ("Socket pulls")
+supply 33-50 uA, so with LVTH buffers a floating address or enable pin would
+hold its last level instead of reading as the pull sets it.
 
 ### 33 Ω series terminators (RN1, RN2); 47 Ω optional
 

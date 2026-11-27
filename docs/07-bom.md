@@ -124,16 +124,10 @@ page is stale.
 
 ### The transceiver package
 
-The transceiver is `SN74LVT245B` in 20-VQFN, for two reasons:
-
-**Stock.** Every `...PWR` TSSOP-20 variant in the LVT and LVTH families was
-at zero stock with 9 to 24 week lead times on 2026-09-12
-(`SN74LVTH245APWR`: 0 on hand, 583 due November 2026).
-
-**Width.** A 20-SSOP is 5.3 mm wide and does not fit the 5.08 mm channel
-between the socket pad rows (see `01-part-selection.md`). TSSOP-20 at 4.4 mm
-would fit but is not available. The 20-VQFN RGY package is **3.5 x 4.5 mm**
-(from the datasheet) and fits; KiCad's stock
+The transceiver is `SN74LVT245B` in 20-VQFN, the one package of it that
+fits the 5.08 mm channel between the socket pad rows
+(`01-part-selection.md`): TSSOP-20 is 6.4 mm across its leads and SSOP-20
+7.8 mm. The RGY package is **3.5 x 4.5 mm** (from the datasheet); KiCad's stock
 `Texas_RGY_R-PVQFN-N20_EP2.05x3.05mm` matches TI's land pattern
 (`hw/lib/fastprom.pretty/README.md`).
 
@@ -274,7 +268,7 @@ module.
 | **AGM is single-sourced to LCSC**, with no Western distributor. | No second source exists for the one irreplaceable part. |
 | **LCSC's parametric data on AGM parts is wrong** - it advertises 248 MHz and 1 MB flash for a part AGM specs at 208 MHz and 256 K. | Do not design from LCSC parametrics; use AGM's documents. The QFN-32 pinout comes from AGM's pinout spreadsheet (`00-ag32-reference.md`). |
 | **LVT 5 V tolerance does not extend to driving high.** | See `02-electrical.md`. Fine into 5 V TTL, not 5 V CMOS. |
-| **SN74LVT245BRGYR stock is thin**, and all TSSOP variants in both logic families were at zero stock. | Three per module. Design for VQFN; do not fall back to TSSOP without checking. |
+| **SN74LVT245BRGYR stock is thin** (17 at JLC on 2026-11-18; TI out of stock). | Three per module, and no other package fits the channel. The LVTH part in the same package cannot replace it (`02-electrical.md`), and the in-stock 74LVC245A in VQFN is too slow for the fastest grades. |
 | **AGM parts at JLC are "Extended"**, assembly only. | They cannot be shipped loose; boards assembled elsewhere need a separate LCSC order (`05-hardware.md`). |
 
 ## Cost
